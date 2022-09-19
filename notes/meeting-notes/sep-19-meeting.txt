@@ -1,0 +1,29 @@
+Project plan next hing
+
+write perspective on what the project is - create a 'brain dump' of the project 
+
+software company as a whole - economics of how company works 
+
+win contracts, negotiate scope of work - 
+
+make things up about it first, winning projects etc. 
+
+looking online of full stack developer and how they work 
+
+make up scenarious on how they onboard new customers 
+
+when a project is proposed, then getting enough people to work with you. Project allocation - setting up source control, testing team, demos. Then language, framework decisions. Workng with it - resources, cloud resources (contract)
+
+Tell the story from begining to end of winnig a contract. Try to break it Forms of communication with company whether that is slack
+
+Twitch - every 2 weeks - what are they things that we could do? Don't leave until they get agreement,time it takes, metrics. Delegation of tasks too. 
+
+Simulate where work comes from 
+
+Where time is taken and process made to make those happen. Use of time is very important
+
+Have a look into technologies about reports, graphs, svg etc.
+
+Fixed length html template
+
+More sided to the idea of an educational view, showing the inner workings of a software devlopment company and how each part affects each other. 
