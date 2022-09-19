@@ -1,0 +1,22 @@
+Draft attempt at events
+
+1. Completion of ticket
+2. Question asked
+3. Ticket assigned
+4. Task Completed
+5. Learning started
+6. Certification Completed
+7. Internal project assigned
+8. Internal project completed
+9. Evaluation completed
+10. Self assesment completed
+11. Staff social event attended
+12. Praise given
+13. Discipline given.
+14. Sick day absence
+15. Annual leave started
+16. Self learning completed
+17. Meetings joined
+18. Meetings led
+19. Irrelevent task completed
+20. Reports generated
