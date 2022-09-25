@@ -1,0 +1,187 @@
+ 																											Online Articles
+
+
+																				Software Development Team Structure: Must-Have Players for your Team
+
+Size of tems depend on a number of things 
+- Scope of work
+- Timeframes
+- Budget
+- Project managment methodologies
+- Roles and responsibilities
+
+											Waterfall
+
+1. Managers
+
+- Specialised who rules a team and runs development process. 
+- Titles can be: team leader, project manager, business analyst, product owner, devops engineer.
+- Some are concentrated around the team, wheras others take care of the development process.
+- Main Responsibilities: organize the workflow, control product development, monitor performance, set protities, coordinate deadlines, created healthy working environment
+- Ensure that programmers do their tasks in accordance within the initial plan
+
+2. Designer
+
+- Creative specialist who deals with product visualisation and user interaction (UX/UI).
+- Primary stages of product development, includes the experience a user gains while interacting with product.
+- UI design is a visualisation of UX design. 
+- UI designer deals with forms, colours, icons, pics, etc. Make the interface attractive and user-friendly.
+- UI and UX usually work together, although, could be one person.
+
+3. Software Developer
+
+- Actually codes the website/application.
+- Front-end/Back-end/Fullstack.
+
+4. Quality Assurance
+
+- Main responsibilty is to test products. 
+- Spot bugs and check whether the product scope reflects specified requirements.
+- Also involved when new features are deployed.
+- Write automised scripts that check the product, reflecting user behaviour.
+
+
+											Agile
+1. Product Manager
+
+- Ensures the product satisfies user's needs and accomplishes company's goals. - Responsible for market analysis, product portfolio policy, promotion, feature prioritisation, and KPI planning.
+- May be defined as product leader that collaborates with the development team to help realise new features and lead the product into the market.
+
+2. Team Lead
+
+- May be described as a servent-leader. Main responsibility to guide and support the team.
+- Allocate workload among developers, and make sure the working process goes well.
+- Implies boosting team's motivation and tracking performance.
+
+3. Software Engineers, Designers, Testers
+
+- Core members who are directly involved in web development process. 
+- Consists of software developers, quality assurance engineers, UX/UI designers and other specialists.
+- No definitive roles, everyone is equally responsible for the end product.
+
+		
+									Typical Softwaredevelopment Team Structure
+
+- Some tech companies use scrum. 
+- Implies three key roles: a product manager, scrum master, and development team.
+- Development process is subdivided into sprints.
+- When sprints finish, team discusses its results and start a new sprint.
+
+
+								Example
+
+Sift is an American IT company that creates their own products for digital trust & saftey. Its solutions help big companies track illegal fraud actions. Due to fast developments, Sift decided to hire a dedicated development team in Ukraine with the help of Alcor as their recruitment services provider. Our top headhunters took care of the recruitment process to hire tech specialists with rate skills. Our recruiters hired 17 specialists for Sift in less than a year, and as a result the patron got its team of specialists with a unique stack. The company uses Scrum with 2-week sprints, and its Ukranian software engineers are in different teams that are responsible for different areas of product development. Thus, 5 senior back-end developers extended their API team, while other back & front-end developers joined the core product development team. We managed to hire not only software developers but also talented product designers, ifastructure egineers, and closed the position of he Head of Software Engineering. 
+
+*********************************************************************************************************************************
+												SOURCES
+*********************************************************************************************************************************
+tinyurl.com/47kvt6b - Software Development Team Structure: Must-Have Players for your Team (alcor-bpo.com)
+
+
+																								What Agile Software Development Team Structure Looks Like
+					
+Three approaches to product team structure
+
+1. Generalist
+
+- A team that consists of individuals with broad skill sets and expertise 
+- Usually responsible for end-to-end development of the whole project. 
+- Most common team structure for outsouricing companies.
+
+Pros 
+
+- Every team member has a good understanding of the product so they can focus on improving it as a whole.
+- Each person is competent enough to complete their work without dependency on others.
+
+Cons
+
+- Since nobody has a specific knowledge, it's sometimes necessary to onboard a new team member in the middle of the project.
+
+2. Specialist
+
+- Involvs experts with super-specific skill sets who are proficient in handling narrow tasks.
+- Everyone is a pro and has their own niche. Therefore, they are fully responsible for their element of the project. Such arrangment is also a fairly common build for software development teams.
+
+Pros 
+
+- Profound knowledge of every project elements.
+- The team can build complex high-quality systems quickly.
+
+Cons 
+
+- Since everyone is working individually, there is a possibility that the components won't fir from the first iterations.
+- There might be communication gaps due to lack of knowledge.
+
+3. Hybrid
+
+- Combination of generalists and specialists. 
+- Work on the project as a whole, but can narrow down their focus when necessary.
+
+Pros
+
+- There are both specialists who build seperate components and generalists that make sure that the system is integrated.
+- The development process is maximally effective.
+
+Cons
+
+- It may be difficult to coordinate people with different approaches to workflow.
+- Building a hybrid team is tim-consuming and very expensive.
+
+Client is usually On-site, Software Development Team is made up of the below:
+
+Business Analyst (BA)
+
+- Responsible for formulating goals, analysing and documenting the core processes and systems, and ensuring the alignment of business model and technology.
+- BA is all things for everybody.
+- Evaluate what works and what doesn't. Set the direction for business development.
+
+Project Manager (PM)
+
+- In charge of planning and execution. 
+- Take care of building relationships among the client and various organisation departments.
+- Oversee all processes, delegate tasks among other team members, and ensure everyone stays on track.
+
+UX Designer
+
+- Designs the way users will interact with the product. Ensure that all features solve people's problems and fulfil business goals.
+- Determine how the product will look and how it will work.
+- Main focus is functionality and usabilty.
+
+Developers
+
+- Do the coding
+
+Quality Assurance Engineer (QA)
+
+- Test the product to make sure it works well and meets the quality standards and client requirements.
+- The final editor with meticulous attention to the smallest detail.
+- Detect errors and bugs early on so that the team can fix it before it gets to users.
+
+Roles and Responsibilities in the Agile Team
+
+Product Owner (PO)
+
+- Usually a key stakeholder of the project. 
+- Profound knowledge of the user and the product, responsible for the internal side of development.
+- Make sure the final product/service meets the clients's need.
+- Keeps an eye on the team, supports and coordinates their work, and ensures that all the product requirements are met.
+
+Scrum Master 
+
+- Process owner who coordinates the team's work.
+- Facilitates and master manages everything that is going on in the team.
+
+Development Team
+
+- Group of in-house or dedicated developers that work on the product together.
+- Includes front-end/back-end developers, UX designers, and QA testers.
+- Work on the product in close cooperation.
+
+Characteristics of an effective software development team structure
+
+- Communication
+- Working for a common goal
+- Well-defined responsibilities
+- Strong culture
+- Don't need to be controlled
+

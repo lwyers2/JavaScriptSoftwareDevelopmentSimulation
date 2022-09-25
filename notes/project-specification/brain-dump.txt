@@ -1,0 +1,70 @@
+Studying conversion gives essential skills in understanding the core tenents of software development. However these real-life skills may seem abstract in when first going into a software developer role, whether that is in a dedicated softare house, or a development team for a specific business enterprise. 
+
+To give students a better understanding of how a software company works on a day to day basis, this tool aims at creating a simulation of daily processes that are involved in the procrurment and development of software. Understanding how projects are initially won by companies, and following the exact processes that are involved in developing these products will help give students a greater understanding of develpment processes as whole within a real life setting. 
+
+Outcomes of numerous events determine how well this process will go. Determining these individual events and how they may impact on other events is key when discussing this project.
+
+Much of how companies find clients is very dependent on the company itself. If a company is a start-up specialising in a specific software, they are geared to finding customers of their product. If a company works on bespoke products, they may have a marketing team that will create emailing lists and attend networking events to get the product out there. 
+
+
+Software Development Company Structure
+
+Sales
+
+Marketing
+
+HR
+
+Onboarding
+
+Project Manager/Project Leader
+- Plans and executes development process. 
+- Ensures the product satisfies user's needs.
+- Accomplishes company's goals.
+- Realise new features.
+- Responsible for market analysis, product portfolio policy, promotion, feature prioritistion, KPI planning.
+- Lead product into market.
+- Build relationships among client and various organistion departments. 
+
+Product Owner
+- Key stakeholder of projects.
+- Profound knowledge of the user and the products, responsible for the internal side of development. 
+- Makes sure final product/service meets the clients need.
+- Keeps an eye on the team, supports and coordinates their work, and ensures that all the product requirements are met. 
+
+Scrum Master
+- Process owner who coordinates the team's work
+- Facilitates and master manages everything that is going on in the team. 
+
+
+Development Team
+
+UX/UI
+- Creative specialists who deal with product visualisation and user interaction. 
+- Primary stages of product development, includes the experience a user gains while interacting with product.
+- UI design is a visualisation of UX design.
+- UI designer deals with forms, colours, icons, pics, etc. Make the interface attractive and user-friendly.
+- UI UX usually work together, but could be one person. 
+- Ensure that all features solve people's problems and fulfill business goals.
+- Main focus is functionality and usabilty.
+
+Quality Assurance
+- Main responsibility to test products.
+- Spot bugs and check whether the product scope reflects specified requirements.
+- Also involved when new features are deployed.
+- Write automated scripts that check the product, reflecting user behaviour. 
+- Test products to make sure they work well and meet the quality standards and client requirements.
+
+Developers 
+- Actually write the code for products.
+- Front-end/Back-end/Full-stack. 
+
+Support
+- Take issues from customers.
+- Customer services and relay bugs in code to development.
+- Managed services.
+- 1st, 2nd, 3rd line support.
+
+Software Company Main Processes
+
+

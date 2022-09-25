@@ -1,0 +1,23 @@
+********************
+Date - 26/09/2022
+********************
+
+********************
+Questions to ask
+********************
+- Would you prefer if I sent across work over email, or created a folder in github, and detailed to you where they live each week before meetings?
+- Discuss timeline, best approach to making one.
+-This sort of project has been run before, but what is the main driver that this is not solely a web development project. In dissertation guide, it explains that there should be an extra element of databases interacting with web based model.
+- Wehn completing overall project, what would viability be to allow users to tweak different types of companies based on their size, sector, and methodologies used? All of these will determine how a project is completed. Would this be too grand?
+********************
+Discused
+********************
+-
+-
+-
+********************
+Actions
+********************
+-
+-
+-
