@@ -1,0 +1,10 @@
+Source: https://plan.io/blog/software-development-process/
+
+
+1. Analysis and planning
+- Alignment:  Does this project connect to your company's larger mission and goals?
+- Resource availability and alocation: Do you have the people and tools you need to take this on? Or do you need to hire a new development team? 
+- Project scheduling: How does this project fit within your company's goals and other tasks?
+- Cost scheduling: How does this project fit within your company's goals and other tasks? 
+- Cost estimation: How much is it going to cost?
+
