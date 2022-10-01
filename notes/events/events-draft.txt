@@ -1,0 +1,106 @@
+Draft attempt at events
+
+Big Events:
+
+Company Requests Services
+
+//Potential Factors
+1. Are they looking to create a whole new system? 
+2. Will this be a legacy based system?
+
+//if new system
+1. Allocation of resources
+2. Deciding on technologies
+3. Software archeticture
+4. Research of field
+5. Risks assesed
+6. Pricing assesed
+7. Market Research
+8. Features discussion
+
+//if legacy
+1. Allocation of resources
+2. New training needed? 
+3. Risk assesed
+4. Pricing and potential profits
+5. Proposed additional features
+6. Research into pre-existing app
+7. Potential restructuring/new developments needed
+
+Lead to Negotiations if company sees if it is viable
+1. Produce proposal
+2. Initiate negotiations
+3. Conduct Negotiations
+4. Update proposal
+5. Reassess resources
+6. Reassess potential pricing
+7. Reassess potential risk
+8. Reassess features
+9. Reassess profits
+
+Either negotions go through different phases, or are dropped completely
+
+If company decideds to go through with project
+
+Allocation of resources
+1. Development team assigned
+2. Testing Team assigned
+3. Product Owner Assigned
+4. Project manager assigned
+5. UX/UI Team assigned
+6. Marketing consulted
+
+Development plan
+1. Key milestones decided
+2. Budget
+3. Feature Development
+4. Customer Feedback schedule
+5. Prototype timeline
+6. Methodology
+7. Software consideration
+8. Hardware Considerations
+9. Hosting
+10. Feature criticality
+
+Development Processes
+1. Daily standup - work assesed
+2. Ticket Creation
+3. Ticket Completion
+4. QA Testing tickets
+5. Bug discovery
+
+Sprint Initiated
+
+Sprint Finished
+
+Further Testing
+
+Feature Creation
+
+Feature sent to Client
+1. Client feedback
+2. Bug discovery
+3. Feature Reassesment
+
+Ongoing Client Relationships With Project Owner
+
+1. Client feedback
+2. Deliverables
+
+Prototype developed
+
+Further Testing
+
+Product Complete
+
+//Preexisting Contracts
+
+Client Relations
+1. Bugs encountered
+2. Customer Service
+3. Support Team proficiency
+4. Stability of products
+5. Additional features needed
+6. Continuing Development
+
+
