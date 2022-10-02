@@ -131,6 +131,26 @@ class CustomerRelationshipScore {
 }
 
 
+function daily() {
+
+
+}
+
+
+// make random funcions for events
+
+
+//alocation of resources
+//training needed
+// risk assesed
+// pricing and potential profits
+// proposed additional features
+//research into pre-existing app
+//potential restructuring/new developments needed
+
+
+
+
 
 
 //events
