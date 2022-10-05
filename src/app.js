@@ -1,6 +1,12 @@
 
+// Generate a number between 0 and 10, including 10
+function generateRandomInteger(max) {
+    return Math.floor(Math.random() * max) + 1;
+}
 
-
+function generateRandomIntegerInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 //Classes
 
@@ -31,26 +37,38 @@ class Project {
 
 //need to populate the company - will eventually be a .json file, but for now keeping it simple and adding here
 
-// Teams
 
-//Developer Teams
-
-
-let devTeam1 = new Development(2, 1, 2.5);
-devTeam1.resources = devTeam1.senDevCount + devTeam1.junDevCount;
 
 
 
 class Employee {
 
-    constructor(department,)
-
+    constructor(department, yrsExp, yrsAtFirm, disciplinery, sickPerYear, avgEmplSati, reviewScore) {
+        // which department
+        this.department = department;
+        //yrs exp for overall knowledge of field
+        this.yrsExp = yrsExp;
+        //experience for projects at company
+        this.yrsAtFirm = yrsAtFirm;
+        // higher rate may contribute to lower moral
+        this.disciplinery = disciplinery;
+        //contribute to lower moral
+        this.sickPerYear = sickPerYear;
+        // this would be like those 'anonymous' employee satisfaction things you have to fill in /10
+        this.avgEmplSati = avgEmplSati;
+        // 6month-1 year employer review of employee /10
+        this.reviewScore = reviewScore;
+    }
 }
+
+
+
+
 
 class Team {
     //effeciency, moral, quality, synergy, knowledge, experience, leadership,
-    constructor(type, resources, taskResolution) {
-        this.type = type;
+    constructor(project, resources, taskResolution) {
+        this.project = project;
         this.resources = resources;
         this.employees = employees;
         /*
@@ -68,69 +86,70 @@ class Team {
 }
 
 
+// Commenting out all subclasses of teams for time being to save on complexity
 
-class Development extends Team {
-    //specRealis, codeEff, codeReu
-    constructor(senDevCount, junDevCount, bugCreation) {
-        this.senDevCount = senDevCount;
-        this.junDevCount = junDevCount;
-        /*
-        For these need to make something actually definable in a value way - these are too subjective
-        this.specRealis = specRealis;
-        this.codeEff = codeEff;
-        this.codeReu = codeReu;
-        */
-        this.bugCreation = bugCreation;
-    }
-}
+// class Development extends Team {
+//     //specRealis, codeEff, codeReu
+//     constructor(senDevCount, junDevCount, bugCreation) {
+//         this.senDevCount = senDevCount;
+//         this.junDevCount = junDevCount;
+//         /*
+//         For these need to make something actually definable in a value way - these are too subjective
+//         this.specRealis = specRealis;
+//         this.codeEff = codeEff;
+//         this.codeReu = codeReu;
+//         */
+//         this.bugCreation = bugCreation;
+//     }
+// }
 
-class Testing extends Team {
-    constructor(codeCoverage) {
-        this.codeCoverage = codeCoverage;
+// class Testing extends Team {
+//     constructor(codeCoverage) {
+//         this.codeCoverage = codeCoverage;
 
-    }
-}
+//     }
+// }
 
-class Design extends Team {
-    constructor(userEx, reqReal, designConformity) {
-        this.userEx = userEx;
-        this.reqReal = reqReal;
-        this.designConformity = designConformity;
-    }
-}
+// class Design extends Team {
+//     constructor(userEx, reqReal, designConformity) {
+//         this.userEx = userEx;
+//         this.reqReal = reqReal;
+//         this.designConformity = designConformity;
+//     }
+// }
 
-class ProjectManager extends Team {
-    constructor(teamRel, organisation, delegation, planning) {
-        this.teamRel = teamRel;
-        this.organisation = organisation;
-        this.delegation = delegation;
-        this.planning = planning;
-    }
-}
+// class ProjectManager extends Team {
+//     constructor(teamRel, organisation, delegation, planning) {
+//         this.teamRel = teamRel;
+//         this.organisation = organisation;
+//         this.delegation = delegation;
+//         this.planning = planning;
+//     }
+// }
 
-class ProductOwner extends Team {
-    constructor(custRel, research) {
-        this.custRel = custRel;
-        this.research = research;
-    }
-}
+// class ProductOwner extends Team {
+//     constructor(custRel, research) {
+//         this.custRel = custRel;
+//         this.research = research;
+//     }
+// }
 
-class Marketing extends Team {
-    constructor(chosenMedia, eventsAttended, companyProfile) {
-        this.chosenMedia = chosenMedia;
-        this.eventsAttended = eventsAttended;
-        this.companyProfile = companyProfile;
+// class Marketing extends Team {
+//     constructor(chosenMedia, eventsAttended, companyProfile) {
+//         this.chosenMedia = chosenMedia;
+//         this.eventsAttended = eventsAttended;
+//         this.companyProfile = companyProfile;
 
-    }
-}
+//     }
+// }
 
-class Support extends Team {
-    constructor(custSatis, callHand, bugDisc) {
-        this.custSatis = custSatis;
-        this.callHand = callHand;
-        this.bugDisc = bugDisc;
-    }
-}
+// class Support extends Team {
+//     constructor(custSatis, callHand, bugDisc) {
+//         this.custSatis = custSatis;
+//         this.callHand = callHand;
+//         this.bugDisc = bugDisc;
+//     }
+// }
 
 class Budget {
     constructor(development, support, server, hosting, marketing, software) {
@@ -176,6 +195,204 @@ function daily() {
 
 
 }
+
+// Going to create 40 Emplloyees randomly with dummy data, 16 developers, 4 PO, 5 PM, 3 UX, 6 Testers, 4 Support, 2 Marketing  
+
+let employees = new Array();
+
+// devs
+
+for (let i = 0; i < 16; i++) {
+
+    let yrsExp = generateRandomInteger(15);
+    let yrsAtFirm = generateRandomInteger(15);
+
+    if (yrsAtFirm > yrsExp) {
+        yrsAtFirm = yrsExp;
+    }
+
+    if (yrsAtFirm == 0) {
+        yrsAtFirm = 1;
+    }
+
+    if (yrsExp == 0) {
+        yrsExp = 1;
+    }
+
+    let dev = new Employee('Development', yrsExp, yrsAtFirm, generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15));
+
+    employees.push(dev);
+}
+
+// PO
+for (let i = 0; i < 4; i++) {
+
+    let yrsExp = generateRandomInteger(15);
+    let yrsAtFirm = generateRandomInteger(15);
+
+    if (yrsAtFirm > yrsExp) {
+        yrsAtFirm = yrsExp;
+    }
+
+    if (yrsAtFirm == 0) {
+        yrsAtFirm = 1;
+    }
+
+    if (yrsExp == 0) {
+        yrsExp = 1;
+    }
+    yrsExp += 5;
+
+    let dev = new Employee('Project Owner', yrsExp, yrsAtFirm, generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15));
+
+    employees.push(dev);
+}
+
+
+//PM
+for (let i = 0; i < 5; i++) {
+
+
+    let yrsExp = generateRandomInteger(20);
+    let yrsAtFirm = generateRandomInteger(20);
+
+    if (yrsAtFirm > yrsExp) {
+        yrsAtFirm = yrsExp;
+    }
+
+    if (yrsAtFirm == 0) {
+        yrsAtFirm = 1;
+    }
+
+    if (yrsExp == 0) {
+        yrsExp = 1;
+    }
+    yrsExp += 5;
+
+    let dev = new Employee('Project Manager', yrsExp, yrsAtFirm, generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15));
+
+    employees.push(dev);
+}
+
+
+
+//Design
+for (let i = 0; i < 3; i++) {
+
+    let yrsExp = generateRandomInteger(15);
+    let yrsAtFirm = generateRandomInteger(15);
+
+    if (yrsAtFirm > yrsExp) {
+        yrsAtFirm = yrsExp;
+    }
+
+    if (yrsAtFirm == 0) {
+        yrsAtFirm = 1;
+    }
+
+    if (yrsExp == 0) {
+        yrsExp = 1;
+    }
+
+
+    let dev = new Employee('Design', yrsExp, yrsAtFirm, generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15));
+
+    employees.push(dev);
+}
+
+
+
+//PM
+for (let i = 0; i < 4; i++) {
+
+    let yrsExp = generateRandomInteger(15);
+    let yrsAtFirm = generateRandomInteger(15);
+
+    if (yrsAtFirm > yrsExp) {
+        yrsAtFirm = yrsExp;
+    }
+
+    if (yrsAtFirm == 0) {
+        yrsAtFirm = 1;
+    }
+
+    if (yrsExp == 0) {
+        yrsExp = 1;
+    }
+    yrsExp += 5;
+
+    let dev = new Employee('Testing', yrsExp, yrsAtFirm, generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15));
+
+    employees.push(dev);
+}
+
+//Support
+for (let i = 0; i < 5; i++) {
+
+    let yrsExp = generateRandomInteger(15);
+    let yrsAtFirm = generateRandomInteger(15);
+
+    if (yrsAtFirm > yrsExp) {
+        yrsAtFirm = yrsExp;
+    }
+
+    if (yrsAtFirm == 0) {
+        yrsAtFirm = 1;
+    }
+
+    if (yrsExp == 0) {
+        yrsExp = 1;
+    }
+
+
+    let dev = new Employee('Support', yrsExp, yrsAtFirm, generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15));
+
+    employees.push(dev);
+}
+
+
+//Marketing
+for (let i = 0; i < 2; i++) {
+
+    let yrsExp = generateRandomInteger(15);
+    let yrsAtFirm = generateRandomInteger(15);
+
+    if (yrsAtFirm > yrsExp) {
+        yrsAtFirm = yrsExp;
+    }
+
+    if (yrsAtFirm == 0) {
+        yrsAtFirm = 1;
+    }
+
+    if (yrsExp == 0) {
+        yrsExp = 1;
+    }
+    yrsExp += 5;
+
+    let dev = new Employee('Marketing', yrsExp, yrsAtFirm, generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15), generateRandomInteger(15));
+
+    employees.push(dev);
+}
+
+for (let i = 0; i < employees.length; i++) {
+    console.log(employees[i]);
+}
+
+// I've really tried to do too much
+
+let teams = new Array();
+
+for (let i = 0; i < 5; i++) {
+
+    let devs = generateRandomIntegerInRange(1, 6);
+    let designers = generateRandomIntegerInRange(1, 2);
+    let testers = generateRandomIntegerInRange(1, 5);
+    let resources = new Array();
+
+}
+
+
 
 
 
