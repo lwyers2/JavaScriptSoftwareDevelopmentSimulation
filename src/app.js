@@ -1,4 +1,3 @@
-
 // Generate a number between 0 and 10, including 10
 function generateRandomInteger(max) {
     return Math.floor(Math.random() * max) + 1;
@@ -67,7 +66,7 @@ class Employee {
 
 class Team {
     //effeciency, moral, quality, synergy, knowledge, experience, leadership,
-    constructor(project, resources, taskResolution) {
+    constructor(project, resources, employees, taskResolution) {
         this.project = project;
         this.resources = resources;
         this.employees = employees;
@@ -83,6 +82,16 @@ class Team {
         */
         this.taskResolution = taskResolution;
     }
+}
+
+function inTeam(nEmployee, employees) {
+
+    for (let employee of employees) {
+        if (JSON.stringify(nEmployee) == JSON.stringify(employee)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 
@@ -379,18 +388,60 @@ for (let i = 0; i < employees.length; i++) {
     console.log(employees[i]);
 }
 
+
+
 // I've really tried to do too much
 
 let teams = new Array();
 
 for (let i = 0; i < 5; i++) {
-
     let devs = generateRandomIntegerInRange(1, 6);
     let designers = generateRandomIntegerInRange(1, 2);
     let testers = generateRandomIntegerInRange(1, 5);
-    let resources = new Array();
+    let teamEmployees = new Array();
 
+    for (let j = 0; j < devs; j++) {
+        teamEmployees.push(employees[generateRandomIntegerInRange(0, 15)]);
+    }
+    teamEmployees.push(employees[generateRandomIntegerInRange(16, 19)]);
+    teamEmployees.push(employees[generateRandomIntegerInRange(20, 24)]);
+    for (let j = 0; j < designers; j++) {
+        teamEmployees.push(employees[generateRandomIntegerInRange(25, 26)]);
+    }
+    for (let j = 0; j < testers; j++) {
+        teamEmployees.push(employees[generateRandomIntegerInRange(27, 30)]);
+    }
+
+    for (let j = 0; j < 5; j++) {
+        teamEmployees.push(employees[31 + i]);
+    }
+
+    teamEmployees.push(employees[37]);
+    teamEmployees.push(employees[38]);
+
+    let team = new Team("Project " + i, teamEmployees.length, teamEmployees, Math.random());
+
+    teams.push(team);
+
+
+    /*
+    For these need to make something actually definable in a value way - these are too subjective
+    this.effeciency = effeciency;
+    this.moral = moral;
+    this.quality = quality;
+    this.synergy = synergy;
+    this.knowledge = knowledge;
+    this.experience = experience;
+    this.leadership = leadership;
+    */
 }
+
+
+for (let i = 0; i < 5; i++) {
+    console.log(teams[i]);
+}
+
+
 
 
 
