@@ -11,23 +11,24 @@ function generateRandomIntegerInRange(min, max) {
 
 // Project class - stores deatils about the size of a project, its budget, where it is a legacy project
 
+//size, custRelScore
 class Project {
 
-    constructor(name, teams, budget, profit, isLegacy, size, custRelScore) {
+    constructor(name, team, budget, profit, isLegacy) {
         //Project name, randomly generated
         this.name = name;
         //array of different teams, not all projects will have the same teams 
-        this.teams = teams;
+        this.team = team;
         //budget allocated to project per year
         this.budget = budget;
         //profit generated from project
         this.profit = profit;
         //this will have an impact on complexity (developers less likely to be less comfortable with code not created in house, following standardised structure) 
         this.isLegacy = isLegacy;
-        // scope of website, database, structure, features, users
-        this.size = size;
-        // customer satisfaction, hard to 
-        this.custRelScore = custRelScore;
+        // // scope of website, database, structure, features, users
+        // this.size = size;
+        // // customer satisfaction, hard to 
+        // this.custRelScore = custRelScore;
     }
 }
 
@@ -384,9 +385,6 @@ for (let i = 0; i < 2; i++) {
     employees.push(dev);
 }
 
-for (let i = 0; i < employees.length; i++) {
-    console.log(employees[i]);
-}
 
 
 
@@ -436,9 +434,22 @@ for (let i = 0; i < 5; i++) {
     */
 }
 
+let projects = new Array();
 
 for (let i = 0; i < 5; i++) {
-    console.log(teams[i]);
+
+    let budget = generateRandomIntegerInRange(40000, 80000);
+    let proPer = generateRandomInteger(60, 80);
+    let profit = budget + (budget * (proPer / 100));
+    profit = parseInt(profit);
+
+    let project = new Project('Project ' + i, teams[i], budget, profit, generateRandomIntegerInRange(0, 1))
+    projects.push(project);
+}
+
+//Projects
+for (let i = 0; i < 5; i++) {
+    console.log(projects[i]);
 }
 
 
@@ -566,3 +577,9 @@ let run = document.getElementById('run-simulation');
 run.addEventListener("click", () => {
     console.log("run");
 });
+
+//create html content
+
+//create 'Running simulation'
+
+let running = document.createAttribute('div');
