@@ -1,0 +1,30 @@
+********************
+Date - 17-10-2022 
+********************
+********************
+Questions to ask
+********************
+-
+-
+-
+********************
+Discused
+********************
+-Making thing unambigously measurable - cutting down on variables. Focus on things that are unquestionablly real.
+- Variables will be changed by events. For example risk assesment has ovvured and that has an impact. 
+- Managing complexity. Keep documents in different states. 
+- Categorize to ensure simplicity
+- Is something takes staff time, then it should be an event. And does somepne say that it is important
+- Google doc of dissertation. Have the headings of the dissertation. Write down simple cause and effect chain to make things easier to understand. 
+- Rather than worring about cause and effect - use a story and do a walkthrough thinking about variables and events. Write down the functions (story of event). Can be grouped by time. Months, stages. Change occured at this point
+- Got change request from customer, time taken. 
+- We don't know why these events are happening but we have these values. Figure out set of causes.
+- Usuing some form of documentation for what should be done. Something like Jira, or github issues. Formalised how something should be done. Each document that im working on should be simple.
+- Only tackling things that makes things clearer. 
+- Organisations have a story of how things work, but it doesn't quite align with what is happening. How work is assigned to people? PO might be given role to work soley with client, however, developers may be in contact. Looking into this fuzziness. 
+********************
+Actions
+********************
+-
+-
+-

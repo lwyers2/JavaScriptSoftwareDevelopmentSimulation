@@ -1,0 +1,9 @@
+Company Requests Services 
+// Check if company is looking for whole new system/original project. Or are they looking to msnsge/update an old product.
+
+- Simple function to get whether it is either original or legacy project.
+- Create a random number generator between 1 and 0. 0 for original, 1 for previous system. If 0 budget will have to be larger. 
+- Here I may want to check if our company has the resources. If not - hiring campaign?? 
+- Probably want to do some calculation to ensure that profit is worth it at the very first instance
+
+

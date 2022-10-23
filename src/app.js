@@ -572,6 +572,14 @@ for (let i = 0; i < 5; i++) {
 
 //events
 
+// Company Requests Services
+
+// //Potential Factors
+// 1. Are they looking to create a whole new system? 
+// 2. Will this be a legacy based system?
+
+
+
 let run = document.getElementById('run-simulation');
 
 run.addEventListener("click", () => {
@@ -583,3 +591,7 @@ run.addEventListener("click", () => {
 //create 'Running simulation'
 
 let running = document.createAttribute('div');
+
+
+
+
