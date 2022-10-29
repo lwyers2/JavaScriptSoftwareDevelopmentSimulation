@@ -1,3 +1,29 @@
+// Calculate milliseconds in a year
+const minute = 1000 * 60;
+const hour = minute * 60;
+const day = hour * 24;
+const year = day * 365;
+const d = new Date();
+
+let currentDay = d.getTime();
+let minutes = Math.round(currentDay / minute);
+let hours = Math.round(currentDay / hour);
+let days = Math.round(currentDay / day);
+let years = Math.round(currentDay / year);
+
+currentTime = new Date(years);
+console.log(currentTime);
+console.log(currentDay);
+
+currentDay += 5 * minute;
+
+console.log(currentDay);
+console.log(currentTime);
+
+
+
+
+
 // Generate a number between 0 and 10, including 10
 function generateRandomInteger(max) {
     return Math.floor(Math.random() * max) + 1;
@@ -70,15 +96,12 @@ class Employee {
 }
 // create company structure
 let companyEmployees = createEmployees();
-// create 4 projects
+// create 4 projects and assign teams - this is all primitive (need a more sophisticated means of team allocation)
 let project1 = customerEnquiry();
 let project2 = customerEnquiry();
 let project3 = customerEnquiry();
 let project4 = customerEnquiry();
-//build teams 
-let team = createTeam(companyEmployees);
 
-console.log(team);
 
 
 
@@ -112,7 +135,7 @@ function createProject() {
     // simple project name, original or legacy. will change at somepoint
     let projectName;
     let budget;
-    let placeholderTeam = new Team();
+    let placeholderTeam = createTeam(companyEmployees);
     // 
     if (projectType == 0) {
         projectName = "Original Project";
@@ -434,13 +457,23 @@ function getEmployeeCount(type, employees) {
 
 // If company decideds to go through with project
 
-// Allocation of resources
-// 1. Development team assigned
-// 2. Testing Team assigned
-// 3. Product Owner Assigned
-// 4. Project manager assigned
-// 5. UX/UI Team assigned
-// 6. Marketing consulted
+function developmentPlan() {
+
+
+
+}
+
+function createTimeline() {
+
+}
+
+function reevalTimeLine() {
+
+}
+
+
+
+
 
 // Development plan
 // 1. Key milestones decided
