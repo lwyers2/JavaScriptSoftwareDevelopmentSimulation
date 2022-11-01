@@ -1,0 +1,21 @@
+********************
+Date - 
+********************
+********************
+Questions to ask
+********************
+-
+-
+-
+********************
+Discused
+********************
+- Document with events typed out. Taking an english and creating psudeo code functions. An English account of what has happened. Should be able to write different levels of what has happened. First crudely, then more in detail. For example - process of getting customer.  
+- ork with John sending John to break down functions. Start crude, eventually break it all down.
+- Delibibrately, crudely simplifying story. A lot of detail thrown away, what do we care about?
+********************
+Actions
+********************
+- Create very crude document and then create a very simple functionaing code.
+- Google simulation processing. Work more directly with John. 
+- More proactive with reaching 
