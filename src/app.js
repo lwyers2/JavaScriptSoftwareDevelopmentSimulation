@@ -42,7 +42,7 @@ function monthTwo() {
     projectPlan();
     allocateResources();
     customerRecommendations();
-    negotiations();
+    //negotiations();
     monthlyCosts();
     console.log("Time Period Ended");
     console.log("******************");
@@ -175,31 +175,44 @@ function allocateResources() {
 }
 
 function customerRecommendations() {
-    console.log("Customer Recommendations");
+    console.log("Customer has added recomendations to project - extra costs added: £4000");
+
 }
 
 function startProject() {
-    console.log("Start Project");
+    let project = {
+        component: 'Project', features: 10, timeline: '1 year'
+    }
+    simulation.push(project);
+    console.log("A project has been started with " + project.features + " main features with a timeline of " + project.timeline);
 }
 
 function developPrototype() {
-    console.log("Develop Prototype");
+    let prototype = {
+        component: 'Prototype', features: 4
+    }
+    simulation.push(prototype)
+    console.log("A prototype has been created with " + prototype.features + " features");
 }
 
 function testPrototype() {
-    console.log("Test Prototype");
+    console.log("Testing has commenced on the most recent prototype");
 }
 
 function customerApproval() {
-    console.log("Customer Approval");
+    console.log("The customer has approved the last action");
 }
 
 function developFinalPrototype() {
-    console.log("Develop Final Prototype");
+    let finalPrototype = {
+        component: 'Final Prototype', features: 10
+    }
+    simulation.push(finalPrototype);
+    console.log("A final prototype has been created with " + finalPrototype.features + " features");
 }
 
 function testFinalPrototype() {
-    console.log("Test Final Prototype");
+    console.log("Testing of the final prototype has been created");
 }
 
 function productChanges() {
@@ -207,7 +220,11 @@ function productChanges() {
 }
 
 function productCreated() {
-    console.log("Product Created");
+    let product = {
+        component: 'Final Product', features: 12
+    }
+    simulation.push(product);
+    console.log("Final Product Created");
 }
 
 function getComponent(companyComponent) {
