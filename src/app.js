@@ -1,20 +1,34 @@
-const companyAccount = { component: 'Company Account', companyAccount: 900000 };
+// Generate a number between 0 and 10, including 10
+function generateRandomInteger(max) {
+    return Math.floor(Math.random() * max) + 1;
+}
+
+function generateRandomIntegerInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 const simulation = new Array();
-simulation.push(companyAccount);
-console.log(simulation[getComponent('Company Account')].companyAccount);
-const companyMonthlyCosts = { component: 'Monthly Costs', total: 0 };
-simulation.push(companyMonthlyCosts);
-const monthlyPay = 35000;
-simulation[getComponent('Monthly Costs')].total += monthlyPay;
+
+simulation['Projects'] = {
+    "Proposed Project": {
+        component: 'Proposed Project',
+        company: 'Company Name',
+        title: 'Proposed Project',
+        techStack: 'MERN',
+        proposedProfit: 1000000,
+        proposedTimeline: 1,
+        projectAgreed: false
+    }
+};
+
+simulation['Company Account'] = {
+    companyAccount: 9000000,
+    monthlyPay: 350000
+};
 
 
 
 
-
-
-
-
-// Yearly run 
+// // Yearly run 
 monthOne();
 monthTwo();
 monthThreeToFive();
@@ -22,15 +36,14 @@ monthSixToEight();
 monthNineToTwelve();
 
 
-// monthly functions
+// // monthly functions
 
 function monthOne() {
     console.log("Month 1");
     console.log("******************");
     customerContactsCompany();
     negotiations();
-    businessApproval('Contract');
-    prjectWorkApproval('Contract');
+    projectBusinessApproval();
     monthlyCosts();
     console.log("Time Period Ended");
     console.log("******************");
@@ -98,59 +111,66 @@ function monthNineToTwelve() {
 // Event functions
 function customerContactsCompany() {
 
-    let proposedProject = {
-        component: 'Proposed Project',
-        company: 'Company Name',
-        title: 'Proposed Project',
-        techStack: 'MERN',
-        proposedProfit: 100000,
-        proposedTimeline: '1 year'
+    console.log("A new company has proposed a new project");
+    simulation['Projects'] = {
+        "Proposed Project": {
+            company: 'Company Name',
+            title: 'Proposed Project',
+            techStack: 'MERN',
+            proposedProfit: 1000000,
+            proposedTimeline: 1,
+            projectAgreed: false
+        }
     }
-
-
-    simulation.push(proposedProject);
-
 }
+
 
 function negotiations() {
     //some form of logic needed here to simulate the change of the proposed project changing to produce a contract
-    let contract = {
-        component: 'Contract',
+    // random percentage to either increment or decrement profit
+    let change = generateRandomInteger(1, 15);
+    let originalProfit = simulation['Projects']['Proposed Project'].proposedProfit;
+    let newProfit = parseInt(originalProfit + (originalProfit * (change / 100)));
+
+    simulation['Contract'] = {
         techStack: 'MERN',
-        cost: 100000,
-        timeline: '1 Year',
+        profit: newProfit,
+        timeline: 1,
         legalFees: 40000
     }
 
-    updateCompanyAccount(0 - contract.legalFees);
-    simulation.push(contract);
-}
+    simulation['Company Account'].companyAccount -= simulation['Contract'].legalFees;
 
-function businessApproval(approvalComponent) {
 
-    //will add more logic here
-    let pos = getComponent(approvalComponent);
-
-    console.log("The business has approved the following: " + simulation[pos].component);
 
 }
 
-function prjectWorkApproval(approvalComponent) {
+function projectBusinessApproval() {
 
-    let pos = getComponent(approvalComponent);
+    simulation['Projects']["Approved Project"] = {
+        company: simulation['Projects']["Proposed Project"].company,
+        title: simulation['Projects']["Proposed Project"].title,
+        techStack: simulation["Contract"].techStack,
+        profit: simulation['Contract'].profit,
+        proposedTimeline: simulation['Contract'].timeline,
+        projectAgreed: true,
+        monthlyCosts: 0
+    }
 
-    console.log("Project Approval has been given for the following: " + simulation[pos].component);
-    updateCompanyAccount(simulation[getComponent('Contract')].cost);
-    console.log("Company has been credited: £" + simulation[getComponent('Contract')].cost)
+    simulation['Company Account'].companyAccount += simulation['Projects']["Approved Project"].profit;
+    console.log("The business has approved the following: " + simulation['Projects']["Approved Project"].title);
+
 
 }
+
 
 function monthlyCosts() {
 
 
-    console.log("Account total before Monthly Costs: £" + simulation[getComponent('Company Account')].companyAccount);
-    updateCompanyAccount(0 - simulation[getComponent('Monthly Costs')].total);
-    console.log("Account total after Monthly Costs: £" + simulation[getComponent('Company Account')].companyAccount)
+
+    console.log("Account total before Monthly Costs: £" + simulation['Company Account'].companyAccount);
+    simulation['Company Account'].companyAccount = simulation['Company Account'].companyAccount - (simulation['Projects']['Approved Project'].monthlyCosts + simulation['Company Account'].monthlyPay);
+    console.log("Account total after Monthly Costs: £" + simulation['Company Account'].companyAccount);
 
 }
 
@@ -162,16 +182,85 @@ function projectPlan() {
 }
 
 function allocateResources() {
-    let team = {
-        component: 'Project Team', members: [{
-            name: 'dev1', name: 'dev2', name: 'dev3', name: 'Testing', name: 'UI'
-        }],
-        cost: 4000
+
+    simulation['projectTeam'] = {
+        'Project Team': {
+            "Phil Elverum": {
+                "Age": 30,
+                "Role": 'Senior Developer',
+                "Experience": 6,
+                "Tenure": 2
+            },
+            "Mimi Parker": {
+                "Age": 37,
+                "Role": 'Lead Developer',
+                "Experience": 14,
+                "Tenure": 7
+            },
+            "Stuart Staples": {
+                "Age": 23,
+                "Role": 'Junior Developer',
+                "Experience": 1,
+                "Tenure": 1
+            },
+            "Jackson Frank": {
+                "Age": 29,
+                "Role": 'Junior Developer',
+                "Experience": 3,
+                "Tenure": 1
+            },
+            "Warren Ellis": {
+                "Age": 26,
+                "Role": 'Junior Developer',
+                "Experience": 3,
+                "Tenure": 2
+            },
+            "Krustin Hayter": {
+                "Age": 27,
+                "Role": 'Junior Developer',
+                "Experience": 4,
+                "Tenure": 4
+            },
+            "Chrustia Cabral": {
+                "Age": 33,
+                "Role": 'Design',
+                "Experience": 10,
+                "Tenure": 3
+            },
+            "Mark Eitzel": {
+                "Age": 31,
+                "Role": 'Testing',
+                "Experience": 6,
+                "Tenure": 4
+            },
+            "Stephen Merritt": {
+                "Age": 26,
+                "Role": 'Testing',
+                "Experience": 3,
+                "Tenure": 3
+            },
+            "Brian Chippendale": {
+                "Age": 45,
+                "Role": 'Project Manager',
+                "Experience": 23,
+                "Tenure": 15
+            }
+        }
+    };
+
+    simulation['Monthly Costs'] = {
+        projectServer: 10000,
+        hostingFees: 5000,
+        additionalSoftware: 2000,
+        hardware: 2000,
+        officeRental: 1000
+    };
+
+
+    for (const cost in simulation['Monthly Costs']) {
+        simulation['Projects']["Approved Project"].monthlyCosts += simulation['Monthly Costs'][cost];
     }
-    let server = { component: 'Project Server', cost: 10000, hostingType: 'physical' }
-    let additionalSoftware = { component: 'Additional Software', cost: 5000 }
-    let hostingFees = { component: 'Hosting Fees', cost: 2000 }
-    simulation[getComponent('Monthly Costs')].total += team.cost + server.cost + additionalSoftware.cost + hostingFees.cost;
+
 }
 
 function customerRecommendations() {
@@ -180,19 +269,11 @@ function customerRecommendations() {
 }
 
 function startProject() {
-    let project = {
-        component: 'Project', features: 10, timeline: '1 year'
-    }
-    simulation.push(project);
-    console.log("A project has been started with " + project.features + " main features with a timeline of " + project.timeline);
+    console.log("A project has been started");
 }
 
 function developPrototype() {
-    let prototype = {
-        component: 'Prototype', features: 4
-    }
-    simulation.push(prototype)
-    console.log("A prototype has been created with " + prototype.features + " features");
+    console.log("A prototype has been developed");
 }
 
 function testPrototype() {
@@ -204,11 +285,7 @@ function customerApproval() {
 }
 
 function developFinalPrototype() {
-    let finalPrototype = {
-        component: 'Final Prototype', features: 10
-    }
-    simulation.push(finalPrototype);
-    console.log("A final prototype has been created with " + finalPrototype.features + " features");
+    console.log("A final prototype has been developed");
 }
 
 function testFinalPrototype() {
@@ -220,22 +297,5 @@ function productChanges() {
 }
 
 function productCreated() {
-    let product = {
-        component: 'Final Product', features: 12
-    }
-    simulation.push(product);
     console.log("Final Product Created");
-}
-
-function getComponent(companyComponent) {
-    for (let i = 0; i < simulation.length; i++) {
-        if (simulation[i].component === companyComponent) {
-            return i;
-        }
-    }
-}
-
-function updateCompanyAccount(amount) {
-    let pos = getComponent('Company Account');
-    simulation[pos].companyAccount += amount;
 }
