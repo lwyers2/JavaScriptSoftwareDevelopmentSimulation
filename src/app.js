@@ -14,6 +14,13 @@ simulation['Company Account'] = {
     'companyAccount': 9000000
 };
 
+//Scrub additionalCosts
+simulation['Additional Costs'] = {
+    'Costs': {
+        'na': 0
+    }
+}
+
 simulation['Pricing'] = {
     'new': {
         "web": {
@@ -112,13 +119,20 @@ simulation['Pricing'] = {
 // simulation['Tech Stacks'] ={
 // }
 simulation['Project Team'] = {
-    'Project Team': {
+
+    'Development Team': {
         "Phil Elverum": {
             'age': 30,
             'role': 'Senior Developer',
             'experience': 6,
             'tenure': 2,
-            'salary': 62000
+            'salary': 62000,
+            'front-end': {
+
+            },
+            'back-end': {
+
+            }
         },
         "Mimi Parker": {
             'age': 37,
@@ -154,14 +168,18 @@ simulation['Project Team'] = {
             'experience': 4,
             'tenure': 4,
             'salary': 33000
-        },
+        }
+    },
+    'Design': {
         "Chrustia Cabral": {
             'age': 33,
             'role': 'Design',
             'experience': 10,
             'tenure': 3,
             'salary': 37000
-        },
+        }
+    },
+    'Testing': {
         "Mark Eitzel": {
             'age': 31,
             'role': 'Testing',
@@ -175,7 +193,9 @@ simulation['Project Team'] = {
             'experience': 3,
             'tenure': 3,
             'salary': 26000
-        },
+        }
+    },
+    'Project Managers': {
         "Brian Chippendale": {
             'age': 45,
             'role': 'Project Manager',
@@ -207,12 +227,30 @@ simulation['Projects'] = {
     }
 }
 
+simulation['Ad Hoc Costs'] = {
+    'Office Rental': 3000,
+    'Building Insurance': 350,
+    'Employee Insurance': 400,
+    'Pension Scheme': 1400,
+    'Software Licenses': 6000,
+    'Hardware': 8000,
+    'Premises Upkeep': 500,
+    'Electricity': 600,
+    'Heating': 400,
+    //Might be one off instead
+    'Socil Fund': 750,
+    //Might be one off instead
+    'Training': 1500,
+    'Employee Expenses': 800
+}
 
 
 
 
-// // Yearly run 
-// monthOne();
+
+
+// Yearly run 
+monthOne();
 // monthTwo();
 // monthThreeToFive();
 // monthSixToEight();
@@ -221,17 +259,18 @@ simulation['Projects'] = {
 
 // // monthly functions
 
-// function monthOne() {
-//     console.log("Month 1");
-//     console.log("******************");
-//     customerContactsCompany();
-//     architectureDetermination();
-//     negotiations();
-//     projectBusinessApproval();
-//     monthlyCosts();
-//     console.log("Time Period Ended");
-//     console.log("******************");
-// }
+function monthOne() {
+    customerContactsCompany();
+    architectureDetermination();
+    feasibilityStudy();
+    createDraftContact();
+    negotiations();
+    simulation['Additional Costs']['Costs'] = {
+        'legalCosts': simulation['Contract']['legalCosts']
+    }
+    deductCosts(calculateMonthlyCosts());
+    projectBusinessApproval();
+}
 
 // function monthTwo() {
 //     console.log("Month 2");
@@ -296,14 +335,6 @@ simulation['Projects'] = {
 //     console.log("Time Period Ended");
 //     console.log("******************");
 // }
-
-customerContactsCompany();
-architectureDetermination();
-feasibilityStudy();
-createDraftContact();
-negotiations();
-
-
 
 
 // Event functions
@@ -571,45 +602,87 @@ function getProjectCostRaw() {
 
 }
 
+function getAdHocCosts() {
+    let total = 0;
+    let costs = Object.keys(simulation['Ad Hoc Costs']);
+    console.log("***********************************");
+    console.log("AD HOC COSTS");
+    costs.forEach((cost) => {
+        console.log(`${cost}: ${simulation['Ad Hoc Costs'][cost]}`)
+        total += simulation['Ad Hoc Costs'][cost];
+    });
+    console.log(`Total: £${total}`);
+    console.log("***********************************");
+
+    return total;
+
+}
+
+function calculateSalaries() {
+    let total = 0;
+    let teams = Object.keys(simulation['Project Team']);
+    console.log("***********************************");
+    console.log("Salaries");
+    teams.forEach((team) => {
+        let costs = Object.keys(simulation['Project Team'][team]);
+        costs.forEach((cost) => {
+            console.log(`${cost}: ${simulation['Project Team'][team][cost]['salary']}`)
+            total += simulation['Project Team'][team][cost]['salary'];
+        });
+
+    });
+    console.log(`Total: £${total}`);
+    console.log("***********************************");
+    return total;
+}
+
+
+function calculateMonthlyCosts() {
+
+    let adCosts = 0;
+
+    let costs = Object.keys(simulation['Additional Costs']['Costs']);
+    console.log("***********************************");
+    console.log("Additional Costs");
+    costs.forEach((cost) => {
+        console.log(`${cost}: ${simulation['Additional Costs']['Costs'][cost]}`)
+        adCosts += simulation['Additional Costs']['Costs'][cost];
+    });
+    console.log(`Total: £${adCosts}`);
+    console.log("***********************************");
+
+    let adhoc = getAdHocCosts();
+    let sal = calculateSalaries();
+
+    let totalCosts = adCosts + adhoc + sal;
+
+    //Scrub additionalCosts
+    simulation['Additional Costs']['Costs'] = {
+        'na': 0
+    }
+
+    console.log(`Total Monthly Costs: £${totalCosts}`)
+    return totalCosts;
+
+
+}
+
+function deductCosts(cost) {
+
+    console.log(`Deducting £${cost} from Account Balance £${simulation['Company Account']['companyAccount']}`);
+    simulation['Company Account']['companyAccount'] -= cost;
+    console.log(`Updated Account: ${simulation['Company Account']['companyAccount']}`)
+
+}
 /* 
-Going to create 
+Going to create some form of logic on whether the business will approval a proposal or not. For now we assume that the business does.
 */
 function projectBusinessApproval() {
 
-    let estimatedCost = 0;
-    let deposit = 0;
-
-    simulation['Contract'] = {
-
-        //costs - time and materials
-        'estimatedCosts': estimatedCost,
-        'deposit': deposit,
-        //calculate months dependant on size
-        'timelineInMonths': 15,
-        //i.e every 2 months
-        'installmentsMonthly': 2
-    }
-
-    console.log("The business has approved the following: " + simulation['Projects']["Approved Project"].title);
-
+    console.log(`After deliberations, the business has approved the contract with ${simulation['Projects']['Proposed Project']['company']}`)
 
 }
 
-
-function monthlyCosts() {
-
-
-
-    console.log("Account total before Monthly Costs: £" + simulation['Company Account'].companyAccount);
-    for (const person in simulation['Project Team']['Project Team']) {
-        simulation['Company Account'].companyAccount -= simulation['Project Team']['Project Team'][person]['Salary'];
-    }
-    for (const cost in simulation['Monthly Costs']) {
-        simulation['Company Account'].companyAccount -= simulation['Monthly Costs'][cost];
-    }
-    console.log("Account total after Monthly Costs: £" + simulation['Company Account'].companyAccount);
-
-}
 
 function projectPlan() {
     let projectPlan = { component: 'Project Plan', specification: 'Project Specification', timeline: '1 Year' };
@@ -619,18 +692,6 @@ function projectPlan() {
 }
 
 function allocateResources() {
-
-
-
-    simulation['Monthly Costs'] = {
-        projectServer: 10000,
-        hostingFees: 5000,
-        additionalSoftware: 2000,
-        hardware: 2000,
-        officeRental: 1000
-    };
-
-
 
 
 }
