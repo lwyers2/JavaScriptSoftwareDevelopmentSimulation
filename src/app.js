@@ -120,58 +120,399 @@ simulation['Pricing'] = {
 // }
 simulation['Project Team'] = {
 
+    //20 4, 6, 10
     'Development Team': {
+        "Mimi Parker": {
+            'age': 37,
+            'role': 'Lead Developer',
+            'experience': 14,
+            'tenure': 7,
+            'salary': 75000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
         "Phil Elverum": {
             'age': 30,
             'role': 'Senior Developer',
             'experience': 6,
             'tenure': 2,
             'salary': 62000,
-            'front-end': {
-
-            },
-            'back-end': {
-
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
             }
         },
-        "Mimi Parker": {
-            'age': 37,
-            'role': 'Lead Developer',
-            'experience': 14,
-            'tenure': 7,
-            'salary': 60000
+        "Criag Finn": {
+            'age': 32,
+            'role': 'Senior Developer',
+            'experience': 8,
+            'tenure': 2,
+            'salary': 62000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Shirly Collins": {
+            'age': 30,
+            'role': 'Senior Developer',
+            'experience': 6,
+            'tenure': 2,
+            'salary': 62000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "David Tibet": {
+            'age': 23,
+            'role': 'Intermediate Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Davy Grahm": {
+            'age': 23,
+            'role': 'Intermediate Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Andrew Bird": {
+            'age': 23,
+            'role': 'Intermediate Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Jeff Mangum": {
+            'age': 23,
+            'role': 'Intermediate Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Daniel Johnstone": {
+            'age': 23,
+            'role': 'Intermediate Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Tim Buckley": {
+            'age': 23,
+            'role': 'Intermediate Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Robert Wyatt": {
+            'age': 23,
+            'role': 'Junior Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Julien Cope": {
+            'age': 23,
+            'role': 'Junior Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Jeff Rostenstock": {
+            'age': 23,
+            'role': 'Junior Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Andy Mornin": {
+            'age': 23,
+            'role': 'Junior Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Luke Kelly": {
+            'age': 23,
+            'role': 'Junior Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
+        },
+        "Richard Dawson": {
+            'age': 23,
+            'role': 'Junior Developer',
+            'experience': 1,
+            'tenure': 1,
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
         },
         "Stuart Staples": {
             'age': 23,
             'role': 'Junior Developer',
             'experience': 1,
             'tenure': 1,
-            'salary': 28000
+            'salary': 28000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
         },
         "Jackson Frank": {
             'age': 29,
             'role': 'Junior Developer',
             'experience': 3,
             'tenure': 1,
-            'salary': 31000
+            'salary': 31000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
         },
         "Warren Ellis": {
             'age': 26,
             'role': 'Junior Developer',
             'experience': 3,
             'tenure': 2,
-            'salary': 29000
+            'salary': 29000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
         },
         "Krustin Hayter": {
             'age': 27,
             'role': 'Junior Developer',
             'experience': 4,
             'tenure': 4,
-            'salary': 33000
+            'salary': 33000,
+            'languages': {
+                'html': 3,
+                'JavaScript': 3,
+                'CSS': 2,
+                'Angular': 3,
+                'jQuery': 3,
+                'React': 2,
+                'Java': 1,
+                'Swift': 1,
+                'linux': 2
+            }
         }
     },
     'Design': {
         "Chrustia Cabral": {
+            'age': 33,
+            'role': 'Design',
+            'experience': 10,
+            'tenure': 3,
+            'salary': 37000
+        },
+        "Warren Zevon": {
+            'age': 33,
+            'role': 'Design',
+            'experience': 10,
+            'tenure': 3,
+            'salary': 37000
+        },
+        "Frank Black": {
+            'age': 33,
+            'role': 'Design',
+            'experience': 10,
+            'tenure': 3,
+            'salary': 37000
+        },
+        "Lou Reed": {
+            'age': 33,
+            'role': 'Design',
+            'experience': 10,
+            'tenure': 3,
+            'salary': 37000
+        },
+        "Ornette Coleman": {
             'age': 33,
             'role': 'Design',
             'experience': 10,
@@ -193,6 +534,50 @@ simulation['Project Team'] = {
             'experience': 3,
             'tenure': 3,
             'salary': 26000
+        },
+        "Charles Mingus": {
+            'age': 31,
+            'role': 'Testing',
+            'experience': 6,
+            'tenure': 4,
+            'salary': 30000
+        },
+        "John Cage": {
+            'age': 26,
+            'role': 'Testing',
+            'experience': 3,
+            'tenure': 3,
+            'salary': 26000
+        }
+    },
+    'Support': {
+        "Mark Eitzel": {
+            'age': 31,
+            'role': 'Testing',
+            'experience': 6,
+            'tenure': 4,
+            'salary': 30000
+        },
+        "Stephen Merritt": {
+            'age': 26,
+            'role': 'Testing',
+            'experience': 3,
+            'tenure': 3,
+            'salary': 26000
+        },
+        "Charles Mingus": {
+            'age': 31,
+            'role': 'Testing',
+            'experience': 6,
+            'tenure': 4,
+            'salary': 30000
+        },
+        "John Cage": {
+            'age': 26,
+            'role': 'Testing',
+            'experience': 3,
+            'tenure': 3,
+            'salary': 26000
         }
     },
     'Project Managers': {
@@ -202,27 +587,127 @@ simulation['Project Team'] = {
             'experience': 23,
             'tenure': 15,
             'salary': 54000
+        },
+        "Fiona Apple": {
+            'age': 45,
+            'role': 'Project Manager',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+        "Elizabeth Fraser": {
+            'age': 45,
+            'role': 'Project Manager',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        }
+    },
+    'Support': {
+        "Anna Von Haussewolf": {
+            'age': 45,
+            'role': 'Junior Support',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+        "Alice Coltrane": {
+            'age': 45,
+            'role': 'Intermediate Support',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+        "Julia Holter": {
+            'age': 45,
+            'role': 'Senior Support',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+        "Nina Simone": {
+            'age': 45,
+            'role': 'Support Lead',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+    },
+    'Marketing': {
+        "John Redburn": {
+            'age': 45,
+            'role': 'Marketing lead',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+        "Tom Waits": {
+            'age': 45,
+            'role': 'Marketing Assistant',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+    },
+    'Operations': {
+        "Jeff Beck": {
+            'age': 45,
+            'role': 'HR',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+        "Johnny Mathis": {
+            'age': 45,
+            'role': 'Accounts',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+    },
+    'Directors': {
+        "Woodie Guthrie": {
+            'age': 45,
+            'role': 'Technical Director',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+        "David Thomas": {
+            'age': 45,
+            'role': 'Managing Director',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
+        },
+        "Nick Drake": {
+            'age': 45,
+            'role': 'Client Relations',
+            'experience': 23,
+            'tenure': 15,
+            'salary': 54000
         }
     }
+
 };
 
 // Real life example. It terms of whether own comp[any actually takes over the costs for server maintence I'm not 100% sure. Keep simple anyway for now. Just to show how different types of projects may look
 simulation['Projects'] = {
     'Proposed MindMe': {
-        name: 'Mind Me Stripe Integration',
-        company: 'Mind Me ie',
-        industry: 'Healthcare',
-        type: 'integration',
-        size: 'medium',
-        techstack: {
-            web: 'PHP',
-            database: 'Maria SQL',
-            server: 'linux'
+        'name': 'Mind Me Stripe Integration',
+        'company': 'Mind Me ie',
+        'industry': 'Healthcare',
+        'type': 'integration',
+        'size': 'medium',
+        'techstack': {
+            'web': 'PHP',
+            'database': 'SQL',
+            'server': 'linux'
         },
-        hosting: 'aws',
-        integration: {
-            software: 'Stripe',
-            app: 'Web'
+        'hosting': 'aws',
+        'integration': {
+            'software': 'Stripe',
+            'app': 'Web'
         }
     }
 }
@@ -272,11 +757,13 @@ function monthOne() {
     projectBusinessApproval();
 }
 
+projectPlan();
+
 // function monthTwo() {
 //     console.log("Month 2");
 //     console.log("******************");
-//     projectPlan();
 //     allocateResources();
+//     projectPlan();
 //     customerRecommendations();
 //     //negotiations();
 //     monthlyCosts();
@@ -374,6 +861,9 @@ function customerContactsCompany() {
         },
         //months
         'proposedTimeline': 14,
+        'team': {
+            'team member': 'default'
+        }
 
     }
 
@@ -679,20 +1169,257 @@ Going to create some form of logic on whether the business will approval a propo
 */
 function projectBusinessApproval() {
 
+
     console.log(`After deliberations, the business has approved the contract with ${simulation['Projects']['Proposed Project']['company']}`)
 
 }
 
-
+//who will be involved
+//why are you completing the project (success factors)
+//What will the project be expected to deliver
+///When is the project required to be delivered and what milestones
+//How will the project be delivered? i.e What type of approach will be used and what technologies and tools to be used.
+/**
+ * will have to compare what the project is using in terms of technology/size to determine how many resources are needed
+ * 
+ */
 function projectPlan() {
-    let projectPlan = { component: 'Project Plan', specification: 'Project Specification', timeline: '1 Year' };
-    simulation.push(projectPlan);
-    console.log("Project Plan has been created");
+    let team = calculateTeamResources();
+
+
+    simulation['Project Plan'] = {
+        'specification': 'Project Specification',
+        'team': team
+    };
+    console.log(simulation['Project Plan']);
 
 }
 
-function allocateResources() {
+/**
+ * need to get this from the size of the project, and what technologies are used
+ * might want to create a calsulation instead to determine how many instead of hard code DISCUSS
+ */
+function calculateTeamResources() {
 
+    let type = simulation['Projects']['Proposed Project']['type'];
+    console.log(type);
+    let size = simulation['Projects']['Proposed Project']['size'];
+    console.log(size);
+    let junDevs = 0;
+    let intDevs = 0;
+    let senDevs = 0;
+    let design = 0;
+    let test = 0;
+    //integration
+    //small
+    if (type == 'integration' || type == 'modificatoion') {
+        if (size == 'small') {
+
+            junDevs = 1;
+            senDevs = 1;
+            design = 1;
+            test = 1;
+        } else if (size == 'medium') {
+            junDevs = 2;
+            intDevs = 1;
+            senDevs = 1;
+            design = 1;
+            test = 1;
+        }
+        else if (size == 'large') {
+            junDevs = 3;
+            intDevs = 2;
+            senDevs = 1;
+            design = 2;
+            test = 1;
+        }
+
+        if (size == 'enterprise') {
+            junDevs = 4;
+            intDevs = 3;
+            senDevs = 2;
+            design = 2;
+            test = 2;
+        }
+    }
+    else if (type == 'new') {
+        if (size == 'small') {
+            junDevs = 2;
+            intDevs = 1;
+            senDevs = 1;
+            design = 1;
+            test = 1;
+        } else if (size == 'medium') {
+            junDevs = 3;
+            intDevs = 2;
+            senDevs = 1;
+            design = 1;
+            test = 1;
+        }
+        else if (size == 'large') {
+            junDevs = 5;
+            intDevs = 2;
+            senDevs = 2;
+            design = 2;
+            test = 2;
+        }
+
+        if (size == 'enterprise') {
+            junDevs = 5;
+            intDevs = 3;
+            senDevs = 3;
+            design = 3;
+            test = 3;
+        }
+    }
+    else if (type == 'web development') {
+        if (size == 'small') {
+            junDevs = 2;
+            senDevs = 1;
+            design = 1;
+            test = 1;
+        } else if (size == 'medium') {
+            junDevs = 2;
+            intDevs = 2;
+            senDevs = 1;
+            design = 1;
+            test = 1;
+        }
+        else if (size == 'large') {
+            junDevs = 4;
+            intDevs = 2;
+            senDevs = 2;
+            design = 2;
+            test = 2;
+        }
+
+        if (size == 'enterprise') {
+            junDevs = 5;
+            intDevs = 3;
+            senDevs = 3;
+            design = 3;
+            test = 3;
+        }
+
+
+    }
+
+    console.log(`Based on the size and scope of the project we suggest that there should be ${junDevs} junior developers, ${intDevs} intermediate developers, ${senDevs} senior develpers, ${design} designers, and ${test} testers`);
+
+    return allocateResources(junDevs, intDevs, senDevs, design, test);
+
+
+}
+
+/**
+ * search through developer's languages and check who fits also need to check their capacity
+ */
+function allocateResources(junDevsCount, intDevsCount, senDevsCount, designCount, testCount) {
+
+    let web = simulation['Projects']['Proposed Project']['techstack']['web'];
+    let app = simulation['Projects']['Proposed Project']['techstack']['app'];
+    let database = simulation['Projects']['Proposed Project']['techstack']['database'];
+    let server = simulation['Projects']['Proposed Project']['techstack']['server'];
+
+    let excludedNames = Array();
+    let team = {};
+
+    for (let i = 0; i < junDevsCount; i++) {
+
+        let teamMember = languageExperience(web, app, database, server, 'Junior Developer', excludedNames)
+        team[teamMember] = (simulation['Project Team']['Development Team'][teamMember])
+        excludedNames.push(teamMember)
+    }
+    for (let i = 0; i < intDevsCount; i++) {
+        let teamMember = languageExperience(web, app, database, server, 'Intermediate Developer', excludedNames)
+        team[teamMember] = (simulation['Project Team']['Development Team'][teamMember])
+        excludedNames.push(teamMember)
+    }
+    for (let i = 0; i < senDevsCount; i++) {
+        let teamMember = languageExperience(web, app, database, server, 'Senior Developer', excludedNames)
+        team[teamMember] = (simulation['Project Team']['Development Team'][teamMember])
+        excludedNames.push(teamMember)
+    }
+    for (let i = 0; i < testCount; i++) {
+        let teamMember = addTesterOrDesigner('Testing', excludedNames)
+        team[teamMember] = (simulation['Project Team']['Testing'][teamMember])
+        excludedNames.push(teamMember)
+    }
+    for (let i = 0; i < designCount; i++) {
+        let teamMember = addTesterOrDesigner('Design', excludedNames)
+        team[teamMember] = (simulation['Project Team']['Design'][teamMember])
+        excludedNames.push(teamMember)
+    }
+
+    return team;
+
+
+}
+
+function languageExperience(web, app, database, server, role, excluded) {
+
+
+    let mostExperienceYears = 0;
+    let mostExperienced;
+    let devs = Object.keys(simulation['Project Team']['Development Team']);
+    devs.forEach((dev) => {
+        let isExcluded = false;
+        if (simulation['Project Team']['Development Team'][dev]['role'] == role) {
+            for (let i = 0; i < excluded.length; i++) {
+                if (dev == excluded[i]) {
+                    isExcluded = true;
+                }
+            }
+            if (!isExcluded) {
+                let languages = Object.keys(simulation['Project Team']['Development Team'][dev]['languages'])
+                let yearsExperience = 0;
+                languages.forEach((language) => {
+                    if (language == web) {
+                        yearsExperience += simulation['Project Team']['Development Team'][dev]['languages'][language];
+                    } else if (language == app) {
+                        yearsExperience += simulation['Project Team']['Development Team'][dev]['languages'][language];
+                    } else if (language == database) {
+                        yearsExperience += simulation['Project Team']['Development Team'][dev]['languages'][language];
+                    } else if (language == server) {
+                        yearsExperience += simulation['Project Team']['Development Team'][dev]['languages'][language];
+                    }
+                });
+                if (mostExperienceYears < yearsExperience) {
+                    mostExperienced = dev;
+                    mostExperienceYears = yearsExperience;
+                }
+            }
+        }
+
+    });
+
+    return mostExperienced;
+
+}
+
+function addTesterOrDesigner(role, excluded) {
+    let mostExperienceYears = 0;
+    let mostExperienced;
+
+    let employees = Object.keys(simulation['Project Team'][role]);
+    employees.forEach((employee) => {
+        let isExcluded = false;
+        for (let i = 0; i < excluded.length; i++) {
+            if (employee == excluded[i]) {
+                isExcluded = true;
+            }
+        }
+
+        if (!isExcluded) {
+            let yearsExperience = simulation['Project Team'][role][employee]['experience'];
+            if (mostExperienceYears < yearsExperience) {
+                mostExperienced = employee;
+                mostExperienceYears = yearsExperience;
+            }
+        }
+
+    });
+    return mostExperienced;
 
 }
 

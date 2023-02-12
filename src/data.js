@@ -9,6 +9,41 @@ simulation['Additional Costs'] = {
     }
 }
 
+
+simulation['languages'] = {
+    'html': 3,
+    'JavaScript': 3,
+    'CSS': 2,
+    'Angular': 3,
+    'jQuery': 3,
+    'React': 2,
+    'Vue': 1,
+    'Flutter': 1,
+    'Swift': 1,
+    'Typescript': 1,
+    'Tailwind': 1,
+    'Java': 1,
+    'c': 1,
+    'c++': 1,
+    'c#': 1,
+    'swift': 1,
+    'php': 1,
+    'ruby': 1,
+    'Python': 1,
+    'Golang': 1,
+    'Rust': 1,
+    'SQL': 1,
+    'Perl': 1,
+    'Koitlin': 1,
+    'Swift': 1,
+    'Dart': 1,
+    'Corona': 1,
+    'Lua': 1
+
+}
+
+
+
 simulation['Pricing'] = {
     'new': {
         "web": {
@@ -252,6 +287,26 @@ simulation['Projects']['Proposed Project'] = {
     'proposedTimeline': 14,
 
 }
+
+
+simulation['Contract'] = {
+
+    'rawComponentCosts': getProjectCostRaw(),
+    'legalCosts': 3000,
+    'depositPercent': 5,
+    //will flesh this out to include multiple support packages
+    'supportPackage': 'included',
+    'additionalComponets': 'n/a',
+    //company/customer/thirdparty
+    'intellecualRights': 'company',
+    //this will be deduced from size of product eventually. Create a timeline breakdown along with testing
+    'timeline': 14,
+    //how uch payment in terms of months
+    'paymentPerMonth': 1,
+    //length in months 
+    'continuedSupport': 24
+}
+
 // Real life example. It terms of whether own comp[any actually takes over the costs for server maintence I'm not 100% sure. Keep simple anyway for now. Just to show how different types of projects may look
 /*
 small intergration
