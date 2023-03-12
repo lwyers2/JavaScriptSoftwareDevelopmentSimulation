@@ -6,741 +6,52 @@ function generateRandomInteger(max) {
 function generateRandomIntegerInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-const simulation = new Array();
 
 
-
-simulation['Company Account'] = {
-    'companyAccount': 9000000
-};
-
-//Scrub additionalCosts
-simulation['Additional Costs'] = {
-    'Costs': {
-        'na': 0
-    }
-}
-
-simulation['Pricing'] = {
-    'new': {
-        "web": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        },
-        "database": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        },
-        "server": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        },
-        "app": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        }
-
-    },
-    'modification': {
-        "web": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        },
-        "database": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        },
-        "server": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        },
-        "app": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        }
-    },
-    'integration': {
-        "web": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        },
-        "database": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        },
-        "server": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        },
-        "app": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        },
-        "software": {
-            'small': 1500,
-            'medium': 1750,
-            'large': 2000,
-            'enterprise': 2500
-        }
-    },
-    'webDev': {
-        'small': 1500,
-        'medium': 1750,
-        'large': 2000,
-        'enterprise': 2500
-    }
-}
-
-//this could be something that is input if the simulation is running a prexisting project for example
-// simulation['Tech Stacks'] ={
-// }
-simulation['Project Team'] = {
-
-    //20 4, 6, 10
-    'Development Team': {
-        "Mimi Parker": {
-            'age': 37,
-            'role': 'Lead Developer',
-            'experience': 14,
-            'tenure': 7,
-            'salary': 75000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Phil Elverum": {
-            'age': 30,
-            'role': 'Senior Developer',
-            'experience': 6,
-            'tenure': 2,
-            'salary': 62000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Criag Finn": {
-            'age': 32,
-            'role': 'Senior Developer',
-            'experience': 8,
-            'tenure': 2,
-            'salary': 62000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Shirly Collins": {
-            'age': 30,
-            'role': 'Senior Developer',
-            'experience': 6,
-            'tenure': 2,
-            'salary': 62000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "David Tibet": {
-            'age': 23,
-            'role': 'Intermediate Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Davy Grahm": {
-            'age': 23,
-            'role': 'Intermediate Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Andrew Bird": {
-            'age': 23,
-            'role': 'Intermediate Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Jeff Mangum": {
-            'age': 23,
-            'role': 'Intermediate Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Daniel Johnstone": {
-            'age': 23,
-            'role': 'Intermediate Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Tim Buckley": {
-            'age': 23,
-            'role': 'Intermediate Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Robert Wyatt": {
-            'age': 23,
-            'role': 'Junior Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Julien Cope": {
-            'age': 23,
-            'role': 'Junior Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Jeff Rostenstock": {
-            'age': 23,
-            'role': 'Junior Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Andy Mornin": {
-            'age': 23,
-            'role': 'Junior Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Luke Kelly": {
-            'age': 23,
-            'role': 'Junior Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Richard Dawson": {
-            'age': 23,
-            'role': 'Junior Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Stuart Staples": {
-            'age': 23,
-            'role': 'Junior Developer',
-            'experience': 1,
-            'tenure': 1,
-            'salary': 28000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Jackson Frank": {
-            'age': 29,
-            'role': 'Junior Developer',
-            'experience': 3,
-            'tenure': 1,
-            'salary': 31000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Warren Ellis": {
-            'age': 26,
-            'role': 'Junior Developer',
-            'experience': 3,
-            'tenure': 2,
-            'salary': 29000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        },
-        "Krustin Hayter": {
-            'age': 27,
-            'role': 'Junior Developer',
-            'experience': 4,
-            'tenure': 4,
-            'salary': 33000,
-            'languages': {
-                'html': 3,
-                'JavaScript': 3,
-                'CSS': 2,
-                'Angular': 3,
-                'jQuery': 3,
-                'React': 2,
-                'Java': 1,
-                'Swift': 1,
-                'linux': 2
-            }
-        }
-    },
-    'Design': {
-        "Chrustia Cabral": {
-            'age': 33,
-            'role': 'Design',
-            'experience': 10,
-            'tenure': 3,
-            'salary': 37000
-        },
-        "Warren Zevon": {
-            'age': 33,
-            'role': 'Design',
-            'experience': 10,
-            'tenure': 3,
-            'salary': 37000
-        },
-        "Frank Black": {
-            'age': 33,
-            'role': 'Design',
-            'experience': 10,
-            'tenure': 3,
-            'salary': 37000
-        },
-        "Lou Reed": {
-            'age': 33,
-            'role': 'Design',
-            'experience': 10,
-            'tenure': 3,
-            'salary': 37000
-        },
-        "Ornette Coleman": {
-            'age': 33,
-            'role': 'Design',
-            'experience': 10,
-            'tenure': 3,
-            'salary': 37000
-        }
-    },
-    'Testing': {
-        "Mark Eitzel": {
-            'age': 31,
-            'role': 'Testing',
-            'experience': 6,
-            'tenure': 4,
-            'salary': 30000
-        },
-        "Stephen Merritt": {
-            'age': 26,
-            'role': 'Testing',
-            'experience': 3,
-            'tenure': 3,
-            'salary': 26000
-        },
-        "Charles Mingus": {
-            'age': 31,
-            'role': 'Testing',
-            'experience': 6,
-            'tenure': 4,
-            'salary': 30000
-        },
-        "John Cage": {
-            'age': 26,
-            'role': 'Testing',
-            'experience': 3,
-            'tenure': 3,
-            'salary': 26000
-        }
-    },
-    'Support': {
-        "Mark Eitzel": {
-            'age': 31,
-            'role': 'Testing',
-            'experience': 6,
-            'tenure': 4,
-            'salary': 30000
-        },
-        "Stephen Merritt": {
-            'age': 26,
-            'role': 'Testing',
-            'experience': 3,
-            'tenure': 3,
-            'salary': 26000
-        },
-        "Charles Mingus": {
-            'age': 31,
-            'role': 'Testing',
-            'experience': 6,
-            'tenure': 4,
-            'salary': 30000
-        },
-        "John Cage": {
-            'age': 26,
-            'role': 'Testing',
-            'experience': 3,
-            'tenure': 3,
-            'salary': 26000
-        }
-    },
-    'Project Managers': {
-        "Brian Chippendale": {
-            'age': 45,
-            'role': 'Project Manager',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-        "Fiona Apple": {
-            'age': 45,
-            'role': 'Project Manager',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-        "Elizabeth Fraser": {
-            'age': 45,
-            'role': 'Project Manager',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        }
-    },
-    'Support': {
-        "Anna Von Haussewolf": {
-            'age': 45,
-            'role': 'Junior Support',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-        "Alice Coltrane": {
-            'age': 45,
-            'role': 'Intermediate Support',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-        "Julia Holter": {
-            'age': 45,
-            'role': 'Senior Support',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-        "Nina Simone": {
-            'age': 45,
-            'role': 'Support Lead',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-    },
-    'Marketing': {
-        "John Redburn": {
-            'age': 45,
-            'role': 'Marketing lead',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-        "Tom Waits": {
-            'age': 45,
-            'role': 'Marketing Assistant',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-    },
-    'Operations': {
-        "Jeff Beck": {
-            'age': 45,
-            'role': 'HR',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-        "Johnny Mathis": {
-            'age': 45,
-            'role': 'Accounts',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-    },
-    'Directors': {
-        "Woodie Guthrie": {
-            'age': 45,
-            'role': 'Technical Director',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-        "David Thomas": {
-            'age': 45,
-            'role': 'Managing Director',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        },
-        "Nick Drake": {
-            'age': 45,
-            'role': 'Client Relations',
-            'experience': 23,
-            'tenure': 15,
-            'salary': 54000
-        }
-    }
-
-};
-
-// Real life example. It terms of whether own comp[any actually takes over the costs for server maintence I'm not 100% sure. Keep simple anyway for now. Just to show how different types of projects may look
-simulation['Projects'] = {
-    'Proposed MindMe': {
-        'name': 'Mind Me Stripe Integration',
-        'company': 'Mind Me ie',
-        'industry': 'Healthcare',
-        'type': 'integration',
-        'size': 'medium',
-        'techstack': {
-            'web': 'PHP',
-            'database': 'SQL',
-            'server': 'linux'
-        },
-        'hosting': 'aws',
-        'integration': {
-            'software': 'Stripe',
-            'app': 'Web'
-        }
-    }
-}
-
-simulation['Ad Hoc Costs'] = {
-    'Office Rental': 3000,
-    'Building Insurance': 350,
-    'Employee Insurance': 400,
-    'Pension Scheme': 1400,
-    'Software Licenses': 6000,
-    'Hardware': 8000,
-    'Premises Upkeep': 500,
-    'Electricity': 600,
-    'Heating': 400,
-    //Might be one off instead
-    'Socil Fund': 750,
-    //Might be one off instead
-    'Training': 1500,
-    'Employee Expenses': 800
-}
+let state = new Array();
 
 
+const secInMs = 1000;
+const minInMs = secInMs * 60;
+const hourInMs = minInMs * 60;
+const dayInMs = hourInMs * 24;
+const weekInMs = dayInMs * 7;
+const yearInMs = dayInMs * 365;
+setOngoingWorkHourAvailability(30);
 
-
-
-
+//before
+state.push(JSON.stringify(simulation));
 // Yearly run 
 monthOne();
-// monthTwo();
-// monthThreeToFive();
-// monthSixToEight();
-// monthNineToTwelve();
-
+state.push(JSON.stringify(simulation));
+monthTwo();
+state.push(JSON.stringify(simulation));
+monthThree();
+state.push(JSON.stringify(simulation));
+monthFour();
+state.push(JSON.stringify(simulation));
+monthFive();
+state.push(JSON.stringify(simulation));
+monthSix();
+state.push(JSON.stringify(simulation));
+monthSeven();
+state.push(JSON.stringify(simulation));
+monthEight();
+state.push(JSON.stringify(simulation));
+monthNine();
+state.push(JSON.stringify(simulation));
+monthTen();
+state.push(JSON.stringify(simulation));
+monthEleven();
+state.push(JSON.stringify(simulation));
+monthTwelve();
+state.push(JSON.stringify(simulation));
+monthThirteen();
+state.push(JSON.stringify(simulation));
+monthFourteen();
+state.push(JSON.stringify(simulation));
+let test = JSON.parse(state[0]);
+console.log(test['date']);
 
 // // monthly functions
 
@@ -750,78 +61,224 @@ function monthOne() {
     feasibilityStudy();
     createDraftContact();
     negotiations();
-    simulation['Additional Costs']['Costs'] = {
-        'legalCosts': simulation['Contract']['legalCosts']
-    }
     deductCosts(calculateMonthlyCosts());
     projectBusinessApproval();
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    yearlyDevelopmentIncome();
+    monthlySupportContracts();
+    monthlyHostingFees();
+
+    console.log("Time Period Ended");
+    console.log("******************");
+
+
 }
 
-projectPlan();
 
-// function monthTwo() {
-//     console.log("Month 2");
-//     console.log("******************");
-//     allocateResources();
-//     projectPlan();
-//     customerRecommendations();
-//     //negotiations();
-//     monthlyCosts();
-//     console.log("Time Period Ended");
-//     console.log("******************");
+function setAdditionalCost(costName, cost) {
 
-// }
+    simulation['Additional Costs']['Costs'][costName] = cost;
 
-// function monthThreeToFive() {
-//     console.log("Month 3 - 5");
-//     console.log("******************");
-//     startProject();
-//     developPrototype();
-//     testPrototype();
-//     //businessApproval();
-//     customerApproval();
-//     //businessApproval();
-//     monthlyCosts();
-//     monthlyCosts();
-//     monthlyCosts();
-//     console.log("Time Period Ended");
-//     console.log("******************");
-// }
+}
 
-// function monthSixToEight() {
-//     console.log("Month 6 - 8");
-//     console.log("******************");
-//     developPrototype();
-//     testPrototype();
-//     //businessApproval();
-//     customerApproval();
-//     //businessApproval();
-//     monthlyCosts();
-//     monthlyCosts();
-//     monthlyCosts();
-//     console.log("Time Period Ended");
-//     console.log("******************");
-// }
 
-// function monthNineToTwelve() {
-//     console.log("Month 9 - 12");
-//     console.log("******************");
-//     developFinalPrototype();
-//     testFinalPrototype();
-//     //businessApproval();
-//     customerApproval();
-//     productChanges();
-//     //businessApproval();
-//     productCreated();
-//     customerApproval();
-//     //businessApproval();
-//     monthlyCosts();
-//     monthlyCosts();
-//     monthlyCosts();
-//     monthlyCosts();
-//     console.log("Time Period Ended");
-//     console.log("******************");
-// }
+
+
+function monthTwo() {
+    console.log("Month 2");
+    console.log("******************");
+    projectPlan();
+    sprint('User Story 1', 'User Story Description 1', 'User Story 2', 'User Story Description 2');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+}
+
+function monthThree() {
+    console.log("Month 3");
+    console.log("******************");
+    sprint('User Story 3', 'User Story Description 3', 'User Story 4', 'User Story Description 4');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+function monthFour() {
+    console.log("Month 4");
+    console.log("******************");
+    sprint('User Story 5', 'User Story Description 5', 'User Story 6', 'User Story Description 6');
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+function monthFive() {
+    console.log("Month 5");
+    console.log("******************");
+    sprint('User Story 7', 'User Story Description 7', 'User Story 8', 'User Story Description 8');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+function monthSix() {
+    console.log("Month 6");
+    console.log("******************");
+    sprint('User Story 9', 'User Story Description 9', 'User Story 10', 'User Story Description 10');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+function monthSeven() {
+    console.log("Month 7");
+    console.log("******************");
+    sprint('User Story 11', 'User Story Description 11', 'User Story 12', 'User Story Description 12');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+function monthEight() {
+    console.log("Month 8");
+    console.log("******************");
+    sprint('User Story 13', 'User Story Description 13', 'User Story 14', 'User Story Description 14');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+function monthNine() {
+    console.log("Month 9");
+    console.log("******************");
+    sprint('User Story 15', 'User Story Description 15', 'User Story 16', 'User Story Description 16');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+function monthTen() {
+    console.log("Month 10");
+    console.log("******************");
+    sprint('User Story 17', 'User Story Description 17', 'User Story 18', 'User Story Description 18');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+function monthEleven() {
+
+    console.log("Month 11");
+    console.log("******************");
+    sprint('User Story 19', 'User Story Description 19', 'User Story 20', 'User Story Description 20');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+function monthTwelve() {
+    console.log("Month 12");
+    console.log("******************");
+    sprint('User Story 21', 'User Story Description 21', 'User Story 22', 'User Story Description 22');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+function monthThirteen() {
+    console.log("Month 13");
+    console.log("******************");
+    sprint('User Story 23', 'User Story Description 23', 'User Story 24', 'User Story Description 24');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+
+}
+
+
+function monthFourteen() {
+    console.log("Month 14");
+    console.log("******************");
+    sprint('User Story 25', 'User Story Description 26', 'User Story 27', 'User Story Description 27');
+    deductCosts(calculateMonthlyCosts());
+    monthlyInstallmentPay();
+    softwareSubscriptions();
+    monthlySupportContracts();
+    monthlyHostingFees();
+    console.log("Time Period Ended");
+    console.log("******************");
+}
+
+
+let projects = Object.keys(simulation['Projects']);
+let total = 0;
+projects.forEach((project) => {
+
+    if (project != 'Inhouse Software') {
+        total += simulation['Projects'][project]['developmentContract']['hoursPerYear'];
+    }
+
+});
+
+console.log(`Total: ${total} -  Gain perYear: ${total * 200}`);
 
 
 // Event functions
@@ -843,29 +300,7 @@ May add existingArchitecture
 function customerContactsCompany() {
 
     console.log("A new company has proposed a new project");
-    simulation['Projects']['Proposed Project'] = {
-        'company': 'Company Name',
-        'companyIdustry': 'Finance',
-        'title': 'Proposed Project',
-        'type': 'web development',
-        'size': 'large',
-        'techstack': {
-            'web': 'default',
-            'app': 'default',
-            'database': 'default',
-            'server': 'default'
-        },
-        'hosting': 'default',
-        'webDev': {
-            'web': 'enterprise'
-        },
-        //months
-        'proposedTimeline': 14,
-        'team': {
-            'team member': 'default'
-        }
-
-    }
+    addDays(1);
 
 }
 
@@ -885,19 +320,11 @@ function architectureDetermination() {
     //Putting in hosting too. This will be used for pricing
     console.log("Determining most suitable tech stack .... ");
     console.log("As the company needs a  " + simulation['Projects']['Proposed Project'].size + " sized project and it is a " + simulation['Projects']['Proposed Project']['type'] + " project, the most suitable stack is as follows: ");
-    simulation['Projects']['Proposed Project']['techstack'] = {
-        'web': 'PHP',
-        'app': 'Swift',
-        'database': 'SQL',
-        'server': 'linux'
-    }
-
-    console.log("The stack includes: ");
-
     let stack = Object.keys(simulation['Projects']['Proposed Project'].techstack);
     stack.forEach((component) => {
         console.log(`${component}: ${simulation['Projects']['Proposed Project']['techstack'][component]}`);
     });
+    addDays(3);
 }
 
 /*
@@ -910,6 +337,7 @@ Can also decide whether a project is viable depenednent on internal resources an
 function feasibilityStudy() {
 
     calculateInitialCost();
+    addDays(4);
 
 }
 
@@ -925,18 +353,8 @@ standard costs will be eventually stored in json file like projects and empoloye
 */
 function calculateInitialCost() {
 
-    simulation['Component Costs'] = {
-        'web': 0,
-        'app': 0,
-        'database': 0,
-        'server': 0,
-        'software': 0,
-
-    }
 
     if (simulation['Projects']['Proposed Project']['type'] == 'new') {
-        //calculateNew();
-
 
         let newComps = Object.keys(simulation['Projects']['Proposed Project']['new']);
         newComps.forEach((component) => {
@@ -1026,24 +444,7 @@ function createDraftContact() {
     https://impressit.io/blog/software-development-contract
     Liabilities, IntellectualRightsAndLicensing, ScopeOfTheProject, SoftwareAndIntegration, Non-DisclosureClause, TimelinesBudgetAndProcesses, AcceptanceTestingAndDelivery, ContractVariationAndChanges, SupportServices, ForceMajeur
  */
-
-    simulation['Contract'] = {
-
-        'rawComponentCosts': getProjectCostRaw(),
-        'legalCosts': 3000,
-        'depositPercent': 5,
-        //will flesh this out to include multiple support packages
-        'supportPackage': 'included',
-        'additionalComponets': 'n/a',
-        //company/customer/thirdparty
-        'intellecualRights': 'company',
-        //this will be deduced from size of product eventually. Create a timeline breakdown along with testing
-        'timeline': 14,
-        //how uch payment in terms of months
-        'paymentPerMonth': 1,
-        //length in months 
-        'continuedSupport': 24
-    }
+    simulation['Contract']['rawComponentCosts'] = getProjectCostRaw();
 
     console.log("The proposed contract is as follows: ")
 
@@ -1052,6 +453,7 @@ function createDraftContact() {
         console.log(component + ": " + simulation['Contract'][component])
 
     });
+    addDays(2);
 
 
 }
@@ -1069,8 +471,7 @@ function negotiations() {
     simulation['Contract']['rawComponentCosts'] += parseInt(((generateRandomIntegerInRange(-10, 10) / 100) * simulation['Contract']['rawComponentCosts']));
     simulation['Contract']['legalCosts'] += parseInt(((generateRandomIntegerInRange(-10, 10) / 100) * simulation['Contract']['legalCosts']));
     simulation['Contract']['timeline'] += generateRandomIntegerInRange(-3, +3);
-    simulation['Contract']['continuedSupport'] += generateRandomIntegerInRange(-3, +3);
-
+    // simulation['Contract']['continuedSupport'] += generateRandomIntegerInRange(-3, +3);
     console.log("After the negotiations the contract is as follows: ")
 
     let contract = Object.keys(simulation['Contract']);
@@ -1078,6 +479,10 @@ function negotiations() {
         console.log(component + ": " + simulation['Contract'][component])
 
     });
+
+    setAdditionalCost('legal Costs', simulation['Contract']['legalCosts']);
+    setAdditionalCost('CheckTestCost', 45);
+    addDays(2);
 }
 
 
@@ -1116,7 +521,7 @@ function calculateSalaries() {
     teams.forEach((team) => {
         let costs = Object.keys(simulation['Project Team'][team]);
         costs.forEach((cost) => {
-            console.log(`${cost}: ${simulation['Project Team'][team][cost]['salary']}`)
+            //console.log(`${cost}: ${simulation['Project Team'][team][cost]['salary']}`)
             total += simulation['Project Team'][team][cost]['salary'];
         });
 
@@ -1161,7 +566,7 @@ function deductCosts(cost) {
 
     console.log(`Deducting £${cost} from Account Balance £${simulation['Company Account']['companyAccount']}`);
     simulation['Company Account']['companyAccount'] -= cost;
-    console.log(`Updated Account: ${simulation['Company Account']['companyAccount']}`)
+    console.log(`Updated Account: £${simulation['Company Account']['companyAccount']}`)
 
 }
 /* 
@@ -1171,6 +576,31 @@ function projectBusinessApproval() {
 
 
     console.log(`After deliberations, the business has approved the contract with ${simulation['Projects']['Proposed Project']['company']}`)
+    console.log(`Company has agreed to pay a ${simulation['Contract']['depositPercent']}% deposit: £${getDepositAmount()}`);
+    console.log(`Company Account balance before deposit: £${simulation['Company Account']['companyAccount']}`)
+    simulation['Company Account']['companyAccount'] += getDepositAmount();
+    console.log(`Company Account balance after deposit: £${simulation['Company Account']['companyAccount']}`)
+    addDays(2);
+}
+
+function monthlyInstallmentPay() {
+    console.log(`The company has agreed to pay £${getInstallmentAmount()} for ${simulation['Contract']['timeline']} months every ${simulation['Contract']['paymentPerMonth']} month/s`);
+    console.log(`Company Account balance before installment payment: £${simulation['Company Account']['companyAccount']}`);
+    simulation['Company Account']['companyAccount'] += getInstallmentAmount();
+    console.log(`Company Account balance after installment payment: £${simulation['Company Account']['companyAccount']}`);
+
+}
+
+function getDepositAmount() {
+
+    return parseInt(simulation['Contract']['rawProjectCost'] * (simulation['Contract']['depositPercent'] / 100))
+
+}
+
+function getInstallmentAmount() {
+
+    return parseInt((simulation['Contract']['rawProjectCost'] - getDepositAmount()) / simulation['Contract']['timeline'])
+
 
 }
 
@@ -1187,11 +617,11 @@ function projectPlan() {
     let team = calculateTeamResources();
 
 
-    simulation['Project Plan'] = {
-        'specification': 'Project Specification',
-        'team': team
-    };
+    simulation['Project Plan']['team'] = team;
+    simulation['Projects']['Proposed Project']['team'] = team;
+    simulation['Project Plan']['timeline'] = simulation['Projects']['Proposed Project']['proposedTimeline'];
     console.log(simulation['Project Plan']);
+    addDays(2);
 
 }
 
@@ -1305,7 +735,14 @@ function calculateTeamResources() {
     }
 
     console.log(`Based on the size and scope of the project we suggest that there should be ${junDevs} junior developers, ${intDevs} intermediate developers, ${senDevs} senior develpers, ${design} designers, and ${test} testers`);
-
+    simulation['Team Make-Up'] = {
+        'Junior Developers': junDevs,
+        'Intermediate Developers': intDevs,
+        'Senior Developers': senDevs,
+        'Designers': design,
+        'Testers': test,
+        'Total': junDevs + intDevs + senDevs + design + test
+    }
     return allocateResources(junDevs, intDevs, senDevs, design, test);
 
 
@@ -1423,39 +860,666 @@ function addTesterOrDesigner(role, excluded) {
 
 }
 
-function customerRecommendations() {
-    console.log("Customer has added recomendations to project - extra costs added: £4000");
-
-}
 
 function startProject() {
     console.log("A project has been started");
 }
 
-function developPrototype() {
-    console.log("A prototype has been developed");
+function sprint(userStory1, userStoryDescription1, userStory2, userStoryDescription2) {
+    updateOngoingWorkHoursForSprint(true);
+    sprintOne(userStory1, userStoryDescription1);
+    sprintTwo(userStory1);
+    sprintThree(userStory1);
+    sprintFour(userStory1);
+    sprintFive(userStory1);
+    sprintSix(userStory1);
+    sprintSeven(userStory1);
+    sprintEight(userStory1);
+    sprintNine(userStory1);
+    sprintTen(userStory1);
+    sprintEleven(userStory2, userStoryDescription2);
+    sprintTwelve(userStory2);
+    sprintThirteen(userStory2);
+    sprintFourteen(userStory2);
+    sprintFifteen(userStory2);
+    sprintSixteen(userStory2);
+    sprintSeventeen(userStory2);
+    sprintEighteen();
+    sprintNineteen();
+    sprintTwenty();
+    updateOngoingWorkHoursForSprint(false);
 }
 
-function testPrototype() {
-    console.log("Testing has commenced on the most recent prototype");
+
+
+
+
+
+function sprintOne(userStoryTitle, userStoryDescription) {
+
+    console.log("Project manager discuesses Sprint Planning with development and design team.");
+    console.log(`User Story: ${userStoryTitle} added to Sprint Plan`);
+    //need to work out a way of how many people will be assigned to a user story
+    let totalDevs = simulation['Team Make-Up']['Junior Developers'] + simulation['Team Make-Up']['Intermediate Developers'] + simulation['Team Make-Up']['Senior Developers']
+    createUserStory(userStoryTitle, userStoryDescription, totalDevs, simulation['Team Make-Up']['Designers'], simulation['Team Make-Up']['Testers']);
+    console.log("Braking stories into smaller tasks");
+    //designer needed true or false
+    //creating random tickets and assigning team members. Assign team members needs a better algorithm for deciding who get assigned what ticket
+    breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(3, 8), generateRandomIntegerInRange(0, 1));
+    console.log("******************");
+    //at here we'll want to start assigning tickets
+    console.log("Design and Implementation");
+    addDays(1);
 }
 
-function customerApproval() {
-    console.log("The customer has approved the last action");
+
+
+
+function sprintTwo(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager Review Sprint Plan");
+    console.log("Design and Implementation");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
 }
 
-function developFinalPrototype() {
-    console.log("A final prototype has been developed");
+function sprintThree(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager Review Sprint Plan");
+    console.log("Design and Implementation");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
 }
 
-function testFinalPrototype() {
-    console.log("Testing of the final prototype has been created");
+function sprintFour(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager and Project Team Review Sprint Plan");
+    console.log("Design and Implementation");
+    console.log("Expectations set");
+    console.log("Discussions with client");
+    sprintDiscussionWithClient(userStory);
+    //want to do some update could change the amount of proposed hours.
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+
 }
 
-function productChanges() {
-    console.log("Product Changes");
+function sprintFive(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager prepares next sprint");
+    console.log("Design and Implementation");
+    console.log("Shaping Stories for Next Sprint");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
 }
 
-function productCreated() {
-    console.log("Final Product Created");
+function sprintSix(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager prepares next sprint");
+    console.log("Design and Implementation");
+    console.log("Design - Shaping Stories for Next Sprint");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+
+function sprintSeven(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager - What is likely to be available to demo");
+    console.log("Design - Finishing touches for current sprint");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+function sprintEight(userStory) {
+    console.log("Standup Feature Complete");
+    console.log("Project Manager prepares Demo");
+    console.log("Design - Finishing touches for current sprint");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+function sprintNine(userStory) {
+
+    console.log("Stand Up");
+    console.log("Project Manager prepares next sprint");
+    console.log("Design - Shaping Stories for Next Sprint");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+function sprintTen(userStory) {
+    console.log("Stand Up Retro");
+    console.log("Project Manager Prepares Next Sprint");
+    console.log("Design - Shaping Stories for Next Sprint");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+function sprintEleven(userStoryTitle, userStoryDescription) {
+    console.log("Project manager discuesses Sprint Planning with development and design team.");
+    console.log(`User Story: ${userStoryTitle} added to Sprint Plan`);
+    //need to work out a way of how many people will be assigned to a user story
+    let totalDevs = simulation['Team Make-Up']['Junior Developers'] + simulation['Team Make-Up']['Intermediate Developers'] + simulation['Team Make-Up']['Senior Developers']
+    createUserStory(userStoryTitle, userStoryDescription, totalDevs, simulation['Team Make-Up']['Designers'], simulation['Team Make-Up']['Testers']);
+    console.log("Braking stories into smaller tasks");
+    //designer needed true or false
+    //creating random tickets and assigning team members. Assign team members needs a better algorithm for deciding who get assigned what ticket
+    breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(3, 8), generateRandomIntegerInRange(0, 1));
+    console.log("******************");
+    console.log("User Stories");
+    console.log(simulation['User Stories']);
+    //at here we'll want to start assigning tickets
+    console.log("Design and Implementation");
+    addDays(1);
+}
+
+function sprintTwelve(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager Sprint Planning");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+function sprintThirteen(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager Sprint Planning");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+function sprintFourteen(userStory) {
+    console.log("Stand Up");
+    console.log("Project Team Sprint Review");
+    console.log("Project Manager Sprint Review");
+    console.log("Design Sprint Review");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+
+function sprintFifteen(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager - Prepare Next Sprint");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+function sprintSixteen(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager - Prepare Next Sprint");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+function sprintSeventeen(userStory) {
+    console.log("Stand Up");
+    console.log("Project Manager - Understand what is likely to be available to demo");
+    workOnTicket(userStory);
+    progressReport(userStory);
+    addDays(1);
+}
+
+function sprintEighteen() {
+    console.log("Stand Up Feature Complete");
+    console.log("Project Manager - prepare demo");
+    addDays(1);
+}
+
+
+function sprintNineteen() {
+    console.log("Stand Up");
+    console.log("Project Team Sprint Review");
+    console.log("Project Manager Sprint Review");
+    console.log("Design Sprint Review");
+    addDays(1);
+}
+
+function sprintTwenty() {
+    console.log("Stand Up Retro");
+    console.log("Project Manager Prepares Next Sprint");
+    addDays(1);
+}
+
+
+
+
+
+function createUserStory(title, description, developersNeeded, designersNeeded, testersNeeded) {
+
+    simulation['User Stories'][title] = {};
+    simulation['User Stories'][title]['description'] = description;
+    simulation['User Stories'][title]['developersNeeded'] = developersNeeded;
+    simulation['User Stories'][title]['designersNeeded'] = testersNeeded;
+    simulation['User Stories'][title]['testersNeeded'] = designersNeeded;
+    //create empty container for tickets to be added to later
+    simulation['User Stories'][title]['tickets'] = {};
+
+}
+
+function createTicket(userStory, ticketTitle, description, proposedWorkInHours, priority, designerRequired) {
+    simulation['User Stories'][userStory]['tickets'][ticketTitle] = {};
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['ticketDescription'] = description;
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['proposedWorkInHours'] = proposedWorkInHours;
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['actualWorkInHours'] = 0;
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['isComplete'] = false;
+    //create empty container for technologies to be added seperately
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['technologies'] = {};
+    //create empty container for team members to be added seperately
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['assignedTeamMembers'] = {};
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['priority'] = priority;
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['designerRequired'] = designerRequired;
+
+}
+
+//this is really dumb this definitley needs changed, but okay for now
+function determineTeamMemberAmountForTicket(proposedWorkInHours, designerRequired) {
+    let needed = 0
+    if (designerRequired == 1) {
+        needed = -1;
+    }
+    if (proposedWorkInHours <= 90) {
+        needed = 3
+    } else if (proposedWorkInHours <= 120) {
+        needed = 4
+    } else if (proposedWorkInHours <= 170) {
+        needed = 5
+    }
+
+    return needed;
+
+}
+
+
+function assignTicketWorkers(userStory, ticketName) {
+    let designerNeeded = simulation['User Stories'][userStory]['tickets'][ticketName]['designerRequired'];
+    let teamMembersNeeded = determineTeamMemberAmountForTicket(simulation['User Stories'][userStory]['tickets'][ticketName]['proposedWorkInHours'], simulation['User Stories'][userStory]['tickets'][ticketName]['designerRequired']);
+    let technologies = Object.keys(simulation['User Stories'][userStory]['tickets'][ticketName]['technologies']);
+    let teamMembers = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    let proposedWorkInHours = parseInt(simulation['User Stories'][userStory]['tickets'][ticketName]['proposedWorkInHours'] / 2);
+    //want to loop through all developers and get a total off all the languages they have
+    //remove hours for meetings 2hours per week
+    let totalHoursPerWeek = parseInt(proposedWorkInHours / 2);
+    let hoursPerMember;
+    if (designerNeeded) {
+        hoursPerMember = parseInt(totalHoursPerWeek / (teamMembersNeeded + 1));
+    } else {
+        hoursPerMember = parseInt(totalHoursPerWeek / teamMembersNeeded);
+    }
+
+
+    let excluded = new Array();
+
+
+    for (let i = 0; i < teamMembersNeeded; i++) {
+        let mostExperienceYears = 0;
+        let mostExperienced;
+        teamMembers.forEach((member) => {
+            let yearsExp = 0;
+            let totalExp = 0;
+            let isExcluded = false;
+            let workingHoursPerDay = simulation['Projects']['Proposed Project']['team'][member]['hoursPerTicket'];
+            if (workingHoursPerDay < 1) {
+
+            }
+
+            for (let i = 0; i < excluded.length; i++) {
+                if (member == excluded[i]) {
+                    isExcluded = true;
+                }
+            }
+            if (!isExcluded) {
+                //check if member is a developer first
+                if (simulation['Projects']['Proposed Project']['team'][member]['role'].includes('Developer')) {
+
+                    //get a total of years experience from team member for all techs in ticket
+                    technologies.forEach((tech) => {
+                        let language = simulation['User Stories'][userStory]['tickets'][ticketName]['technologies'][tech];
+                        if (typeof simulation['Project Team']['Development Team'][member]['languages'][language] !== 'undefined') {
+                            yearsExp += simulation['Project Team']['Development Team'][member]['languages'][language];
+                        }
+
+                    });
+                    totalExp += yearsExp;
+                }
+                if (mostExperienceYears < yearsExp) {
+                    mostExperienced = member;
+                    mostExperienceYears = yearsExp;
+                }
+            }
+
+        });
+
+        excluded.push(mostExperienced);
+
+
+    }
+
+
+
+    if (designerNeeded == 1) {
+        let mostExperienceYears = 0;
+        let mostExperienced;
+        teamMembers.forEach((member) => {
+
+            if (simulation['Projects']['Proposed Project']['team'][member]['role'] == 'Design') {
+                let yearsExp = simulation['Projects']['Proposed Project']['team'][member]['experience'];
+                if (mostExperienceYears < yearsExp) {
+                    mostExperienced = member;
+                    mostExperienceYears = yearsExp;
+                }
+            }
+
+        });
+        excluded.push(mostExperienced);
+    }
+
+
+    for (let i = 0; i < excluded.length; i++) {
+
+        simulation['User Stories'][userStory]['tickets'][ticketName]['assignedTeamMembers'][excluded[i]] = simulation['Projects']['Proposed Project']['team'][excluded[i]];
+
+    }
+
+
+
+}
+
+//search through languages each developer has for technology. Return the total
+
+function assignTechnologyToTicket(userStory, ticketTitle, type, name) {
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['technologies'][name] = {}
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['technologies'][name]['type'] = type;
+
+}
+
+function breakingStoriesIntoTickets(userStory, ticketsNeeded) {
+
+    //create some form of algorithm to decide on who should work on a ticket and how many determined by hours, and technology, and possibly complexity? Can that be assigned a value?
+    for (let i = 0; i < ticketsNeeded; i++) {
+        //random generate technologies to worked on
+
+        //i plus 1 for readability
+        createTicket(userStory, 'Ticket ' + (i + 1), 'Description for ticket ' + (i + 1), generateRandomIntegerInRange(80, 130), generateRandomIntegerInRange(1, 5), generateRandomIntegerInRange(0, 1));
+        generateTechnology(userStory, 'Ticket ' + (i + 1));
+        //assign team members to ticket
+        assignTicketWorkers(userStory, 'Ticket ' + (i + 1));
+    }
+}
+
+
+function generateTechnology(userStory, ticketName) {
+
+    let stackAmount = 0;
+    let stackNames = new Array();
+
+    let stack = Object.keys(simulation['Projects']['Proposed Project']['techstack']);
+    stack.forEach((component) => {
+        stackAmount += 1;
+        stackNames.push(component);
+    });
+
+    let includedInTicket = generateRandomIntegerInRange(1, stackAmount);
+
+    let components = new Array();
+
+    for (let i = 0; i < includedInTicket; i++) {
+        let rand = generateRandomIntegerInRange(0, (stackAmount - 1));
+        while (components.includes(rand)) {
+            rand = generateRandomIntegerInRange(0, (stackAmount - 1));
+        }
+        components.push(rand);
+    }
+    for (let i = 0; i < components.length; i++) {
+        simulation['User Stories'][userStory]['tickets'][ticketName]['technologies'][stackNames[components[i]]] = simulation['Projects']['Proposed Project']['techstack'][stackNames[components[i]]];
+    }
+}
+
+//so sprint 1 creates these things - in between these 'work' needs to be commenced.  going to make it v simple then add more complexity
+
+function workOnTicket(userStory) {
+    let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+    tickets.forEach((ticket) => {
+        if (!simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']) {
+            let teamMembers = Object.keys(simulation['User Stories'][userStory]['tickets'][ticket]['assignedTeamMembers']);
+            let totalHoursWorked = 0;
+            teamMembers.forEach((member) => {
+                let rand = generateRandomIntegerInRange(0, 7);
+                totalHoursWorked += rand;
+                //for now random number, but will be calculate by member
+                simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours'] += rand;
+            });
+            //         console.log(`There has been a total of ${totalHoursWorked} hours worked on ${ticket}`);
+        } else {
+            console.log(`${ticket}: is completed`);
+        }
+        if (simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours'] >= simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']) {
+            console.log(`${ticket} is now complete, freeing up resources....`);
+            //will actually need to code this in, but first will need to make assigning more complex
+            simulation['User Stories'][userStory]['tickets'][ticket]['isComplete'] = true;
+        }
+    })
+}
+
+function progressReport(userStory) {
+
+
+    let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+    tickets.forEach((ticket) => {
+
+        if (!simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']) {
+
+            //         console.log(`${ticket}: Proposed Hours to completion: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']} Current hours worked: ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
+        } else {
+            console.log(`${ticket}: took ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
+        }
+    });
+}
+
+function sprintDiscussionWithClient(userStory) {
+
+    let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+    tickets.forEach((ticket) => {
+
+        //create a random num generate - after discussions with client they may want to change the work which will either increase or decrease amount of time
+        let rand = generateRandomIntegerInRange(-5, 15);
+        simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours'] += rand;
+        console.log(`Updated hours for ${ticket}: ${rand}. Current Proposed work hours: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']}`);
+
+    });
+}
+
+
+
+/*
+adds a number of days to date
+*/
+
+function addDays(days) {
+
+    simulation.date.setDate(simulation.date.getDate() + days);
+
+}
+
+console.log(simulation);
+
+// function developPrototype() {
+//     console.log("A prototype has been developed");
+// }
+
+// function testPrototype() {
+//     console.log("Testing has commenced on the most recent prototype");
+// }
+
+// function customerApproval() {
+//     console.log("The customer has approved the last action");
+// }
+
+// function developFinalPrototype() {
+//     console.log("A final prototype has been developed");
+// }
+
+// function testFinalPrototype() {
+//     console.log("Testing of the final prototype has been created");
+// }
+
+// function productChanges() {
+//     console.log("Product Changes");
+// }
+
+// function productCreated() {
+//     console.log("Final Product Created");
+// }
+
+function softwareSubscriptions() {
+
+    let software = Object.keys(simulation['Projects']['Inhouse Software']);
+    software.forEach((software) => {
+        let subscriberIncome = simulation['Projects']['Inhouse Software'][software]['subscribers'] * simulation['Projects']['Inhouse Software'][software]['monthlySubscription'];
+        console.log(`${simulation['Projects']['Inhouse Software'][software]['subscribers']} are subscribed to ${software} adding £${subscriberIncome} to company income.`)
+        simulation['Company Account']['companyAccount'] += subscriberIncome;
+    });
+}
+
+function yearlyDevelopmentIncome() {
+
+    let projects = Object.keys(simulation['Projects']);
+    projects.forEach((project) => {
+
+
+        if ((project !== "Inhouse Software") && (project !== "Proposed Project")) {
+            let yearlyDevelopmentIncome = simulation['Projects'][project]['developmentContract']['hoursPerYear'] * simulation['Development Work']['costPerHour'];
+            console.log(`${project} generates £${yearlyDevelopmentIncome} yearly for development work`);
+            simulation['Company Account']['companyAccount'] += yearlyDevelopmentIncome;
+        }
+    })
+
+}
+
+function monthlySupportContracts() {
+
+    let projects = Object.keys(simulation['Projects']);
+    projects.forEach((project) => {
+
+
+        if ((project !== "Inhouse Software") && (project !== "Proposed Project")) {
+            let supportContract = simulation['Projects'][project]['supportContract']['package']
+            let monthlySupportContracts = simulation['Support Packages'][supportContract]['cost'];
+            console.log(`${project} generates £${monthlySupportContracts} monthly for support`);
+            simulation['Company Account']['companyAccount'] += monthlySupportContracts;
+        }
+    })
+
+}
+
+function monthlyHostingFees() {
+    let projects = Object.keys(simulation['Projects']);
+    projects.forEach((project) => {
+
+
+        if ((project !== "Inhouse Software") && (project !== "Proposed Project")) {
+            let hostingFees = simulation['Projects'][project]['monthlyHostingFees']
+            console.log(`${project} generates £${hostingFees} monthly for hosting fees`);
+            simulation['Company Account']['companyAccount'] += hostingFees;
+        }
+    })
+}
+
+
+function createOngoingProjectTickets() {
+
+    let projects = Object.keys(simulation['Projects']);
+    projects.forEach((project) => {
+
+        if ((project !== "Inhouse Software") && (project !== "Proposed Project")) {
+
+            let size = simulation['Projects'][project]['size'];
+            let hours = simulation['Projects'][project]['developmentContract']['hoursPerYear'];
+            let amount = generateOngoingProjectTicketsAmount(size, hours);
+
+            simulation['Projects'][project]['tickets'] = {}
+
+            for (let i = 0; i < amount; i++) {
+                simulation['Projects'][project]['tickets']['ticket' + (i + 1)] = {
+                    'assignedDeveloper': '',
+                    'proposedWorkInHours': generateRandomIntegerInRange(1, 5),
+                    'isCompelete': false,
+                    'actualWorkHours': 0,
+                    'priority': generateRandomIntegerInRange(1, 3)
+                }
+            }
+        }
+    })
+}
+
+function generateOngoingProjectTicketsAmount(size, hours) {
+
+    let amount = 0;
+    if (size === 'small') {
+        amount = 5
+    } else if (size === 'medium') {
+        amount = 7
+    } else if (size === 'large') {
+        amount = 12
+    }
+
+    if (hours >= 25) {
+        amount += 1
+    } else if (hours >= 35) {
+        amount += 2
+    } else if (hours >= 45) {
+        amount += 3
+    } else if (hours >= 55) {
+        amount += 4
+    }
+
+    return amount;
+
+}
+
+function updateOngoingWorkHoursForSprint(inSprint) {
+    let members = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    if (inSprint) {
+        changeOngoingWorkHoursAvailability(10, members);
+    } else {
+        changeOngoingWorkHoursAvailability(30, members);
+    }
+}
+
+
+
+function changeOngoingWorkHoursAvailability(hours, members) {
+    let teams = Object.keys(simulation['Project Team']);
+    teams.forEach((team) => {
+        let employees = Object.keys(simulation['Project Team'][team]);
+        employees.forEach((employee) => {
+            members.forEach((member) => {
+                if (member === employee) {
+                    simulation['Project Team'][team][member]['ongoingWorkHours'] = hours;
+                }
+            })
+        });
+    })
+}
+
+function setOngoingWorkHourAvailability(hours) {
+    let teams = Object.keys(simulation['Project Team']);
+    teams.forEach((team) => {
+        let employees = Object.keys(simulation['Project Team'][team]);
+        changeOngoingWorkHoursAvailability(hours, employees);
+    });
 }
