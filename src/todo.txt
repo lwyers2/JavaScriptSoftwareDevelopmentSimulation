@@ -1,0 +1,9 @@
+1. When breaking down a user story detrmine how many tickets should be created - currently random num generator
+2. Design a way that determines how many people should be assigned to a ticket
+3. Determine who specifically is assigned to a ticket. This will be determined by who is available - could have all hours set to 40, then determine how many hours should be worked on that ticket per day to be completed - This is getting very complex but keep in mind.
+4. How to determine if a ticket is completed. (Thinking that should calculate after each work hour is completed. Have some form of probability for example - was supposed to take 5 hours probability of 1 hour completion v low, raises.)
+5. Determine how hours are set for tickets
+6. Determine how hours of work are split up
+7. Update projects - need to have larger projects 
+8. 
+

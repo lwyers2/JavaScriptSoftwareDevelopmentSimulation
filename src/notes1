@@ -1,0 +1,19 @@
+Don't store the monthly pay as a value, calculate it each month by looping over the costs. e.g. looping over the employees and their salaries.
+
+Have month 3 to 5 include monthly costs 3 times
+Same for 6 to 8
+have customerContactsCompany just alter proposed project
+
+Try to make things as realistic as possible so negotiations creating a contract would actually be for an amount of money from the client not an amount of profit. There could be a budgeting step that estimates costs. If the project has problems e.g. high turnover of staff the project might fail to produce a profit. At this stage don't put random numbers in the system just have the negotiations function take as parameters the variable properties. Then the js file that lists the events is the formal record of something that actually happened. Being able to unambiguously describe what actually happened is an output in itself.
+
+You have the business getting the profits at the point at which the business approval is granted. Might want to look into the details of this. I would be surprised if companies pay upfront for work. It is likely they pay after it is complete and in installments.
+
+Eventually we will want to make steps like the identification and agreement of techstack more complex (does the customer or the developer determine this) and also more about the requirements and milestones. This will be a big part of the next stage where the state of the system causes the events to occur. We can leave this for now but learning more about how that actually happens and what is involved would be valuable.
+
+More breakdown of costs would be valuable as this is a major factor in the success of the business. Having more of an idea of the overall costs of running the business is valuable. I.e. accountant, legal, premises, equipment, cleaners etc. These can then be summed each month (assuming that is the way they are paid).
+
+Try to make the functions take parameters that determine what is going to happen e.g. project plan should take the number of years as a parameter.
+
+Breakdown allocateResources into individual function calls that move people from one thing to another and add steps for people leaving and hiring people. Make the parameters of the person parameters of the function for hiring them if they are added. If not then start the business with them as variables doing something else.
+
+Don't store monthly costs as a variable just make a function that loops over things that cost money and have them change. Ideally have objects that represent each of these costs with their own variables e.g. data about pcs, about cloud servers, about licenses for software, about premises. Even if they only store their cost. It is a step towards a more complex game-like representation where things aren't stored as aggregate summaries but as individual elements.

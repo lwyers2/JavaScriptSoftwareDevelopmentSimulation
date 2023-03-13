@@ -1521,5 +1521,9 @@ function setOngoingWorkHourAvailability(hours) {
     teams.forEach((team) => {
         let employees = Object.keys(simulation['Project Team'][team]);
         changeOngoingWorkHoursAvailability(hours, employees);
+        employees.forEach((employee) => {
+            simulation['Project Team'][team][employee]['assignedWorkHours'] = 0;
+
+        })
     });
 }
