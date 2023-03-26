@@ -12,10 +12,10 @@ let simulation = ({
     "Pricing": {
         "new": {
             "web": {
-                "small": 2500,
-                "medium": 3600,
-                "large": 4500,
-                "enterprise": 6500
+                "small": 1500,
+                "medium": 1750,
+                "large": 2000,
+                "enterprise": 2500
             },
             "database": {
                 "small": 1500,
@@ -96,10 +96,10 @@ let simulation = ({
             }
         },
         "webDev": {
-            "small": 3000,
-            "medium": 4500,
-            "large": 7500,
-            "enterprise": 12000
+            "small": 1500,
+            "medium": 1750,
+            "large": 2000,
+            "enterprise": 2500
         }
     },
     "Support Packages": {
@@ -109,19 +109,19 @@ let simulation = ({
         },
         "bronze": {
             "hours": 5,
-            "cost": 100
+            "cost": 75
         },
         "silver": {
             "hours": 12,
-            "cost": 200
+            "cost": 125
         },
         "gold": {
             "hours": 26,
-            "cost": 400
+            "cost": 250
         }
     },
     "Development Work": {
-        "costPerHour": 250
+        "costPerHour": 200
     },
     "Project Team": {
         "Development Team": {
@@ -171,8 +171,7 @@ let simulation = ({
                 "annualLeaveTotal": 24,
                 "annualLeaveRemaining": 24,
                 "workEffeciency": 0,
-                "workQuality": 0,
-                "startDate": new Date(05 / 06 / 2023)
+                "workQuality": 0
             },
             "Phil Elverum": {
                 "age": 33,
@@ -1450,9 +1449,9 @@ let simulation = ({
     "Projects": {
         "Inhouse Software": {
             "software 1": {
-                "pricePerCustomer": 900,
+                "pricePerCustomer": 800,
                 "installationCharge": 120,
-                "monthlySubscription": 60,
+                "monthlySubscription": 45,
                 "customers": 150,
                 "subscribers": 132,
                 "developmentContract": {
@@ -1464,7 +1463,7 @@ let simulation = ({
             "software 2": {
                 "pricePerCustomer": 750,
                 "installationCharge": 100,
-                "monthlySubscription": 65,
+                "monthlySubscription": 40,
                 "customers": 90,
                 "subscribers": 72
             }
@@ -1500,7 +1499,7 @@ let simulation = ({
                 "contractRenewal": 12,
                 "contractStartDate": new Date('04-01-2023')
             },
-            "monthlyHostingFees": 1500
+            "monthlyHostingFees": 1200
         }, "Ongoing Project 3": {
             "name": "Ongoing Project 3",
             "company": "Company 3",
@@ -1516,7 +1515,7 @@ let simulation = ({
                 "contractRenewal": 12,
                 "contractStartDate": new Date('04-01-2023')
             },
-            "monthlyHostingFees": 1650
+            "monthlyHostingFees": 1200
         }, "Ongoing Project 4": {
             "name": "Ongoing Project 4",
             "company": "Company 4",
@@ -1532,7 +1531,7 @@ let simulation = ({
                 "contractRenewal": 12,
                 "contractStartDate": new Date('04-01-2023')
             },
-            "monthlyHostingFees": 1100
+            "monthlyHostingFees": 1200
         }, "Ongoing Project 5": {
             "name": "Ongoing Project 5",
             "company": "Company 5",
@@ -1548,7 +1547,7 @@ let simulation = ({
                 "contractRenewal": 12,
                 "contractStartDate": new Date('04-01-2023')
             },
-            "monthlyHostingFees": 1350
+            "monthlyHostingFees": 1200
         }, "Ongoing Project 6": {
             "name": "Ongoing Project 6",
             "company": "Company 6",
@@ -1564,7 +1563,7 @@ let simulation = ({
                 "contractRenewal": 12,
                 "contractStartDate": new Date('04-01-2023')
             },
-            "monthlyHostingFees": 1250
+            "monthlyHostingFees": 1200
         }, "Ongoing Project 7": {
             "name": "Ongoing Project 7",
             "company": "Company 7",
@@ -1580,7 +1579,7 @@ let simulation = ({
                 "contractRenewal": 12,
                 "contractStartDate": new Date('04-01-2023')
             },
-            "monthlyHostingFees": 1350
+            "monthlyHostingFees": 1200
         }, "Ongoing Project 8": {
             "name": "Ongoing Project 8",
             "company": "Company 8",
@@ -1596,7 +1595,7 @@ let simulation = ({
                 "contractRenewal": 12,
                 "contractStartDate": new Date('04-01-2023')
             },
-            "monthlyHostingFees": 1000
+            "monthlyHostingFees": 1200
         },
         "Ongoing Project 9": {
             "name": "Ongoing Project 9",
@@ -1629,7 +1628,7 @@ let simulation = ({
                 "contractRenewal": 12,
                 "contractStartDate": new Date('04-01-2023')
             },
-            "monthlyHostingFees": 1650
+            "monthlyHostingFees": 1200
         }, "Ongoing Project 11": {
             "name": "Ongoing Project 11",
             "company": "Company 11",
@@ -1645,7 +1644,7 @@ let simulation = ({
                 "contractRenewal": 12,
                 "contractStartDate": new Date('04-01-2023')
             },
-            "monthlyHostingFees": 1000
+            "monthlyHostingFees": 1200
         }, "Ongoing Project 12": {
             "name": "Ongoing Project 12",
             "company": "Company 12",
@@ -1653,39 +1652,6 @@ let simulation = ({
             "size": "medium",
             "developmentContract": {
                 "hoursPerYear": 35,
-                "contractRenewal": 12,
-                "contractStartDate": new Date('04-01-2023')
-            },
-            "supportContract": {
-                "package": "gold",
-                "contractRenewal": 12,
-                "contractStartDate": new Date('04-01-2023')
-            },
-            "monthlyHostingFees": 1300
-        }, "Ongoing Project 13": {
-            "name": "Ongoing Project 13",
-            "company": "Company 13",
-            "industry": "Industry 13",
-            "size": "large",
-            "developmentContract": {
-                "hoursPerYear": 50,
-                "contractRenewal": 12,
-                "contractStartDate": new Date('04-01-2023')
-            },
-            "supportContract": {
-                "package": "gold",
-                "contractRenewal": 12,
-                "contractStartDate": new Date('04-01-2023')
-            },
-            "monthlyHostingFees": 1700
-        },
-        "Ongoing Project 14": {
-            "name": "Ongoing Project 14",
-            "company": "Company 14",
-            "industry": "Industry 14",
-            "size": "medium",
-            "developmentContract": {
-                "hoursPerYear": 37,
                 "contractRenewal": 12,
                 "contractStartDate": new Date('04-01-2023')
             },
@@ -1725,10 +1691,56 @@ let simulation = ({
             //months
             "proposedTimeline": 14,
             "team": {
-                "team member": "default"
+                "Richard Dawson": {
+                    "age": 23,
+                    "role": "Junior Developer",
+                    "experience": 2,
+                    "tenure": 1,
+                    "salary": 2003,
+                    "languages": {
+                        "SQL": 2,
+                        "Swift": 2,
+                        "linux": 2
+                    }
+                },
+                "Stuart Staples": {
+                    "age": 25,
+                    "role": "Junior Developer",
+                    "experience": 4,
+                    "tenure": 3,
+                    "salary": 2155,
+                    "languages": {
+                        "html": 3,
+                        "JavaScript": 1,
+                        "CSS": 4,
+                        "Angular": 2,
+                        "jQuery": 1,
+                        "React": 2,
+                        "Java": 1,
+                        "Swift": 1,
+                        "linux": 2
+                    }
+                },
+                "Jackson Frank": {
+                    "age": 26,
+                    "role": "Junior Developer",
+                    "experience": 4,
+                    "tenure": 4,
+                    "salary": 2183,
+                    "languages": {
+                        "html": 4,
+                        "JavaScript": 3,
+                        "CSS": 2,
+                        "Flutter": 4,
+                        "jQuery": 3,
+                        "React": 2,
+                        "Java": 4,
+                        "Swift": 4,
+                        "linux": 2
+                    }
+                },
             },
-            "monthlyHostingFees": 1500,
-            "inSprint": false
+            "monthlyHostingFees": 1200
         }
     },
     "Project Groups": {
@@ -1737,7 +1749,6 @@ let simulation = ({
                 "Ongoing Project 1": 30,
                 "Ongoing Project 2": 76,
                 "Ongoing Project 3": 72,
-                "Ongoing Project 13": 50
             },
             "Members": {
                 "Brian Chippendale": "Project Manager",
@@ -1757,7 +1768,6 @@ let simulation = ({
                 "Ongoing Project 4": 32,
                 "Ongoing Project 5": 44,
                 "Ongoing Project 6": 52,
-                "Ongoing Project 14": 37
             },
             "Members": {
                 "Fiona Apple": "Project Manager",
