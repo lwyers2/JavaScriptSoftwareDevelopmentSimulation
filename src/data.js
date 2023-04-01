@@ -124,7 +124,7 @@ let simulation = ({
         "costPerHour": 250
     },
     "Project Team": {
-        "Development Team": {
+        "Development": {
             "Mimi Parker": {
                 "age": 36,
                 "role": "Senior Developer",

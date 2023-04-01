@@ -20,11 +20,18 @@ const hourInMs = minInMs * 60;
 const dayInMs = hourInMs * 24;
 const weekInMs = dayInMs * 7;
 const yearInMs = dayInMs * 365;
-setOngoingWorkHourAvailability(30);
+setAllDailyAvailableHours(7.5);
+setAllDaysToWorkPerWeek(5);
+updateEmployeesHoursPerWeek();
+setAllActualWorkHours(0);
+
+
+
 createOngoingProjectTickets()
 assignAllOngoingProjectTickets();
 generateEmployeeScores();
 generateEmployeeWorkRate();
+
 
 //before
 state.push(JSON.stringify(simulation));
@@ -75,8 +82,8 @@ function monthOne() {
     yearlyDevelopmentIncome();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 }
 
 
@@ -90,8 +97,8 @@ function setAdditionalCost(costName, cost) {
 
 
 function monthTwo() {
-    console.log("Month 2");
-    console.log("******************");
+    //console.log("Month 2");
+    //console.log("******************");
     projectPlan();
     sprint('User Story 1', 'User Story Description 1', 'User Story 2', 'User Story Description 2');
     deductCosts(calculateMonthlyCosts());
@@ -99,176 +106,176 @@ function monthTwo() {
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 }
 
 function monthThree() {
-    console.log("Month 3");
-    console.log("******************");
+    //console.log("Month 3");
+    //console.log("******************");
     sprint('User Story 3', 'User Story Description 3', 'User Story 4', 'User Story Description 4');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 function monthFour() {
-    console.log("Month 4");
-    console.log("******************");
+    //console.log("Month 4");
+    //console.log("******************");
     sprint('User Story 5', 'User Story Description 5', 'User Story 6', 'User Story Description 6');
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 function monthFive() {
-    console.log("Month 5");
-    console.log("******************");
+    //console.log("Month 5");
+    //console.log("******************");
     sprint('User Story 7', 'User Story Description 7', 'User Story 8', 'User Story Description 8');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 function monthSix() {
-    console.log("Month 6");
-    console.log("******************");
+    //console.log("Month 6");
+    //console.log("******************");
     sprint('User Story 9', 'User Story Description 9', 'User Story 10', 'User Story Description 10');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 function monthSeven() {
-    console.log("Month 7");
-    console.log("******************");
+    //console.log("Month 7");
+    //console.log("******************");
     sprint('User Story 11', 'User Story Description 11', 'User Story 12', 'User Story Description 12');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 function monthEight() {
-    console.log("Month 8");
-    console.log("******************");
+    //console.log("Month 8");
+    //console.log("******************");
     sprint('User Story 13', 'User Story Description 13', 'User Story 14', 'User Story Description 14');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 function monthNine() {
-    console.log("Month 9");
-    console.log("******************");
+    //console.log("Month 9");
+    //console.log("******************");
     sprint('User Story 15', 'User Story Description 15', 'User Story 16', 'User Story Description 16');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 function monthTen() {
-    console.log("Month 10");
-    console.log("******************");
+    //console.log("Month 10");
+    //console.log("******************");
     sprint('User Story 17', 'User Story Description 17', 'User Story 18', 'User Story Description 18');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 function monthEleven() {
 
-    console.log("Month 11");
-    console.log("******************");
+    //console.log("Month 11");
+    //console.log("******************");
     sprint('User Story 19', 'User Story Description 19', 'User Story 20', 'User Story Description 20');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 function monthTwelve() {
-    console.log("Month 12");
-    console.log("******************");
+    //console.log("Month 12");
+    //console.log("******************");
     sprint('User Story 21', 'User Story Description 21', 'User Story 22', 'User Story Description 22');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 function monthThirteen() {
-    console.log("Month 13");
-    console.log("******************");
+    //console.log("Month 13");
+    //console.log("******************");
     sprint('User Story 23', 'User Story Description 23', 'User Story 24', 'User Story Description 24');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 
 }
 
 
 function monthFourteen() {
-    console.log("Month 14");
-    console.log("******************");
+    //console.log("Month 14");
+    //console.log("******************");
     sprint('User Story 25', 'User Story Description 26', 'User Story 27', 'User Story Description 27');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
-    console.log("Time Period Ended");
-    console.log("******************");
+    //console.log("Time Period Ended");
+    //console.log("******************");
 }
 
 
@@ -291,7 +298,7 @@ May add existingArchitecture
 
 function customerContactsCompany() {
 
-    console.log("A new company has proposed a new project");
+    //console.log("A new company has proposed a new project");
     addDays(1);
 
 }
@@ -310,11 +317,11 @@ function architectureDetermination() {
     //A company may wish to only have a software modification, or some form of integration so the stack will be determined already
     //Also each developer will have a certain amount of knowledge/experience with certain technologies. this will effect how quickly/effeciently work will be completed
     //Putting in hosting too. This will be used for pricing
-    console.log("Determining most suitable tech stack .... ");
-    console.log("As the company needs a  " + simulation['Projects']['Proposed Project'].size + " sized project and it is a " + simulation['Projects']['Proposed Project']['type'] + " project, the most suitable stack is as follows: ");
+    //console.log("Determining most suitable tech stack .... ");
+    //console.log("As the company needs a  " + simulation['Projects']['Proposed Project'].size + " sized project and it is a " + simulation['Projects']['Proposed Project']['type'] + " project, the most suitable stack is as follows: ");
     let stack = Object.keys(simulation['Projects']['Proposed Project'].techstack);
     stack.forEach((component) => {
-        console.log(`${component}: ${simulation['Projects']['Proposed Project']['techstack'][component]}`);
+        //console.log(`${component}: ${simulation['Projects']['Proposed Project']['techstack'][component]}`);
     });
     addDays(3);
 }
@@ -436,11 +443,11 @@ function createDraftContact() {
     simulation['Contract']['rawComponentCosts'] = getProjectCostRaw();
     simulation['Contract']['developmentCost'] = generateRandomIntegerInRange(450000, 650000);
 
-    console.log("The proposed contract is as follows: ")
+    //console.log("The proposed contract is as follows: ")
 
     let contract = Object.keys(simulation['Contract']);
     contract.forEach((component) => {
-        console.log(component + ": " + simulation['Contract'][component])
+        //console.log(component + ": " + simulation['Contract'][component])
 
     });
     addDays(2);
@@ -463,11 +470,11 @@ function negotiations() {
     simulation['Contract']['timeline'] += generateRandomIntegerInRange(-3, +3);
     simulation['Contract']['developmentCost'] += parseInt(((generateRandomIntegerInRange(-10, 10) / 100) * simulation['Contract']['developmentCost']));
     // simulation['Contract']['continuedSupport'] += generateRandomIntegerInRange(-3, +3);
-    console.log("After the negotiations the contract is as follows: ")
+    //console.log("After the negotiations the contract is as follows: ")
 
     let contract = Object.keys(simulation['Contract']);
     contract.forEach((component) => {
-        console.log(component + ": " + simulation['Contract'][component])
+        //console.log(component + ": " + simulation['Contract'][component])
 
     });
 
@@ -492,14 +499,14 @@ function getProjectCostRaw() {
 function getAdHocCosts() {
     let total = 0;
     let costs = Object.keys(simulation['Ad Hoc Costs']);
-    console.log("***********************************");
-    console.log("AD HOC COSTS");
+    //console.log("***********************************");
+    //console.log("AD HOC COSTS");
     costs.forEach((cost) => {
-        console.log(`${cost}: ${simulation['Ad Hoc Costs'][cost]}`)
+        //console.log(`${cost}: ${simulation['Ad Hoc Costs'][cost]}`)
         total += simulation['Ad Hoc Costs'][cost];
     });
-    console.log(`Total: £${total}`);
-    console.log("***********************************");
+    //console.log(`Total: £${total}`);
+    //console.log("***********************************");
 
     return total;
 
@@ -508,18 +515,18 @@ function getAdHocCosts() {
 function calculateSalaries() {
     let total = 0;
     let teams = Object.keys(simulation['Project Team']);
-    console.log("***********************************");
-    console.log("Salaries");
+    //console.log("***********************************");
+    //console.log("Salaries");
     teams.forEach((team) => {
         let costs = Object.keys(simulation['Project Team'][team]);
         costs.forEach((cost) => {
-            //console.log(`${cost}: ${simulation['Project Team'][team][cost]['salary']}`)
+            ////console.log(`${cost}: ${simulation['Project Team'][team][cost]['salary']}`)
             total += simulation['Project Team'][team][cost]['salary'];
         });
 
     });
-    console.log(`Total: £${total}`);
-    console.log("***********************************");
+    //console.log(`Total: £${total}`);
+    //console.log("***********************************");
     return total;
 }
 
@@ -529,14 +536,14 @@ function calculateMonthlyCosts() {
     let adCosts = 0;
 
     let costs = Object.keys(simulation['Additional Costs']['Costs']);
-    console.log("***********************************");
-    console.log("Additional Costs");
+    //console.log("***********************************");
+    //console.log("Additional Costs");
     costs.forEach((cost) => {
-        console.log(`${cost}: ${simulation['Additional Costs']['Costs'][cost]}`)
+        //console.log(`${cost}: ${simulation['Additional Costs']['Costs'][cost]}`)
         adCosts += simulation['Additional Costs']['Costs'][cost];
     });
-    console.log(`Total: £${adCosts}`);
-    console.log("***********************************");
+    //console.log(`Total: £${adCosts}`);
+    //console.log("***********************************");
 
     let adhoc = getAdHocCosts();
     let sal = calculateSalaries();
@@ -548,7 +555,7 @@ function calculateMonthlyCosts() {
         'na': 0
     }
 
-    console.log(`Total Monthly Costs: £${totalCosts}`)
+    //console.log(`Total Monthly Costs: £${totalCosts}`)
     return totalCosts;
 
 
@@ -556,9 +563,9 @@ function calculateMonthlyCosts() {
 
 function deductCosts(cost) {
 
-    console.log(`Deducting £${cost} from Account Balance £${simulation['Company Account']['companyAccount']}`);
+    //console.log(`Deducting £${cost} from Account Balance £${simulation['Company Account']['companyAccount']}`);
     simulation['Company Account']['companyAccount'] -= cost;
-    console.log(`Updated Account: £${simulation['Company Account']['companyAccount']}`)
+    //console.log(`Updated Account: £${simulation['Company Account']['companyAccount']}`)
 
 }
 /* 
@@ -567,19 +574,19 @@ Going to create some form of logic on whether the business will approval a propo
 function projectBusinessApproval() {
 
 
-    console.log(`After deliberations, the business has approved the contract with ${simulation['Projects']['Proposed Project']['company']}`)
-    console.log(`Company has agreed to pay a ${simulation['Contract']['depositPercent']}% deposit: £${getDepositAmount()}`);
-    console.log(`Company Account balance before deposit: £${simulation['Company Account']['companyAccount']}`)
+    //console.log(`After deliberations, the business has approved the contract with ${simulation['Projects']['Proposed Project']['company']}`)
+    //console.log(`Company has agreed to pay a ${simulation['Contract']['depositPercent']}% deposit: £${getDepositAmount()}`);
+    //console.log(`Company Account balance before deposit: £${simulation['Company Account']['companyAccount']}`)
     simulation['Company Account']['companyAccount'] += getDepositAmount();
-    console.log(`Company Account balance after deposit: £${simulation['Company Account']['companyAccount']}`)
+    //console.log(`Company Account balance after deposit: £${simulation['Company Account']['companyAccount']}`)
     addDays(2);
 }
 
 function monthlyInstallmentPay() {
-    console.log(`The company has agreed to pay £${getInstallmentAmount()} for ${simulation['Contract']['timeline']} months every ${simulation['Contract']['paymentPerMonth']} month/s`);
-    console.log(`Company Account balance before installment payment: £${simulation['Company Account']['companyAccount']}`);
+    //console.log(`The company has agreed to pay £${getInstallmentAmount()} for ${simulation['Contract']['timeline']} months every ${simulation['Contract']['paymentPerMonth']} month/s`);
+    //console.log(`Company Account balance before installment payment: £${simulation['Company Account']['companyAccount']}`);
     simulation['Company Account']['companyAccount'] += getInstallmentAmount();
-    console.log(`Company Account balance after installment payment: £${simulation['Company Account']['companyAccount']}`);
+    //console.log(`Company Account balance after installment payment: £${simulation['Company Account']['companyAccount']}`);
 
 }
 
@@ -616,7 +623,7 @@ function projectPlan() {
     simulation['Project Plan']['team'] = team;
     simulation['Projects']['Proposed Project']['team'] = team;
     simulation['Project Plan']['timeline'] = simulation['Projects']['Proposed Project']['proposedTimeline'];
-    console.log(simulation['Project Plan']);
+    //console.log(simulation['Project Plan']);
     addDays(2);
 
 }
@@ -628,9 +635,9 @@ function projectPlan() {
 function calculateTeamResources() {
 
     let type = simulation['Projects']['Proposed Project']['type'];
-    console.log(type);
+    //console.log(type);
     let size = simulation['Projects']['Proposed Project']['size'];
-    console.log(size);
+    //console.log(size);
     let junDevs = 0;
     let intDevs = 0;
     let senDevs = 0;
@@ -730,7 +737,7 @@ function calculateTeamResources() {
 
     }
 
-    console.log(`Based on the size and scope of the project we suggest that there should be ${junDevs} junior developers, ${intDevs} intermediate developers, ${senDevs} senior develpers, ${design} designers, and ${test} testers`);
+    //console.log(`Based on the size and scope of the project we suggest that there should be ${junDevs} junior developers, ${intDevs} intermediate developers, ${senDevs} senior develpers, ${design} designers, and ${test} testers`);
     simulation['Team Make-Up'] = {
         'Junior Developers': junDevs,
         'Intermediate Developers': intDevs,
@@ -760,17 +767,17 @@ function allocateResources(junDevsCount, intDevsCount, senDevsCount, designCount
     for (let i = 0; i < junDevsCount; i++) {
 
         let teamMember = languageExperience(web, app, database, server, 'Junior Developer', excludedNames)
-        team[teamMember] = (simulation['Project Team']['Development Team'][teamMember])
+        team[teamMember] = (simulation['Project Team']['Development'][teamMember])
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < intDevsCount; i++) {
         let teamMember = languageExperience(web, app, database, server, 'Intermediate Developer', excludedNames)
-        team[teamMember] = (simulation['Project Team']['Development Team'][teamMember])
+        team[teamMember] = (simulation['Project Team']['Development'][teamMember])
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < senDevsCount; i++) {
         let teamMember = languageExperience(web, app, database, server, 'Senior Developer', excludedNames)
-        team[teamMember] = (simulation['Project Team']['Development Team'][teamMember])
+        team[teamMember] = (simulation['Project Team']['Development'][teamMember])
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < testCount; i++) {
@@ -794,27 +801,27 @@ function languageExperience(web, app, database, server, role, excluded) {
 
     let mostExperienceYears = 0;
     let mostExperienced;
-    let devs = Object.keys(simulation['Project Team']['Development Team']);
+    let devs = Object.keys(simulation['Project Team']['Development']);
     devs.forEach((dev) => {
         let isExcluded = false;
-        if (simulation['Project Team']['Development Team'][dev]['role'] == role) {
+        if (simulation['Project Team']['Development'][dev]['role'] == role) {
             for (let i = 0; i < excluded.length; i++) {
                 if (dev == excluded[i]) {
                     isExcluded = true;
                 }
             }
             if (!isExcluded) {
-                let languages = Object.keys(simulation['Project Team']['Development Team'][dev]['languages'])
+                let languages = Object.keys(simulation['Project Team']['Development'][dev]['languages'])
                 let yearsExperience = 0;
                 languages.forEach((language) => {
                     if (language == web) {
-                        yearsExperience += simulation['Project Team']['Development Team'][dev]['languages'][language];
+                        yearsExperience += simulation['Project Team']['Development'][dev]['languages'][language];
                     } else if (language == app) {
-                        yearsExperience += simulation['Project Team']['Development Team'][dev]['languages'][language];
+                        yearsExperience += simulation['Project Team']['Development'][dev]['languages'][language];
                     } else if (language == database) {
-                        yearsExperience += simulation['Project Team']['Development Team'][dev]['languages'][language];
+                        yearsExperience += simulation['Project Team']['Development'][dev]['languages'][language];
                     } else if (language == server) {
-                        yearsExperience += simulation['Project Team']['Development Team'][dev]['languages'][language];
+                        yearsExperience += simulation['Project Team']['Development'][dev]['languages'][language];
                     }
                 });
                 if (mostExperienceYears < yearsExperience) {
@@ -858,11 +865,11 @@ function addTesterOrDesigner(role, excluded) {
 
 
 function startProject() {
-    console.log("A project has been started");
+    //console.log("A project has been started");
 }
 
 function sprint(userStory1, userStoryDescription1, userStory2, userStoryDescription2) {
-    updateOngoingWorkHoursForSprint();
+    //updateOngoingWorkHoursForSprint(true);
     sprintOne(userStory1, userStoryDescription1);
     sprintTwo(userStory1);
     sprintThree(userStory1);
@@ -894,18 +901,18 @@ function sprint(userStory1, userStoryDescription1, userStory2, userStoryDescript
 function sprintOne(userStoryTitle, userStoryDescription) {
 
     simulation['Projects']['Proposed Project']['inSprint'] = true;
-    console.log("Project manager discuesses Sprint Planning with development and design team.");
-    console.log(`User Story: ${userStoryTitle} added to Sprint Plan`);
+    //console.log("Project manager discuesses Sprint Planning with development and design team.");
+    //console.log(`User Story: ${userStoryTitle} added to Sprint Plan`);
     //need to work out a way of how many people will be assigned to a user story
     let totalDevs = simulation['Team Make-Up']['Junior Developers'] + simulation['Team Make-Up']['Intermediate Developers'] + simulation['Team Make-Up']['Senior Developers']
     createUserStory(userStoryTitle, userStoryDescription, totalDevs, simulation['Team Make-Up']['Designers'], simulation['Team Make-Up']['Testers']);
-    console.log("Braking stories into smaller tasks");
+    //console.log("Braking stories into smaller tasks");
     //designer needed true or false
     //creating random tickets and assigning team members. Assign team members needs a better algorithm for deciding who get assigned what ticket
     breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(3, 8), generateRandomIntegerInRange(0, 1));
-    console.log("******************");
+    //console.log("******************");
     //at here we'll want to start assigning tickets
-    console.log("Design and Implementation");
+    //console.log("Design and Implementation");
     addDays(1);
 }
 
@@ -913,29 +920,29 @@ function sprintOne(userStoryTitle, userStoryDescription) {
 
 
 function sprintTwo(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager Review Sprint Plan");
-    console.log("Design and Implementation");
+    //console.log("Stand Up");
+    //console.log("Project Manager Review Sprint Plan");
+    //console.log("Design and Implementation");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintThree(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager Review Sprint Plan");
-    console.log("Design and Implementation");
+    //console.log("Stand Up");
+    //console.log("Project Manager Review Sprint Plan");
+    //console.log("Design and Implementation");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintFour(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager and Project Team Review Sprint Plan");
-    console.log("Design and Implementation");
-    console.log("Expectations set");
-    console.log("Discussions with client");
+    //console.log("Stand Up");
+    //console.log("Project Manager and Project Team Review Sprint Plan");
+    //console.log("Design and Implementation");
+    //console.log("Expectations set");
+    //console.log("Discussions with client");
     sprintDiscussionWithClient(userStory);
     //want to do some update could change the amount of proposed hours.
     workOnSprintTicket(userStory);
@@ -945,20 +952,20 @@ function sprintFour(userStory) {
 }
 
 function sprintFive(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager prepares next sprint");
-    console.log("Design and Implementation");
-    console.log("Shaping Stories for Next Sprint");
+    //console.log("Stand Up");
+    //console.log("Project Manager prepares next sprint");
+    //console.log("Design and Implementation");
+    //console.log("Shaping Stories for Next Sprint");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintSix(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager prepares next sprint");
-    console.log("Design and Implementation");
-    console.log("Design - Shaping Stories for Next Sprint");
+    //console.log("Stand Up");
+    //console.log("Project Manager prepares next sprint");
+    //console.log("Design and Implementation");
+    //console.log("Design - Shaping Stories for Next Sprint");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
@@ -966,18 +973,18 @@ function sprintSix(userStory) {
 
 
 function sprintSeven(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager - What is likely to be available to demo");
-    console.log("Design - Finishing touches for current sprint");
+    //console.log("Stand Up");
+    //console.log("Project Manager - What is likely to be available to demo");
+    //console.log("Design - Finishing touches for current sprint");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintEight(userStory) {
-    console.log("Standup Feature Complete");
-    console.log("Project Manager prepares Demo");
-    console.log("Design - Finishing touches for current sprint");
+    //console.log("Standup Feature Complete");
+    //console.log("Project Manager prepares Demo");
+    //console.log("Design - Finishing touches for current sprint");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
@@ -985,62 +992,62 @@ function sprintEight(userStory) {
 
 function sprintNine(userStory) {
 
-    console.log("Stand Up");
-    console.log("Project Manager prepares next sprint");
-    console.log("Design - Shaping Stories for Next Sprint");
+    //console.log("Stand Up");
+    //console.log("Project Manager prepares next sprint");
+    //console.log("Design - Shaping Stories for Next Sprint");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintTen(userStory) {
-    console.log("Stand Up Retro");
-    console.log("Project Manager Prepares Next Sprint");
-    console.log("Design - Shaping Stories for Next Sprint");
+    //console.log("Stand Up Retro");
+    //console.log("Project Manager Prepares Next Sprint");
+    //console.log("Design - Shaping Stories for Next Sprint");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintEleven(userStoryTitle, userStoryDescription) {
-    console.log("Project manager discuesses Sprint Planning with development and design team.");
-    console.log(`User Story: ${userStoryTitle} added to Sprint Plan`);
+    //console.log("Project manager discuesses Sprint Planning with development and design team.");
+    //console.log(`User Story: ${userStoryTitle} added to Sprint Plan`);
     //need to work out a way of how many people will be assigned to a user story
     let totalDevs = simulation['Team Make-Up']['Junior Developers'] + simulation['Team Make-Up']['Intermediate Developers'] + simulation['Team Make-Up']['Senior Developers']
     createUserStory(userStoryTitle, userStoryDescription, totalDevs, simulation['Team Make-Up']['Designers'], simulation['Team Make-Up']['Testers']);
-    console.log("Braking stories into smaller tasks");
+    //console.log("Braking stories into smaller tasks");
     //designer needed true or false
     //creating random tickets and assigning team members. Assign team members needs a better algorithm for deciding who get assigned what ticket
     breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(3, 8), generateRandomIntegerInRange(0, 1));
-    console.log("******************");
-    console.log("User Stories");
-    console.log(simulation['User Stories']);
+    //console.log("******************");
+    //console.log("User Stories");
+    //console.log(simulation['User Stories']);
     //at here we'll want to start assigning tickets
-    console.log("Design and Implementation");
+    //console.log("Design and Implementation");
     addDays(1);
 }
 
 function sprintTwelve(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager Sprint Planning");
+    //console.log("Stand Up");
+    //console.log("Project Manager Sprint Planning");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintThirteen(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager Sprint Planning");
+    //console.log("Stand Up");
+    //console.log("Project Manager Sprint Planning");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintFourteen(userStory) {
-    console.log("Stand Up");
-    console.log("Project Team Sprint Review");
-    console.log("Project Manager Sprint Review");
-    console.log("Design Sprint Review");
+    //console.log("Stand Up");
+    //console.log("Project Team Sprint Review");
+    //console.log("Project Manager Sprint Review");
+    //console.log("Design Sprint Review");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
@@ -1048,47 +1055,47 @@ function sprintFourteen(userStory) {
 
 
 function sprintFifteen(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager - Prepare Next Sprint");
+    //console.log("Stand Up");
+    //console.log("Project Manager - Prepare Next Sprint");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintSixteen(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager - Prepare Next Sprint");
+    //console.log("Stand Up");
+    //console.log("Project Manager - Prepare Next Sprint");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintSeventeen(userStory) {
-    console.log("Stand Up");
-    console.log("Project Manager - Understand what is likely to be available to demo");
+    //console.log("Stand Up");
+    //console.log("Project Manager - Understand what is likely to be available to demo");
     workOnSprintTicket(userStory);
     progressReport(userStory);
     addDays(1);
 }
 
 function sprintEighteen() {
-    console.log("Stand Up Feature Complete");
-    console.log("Project Manager - prepare demo");
+    //console.log("Stand Up Feature Complete");
+    //console.log("Project Manager - prepare demo");
     addDays(1);
 }
 
 
 function sprintNineteen() {
-    console.log("Stand Up");
-    console.log("Project Team Sprint Review");
-    console.log("Project Manager Sprint Review");
-    console.log("Design Sprint Review");
+    //console.log("Stand Up");
+    //console.log("Project Team Sprint Review");
+    //console.log("Project Manager Sprint Review");
+    //console.log("Design Sprint Review");
     addDays(1);
 }
 
 function sprintTwenty() {
-    console.log("Stand Up Retro");
-    console.log("Project Manager Prepares Next Sprint");
+    //console.log("Stand Up Retro");
+    //console.log("Project Manager Prepares Next Sprint");
     addDays(1);
     simulation['Projects']['Proposed Project']['inSprint'] = false;
 }
@@ -1158,110 +1165,137 @@ function assignSprintTicketWorkers(userStory, ticketName) {
     //get the proposed work in hours as a variable.
     let proposedWorkInHours = parseInt(simulation['User Stories'][userStory]['tickets'][ticketName]['proposedWorkInHours']);
     // get how many hours are needed to be completed per day divide total by 9 - 9 days of sprint per user Story 
-    let totalHoursPerDay = parseInt(proposedWorkInHours / 9);
+    let totalHoursPerDay = Math.ceil(proposedWorkInHours / 9);
+
+    //divide the 
     let hoursPerMember;
     if (designerNeeded) {
         //adding one extra hour for 'review'
-        hoursPerMember = parseInt(totalHoursPerDay / (teamMembersNeeded + 1) + 1);
+        hoursPerMember = Math.ceil((totalHoursPerDay / (teamMembersNeeded + 1)) + 1);
     } else {
         //adding one extra hour for 'review'
-        hoursPerMember = parseInt(totalHoursPerDay / teamMembersNeeded + 1);
+        hoursPerMember = Math.ceil((totalHoursPerDay / teamMembersNeeded) + 1);
     }
+
+
+    //so right now I have how many team members are needed, how many hours of work should be conducted per day, and the total proposed amount of hours for ticket to be finished
+
 
     let excluded = new Array();
 
     let ticketTeam = new Array();
 
-    teamMembers.forEach((member) => {
-        ticketTeam.push(member);
-    })
-
-    let developers = getSpecificTeamMembers('Development Team');
+    // return all employees who are developers
+    let developers = getSpecificTeamMembers('Development');
+    //returns all employees who are designers
     let designers = getSpecificTeamMembers('Design');
+    //console.log(simulation['Project Team']['Development'])
 
-    //this is where I am
-
+    console.log(`ticketName: ${ticketName}`);
+    //loop for the amount of teamMembersNeeded
     for (let i = 0; i < teamMembersNeeded; i++) {
+
         let mostExperienceYears = 0;
         let mostExperienced;
+
+        //loop through all of the project team
         teamMembers.forEach((member) => {
-            let yearsExp = 0;
-            let totalExp = 0;
-            let isExcluded = false;
-            let workingHoursPerDay = simulation['Projects']['Proposed Project']['team'][member]['hoursPerTicket'];
-            if (workingHoursPerDay < 1) {
+            //loop through all employees that are a developer
+            developers.forEach((developer) => {
+                //if the developer is on the team, then execute the following code
+                if (member === developer) {
 
-            }
 
-            for (let i = 0; i < excluded.length; i++) {
-                if (member == excluded[i]) {
-                    isExcluded = true;
-                }
-            }
-            if (!isExcluded) {
-                //check if member is a developer first
-                if (simulation['Projects']['Proposed Project']['team'][member]['role'].includes('Developer')) {
+                    //initialise developers years exp
+                    let yearsExp = 0;
+                    //initialise developers total years exp will be used to see who has max years exp
+                    let totalExp = simulation['Project Team']['Development'][developer]['experience'];
+                    //used to add into ticket
+                    let isExcluded = false;
+                    //get how many hours a day the developer has available
+                    let developerTicketHours = simulation['Project Team']['Development'][developer]['dailyAssignedWork'];
+                    //get how many hours per day the developer can work (could be on leave/ill/halfday)
+                    let availableHoursPerDay = simulation['Project Team']['Development'][developer]['dailyHours'];
+                    //check if the developer has enough free hours to work on the ticket
+                    if ((developerTicketHours + hoursPerMember) <= availableHoursPerDay) {
 
-                    //get a total of years experience from team member for all techs in ticket
-                    technologies.forEach((tech) => {
-                        let language = simulation['User Stories'][userStory]['tickets'][ticketName]['technologies'][tech];
-                        if (typeof simulation['Project Team']['Development Team'][member]['languages'][language] !== 'undefined') {
-                            yearsExp += simulation['Project Team']['Development Team'][member]['languages'][language];
+                        //check if the developer is already assigned the ticket
+                        for (let i = 0; i < excluded.length; i++) {
+                            //check if the developer has already been added
+                            if (developer == excluded[i]) {
+                                //update excluded to true
+                                isExcluded = true;
+                            }
+                        }
+                        //check if the developer isn't excluded
+                        if (!isExcluded) {
+                            //get a total of years experience from team member for all techs in ticket
+                            technologies.forEach((tech) => {
+                                //get the technology that is being used in the ticket
+                                let language = simulation['User Stories'][userStory]['tickets'][ticketName]['technologies'][tech];
+                                //if the developer does not have experience in that language the total won't be totaled
+                                if (typeof simulation['Project Team']['Development'][developer]['languages'][language] !== 'undefined') {
+                                    // add to years of experience
+                                    yearsExp += simulation['Project Team']['Development'][developer]['languages'][language];
+                                }
+                            });
+                            totalExp += yearsExp;
+
+                            //check if experience of the developer against most experienced. If they are more experienced they will get added to the ticket
+                            if (mostExperienceYears < yearsExp) {
+                                mostExperienced = developer;
+                                mostExperienceYears = yearsExp;
+                            }
                         }
 
-                    });
-                    totalExp += yearsExp;
+
+
+                    }
                 }
-                if (mostExperienceYears < yearsExp) {
-                    mostExperienced = member;
-                    mostExperienceYears = yearsExp;
-                }
-            }
+            });
 
         });
-
-        excluded.push(mostExperienced);
-
-
-    }
-
-
-
-    if (designerNeeded == 1) {
-        let mostExperienceYears = 0;
-        let mostExperienced;
-        teamMembers.forEach((member) => {
-
-            if (simulation['Projects']['Proposed Project']['team'][member]['role'] == 'Design') {
-                let yearsExp = simulation['Projects']['Proposed Project']['team'][member]['experience'];
-                if (mostExperienceYears < yearsExp) {
-                    mostExperienced = member;
-                    mostExperienceYears = yearsExp;
-                }
-            }
-
-        });
+        console.log()
+        console.log(`Adding: ${mostExperienced} to ${ticketName}`)
+        simulation['Project Team']['Development'][mostExperienced]['dailyAssignedWork'] = hoursPerMember;
         excluded.push(mostExperienced);
     }
 
+    // if (designerNeeded == 1) {
+    //     let mostExperienceYears = 0;
+    //     let mostExperienced;
+    //     designers.forEach((designer) => {
+    //         let yearsExp = simulation['Project Team']['Design'][designer]['experience'];
+    //         if (mostExperienceYears < yearsExp) {
+    //             mostExperienced = designer;
+    //             mostExperienceYears = yearsExp;
+    //         }
+    //     });
+    //     //console.log("HERE")
+    //     simulation['Project Team']['Design'][mostExperienced]['assignedWorkHours'] = hoursPerMember;
+    //     excluded.push(mostExperienced);
+    // }
 
 
 
-    for (let i = 0; i < excluded.length; i++) {
 
-        simulation['User Stories'][userStory]['tickets'][ticketName]['assignedTeamMembers'][excluded[i]] = simulation['Projects']['Proposed Project']['team'][excluded[i]];
+    // for (let i = 0; i < excluded.length; i++) {
 
-    }
+    //     simulation['User Stories'][userStory]['tickets'][ticketName]['assignedTeamMembers'][excluded[i]] = simulation['Projects']['Proposed Project']['team'][excluded[i]];
 
-
-    console.log(simulation['User Stories'][userStory]['tickets'][ticketName])
+    // }
 
 
 
+
+
+    teamMembers.forEach((member) => {
+        console.log(simulation['Project Team']['Development'][member]);
+    })
 }
 
-//get the developers on the new project
 
+//get all team members from a specific team
 function getSpecificTeamMembers(team) {
 
     //empty array to store developers
@@ -1348,7 +1382,7 @@ function workOnSprintTicket(userStory) {
             let teams = Object.keys(simulation['Project Team'])
             let ticketWorkerTeam;
             let teamMembers = Object.keys(simulation['User Stories'][userStory]['tickets'][ticket]['assignedTeamMembers']);
-            console.log(teamMembers);
+            //console.log(teamMembers);
             let totalHoursWorked = 0;
             teamMembers.forEach((member) => {
                 teams.forEach((team) => {
@@ -1360,19 +1394,19 @@ function workOnSprintTicket(userStory) {
                     })
                 })
                 let rand = generateRandomIntegerInRange(0, 7);
-                console.log(member)
+                //console.log(member)
                 rand *= simulation['Project Team'][ticketWorkerTeam][member]['workEffeciency'];
                 rand = parseFloat(rand.toFixed(2));
                 totalHoursWorked += rand;
                 //for now random number, but will be calculate by member
                 simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours'] += rand;
             });
-            //         console.log(`There has been a total of ${totalHoursWorked} hours worked on ${ticket}`);
+            //         //console.log(`There has been a total of ${totalHoursWorked} hours worked on ${ticket}`);
         } else {
-            console.log(`${ticket}: is completed`);
+            //console.log(`${ticket}: is completed`);
         }
         if (simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours'] >= simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']) {
-            console.log(`${ticket} is now complete, freeing up resources....`);
+            //console.log(`${ticket} is now complete, freeing up resources....`);
             //will actually need to code this in, but first will need to make assigning more complex
             simulation['User Stories'][userStory]['tickets'][ticket]['isComplete'] = true;
         }
@@ -1387,9 +1421,9 @@ function progressReport(userStory) {
 
         if (!simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']) {
 
-            //         console.log(`${ticket}: Proposed Hours to completion: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']} Current hours worked: ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
+            //         //console.log(`${ticket}: Proposed Hours to completion: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']} Current hours worked: ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
         } else {
-            console.log(`${ticket}: took ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
+            //console.log(`${ticket}: took ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
         }
     });
 }
@@ -1402,7 +1436,7 @@ function sprintDiscussionWithClient(userStory) {
         //create a random num generate - after discussions with client they may want to change the work which will either increase or decrease amount of time
         let rand = generateRandomIntegerInRange(-5, 15);
         simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours'] += rand;
-        console.log(`Updated hours for ${ticket}: ${rand}. Current Proposed work hours: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']}`);
+        //console.log(`Updated hours for ${ticket}: ${rand}. Current Proposed work hours: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']}`);
 
     });
 }
@@ -1419,34 +1453,34 @@ function addDays(days) {
 
 }
 
-console.log(simulation);
+//console.log(simulation);
 
 // function developPrototype() {
-//     console.log("A prototype has been developed");
+//     //console.log("A prototype has been developed");
 // }
 
 // function testPrototype() {
-//     console.log("Testing has commenced on the most recent prototype");
+//     //console.log("Testing has commenced on the most recent prototype");
 // }
 
 // function customerApproval() {
-//     console.log("The customer has approved the last action");
+//     //console.log("The customer has approved the last action");
 // }
 
 // function developFinalPrototype() {
-//     console.log("A final prototype has been developed");
+//     //console.log("A final prototype has been developed");
 // }
 
 // function testFinalPrototype() {
-//     console.log("Testing of the final prototype has been created");
+//     //console.log("Testing of the final prototype has been created");
 // }
 
 // function productChanges() {
-//     console.log("Product Changes");
+//     //console.log("Product Changes");
 // }
 
 // function productCreated() {
-//     console.log("Final Product Created");
+//     //console.log("Final Product Created");
 // }
 
 function softwareSubscriptions() {
@@ -1454,7 +1488,7 @@ function softwareSubscriptions() {
     let software = Object.keys(simulation['Projects']['Inhouse Software']);
     software.forEach((software) => {
         let subscriberIncome = simulation['Projects']['Inhouse Software'][software]['subscribers'] * simulation['Projects']['Inhouse Software'][software]['monthlySubscription'];
-        console.log(`${simulation['Projects']['Inhouse Software'][software]['subscribers']} are subscribed to ${software} adding £${subscriberIncome} to company income.`)
+        //console.log(`${simulation['Projects']['Inhouse Software'][software]['subscribers']} are subscribed to ${software} adding £${subscriberIncome} to company income.`)
         simulation['Company Account']['companyAccount'] += subscriberIncome;
     });
 }
@@ -1467,7 +1501,7 @@ function yearlyDevelopmentIncome() {
 
         if ((project !== "Inhouse Software") && (project !== "Proposed Project")) {
             let yearlyDevelopmentIncome = simulation['Projects'][project]['developmentContract']['hoursPerYear'] * simulation['Development Work']['costPerHour'];
-            console.log(`${project} generates £${yearlyDevelopmentIncome} yearly for development work`);
+            //console.log(`${project} generates £${yearlyDevelopmentIncome} yearly for development work`);
             simulation['Company Account']['companyAccount'] += yearlyDevelopmentIncome;
         }
     })
@@ -1483,7 +1517,7 @@ function monthlySupportContracts() {
         if ((project !== "Inhouse Software") && (project !== "Proposed Project")) {
             let supportContract = simulation['Projects'][project]['supportContract']['package']
             let monthlySupportContracts = simulation['Support Packages'][supportContract]['cost'];
-            console.log(`${project} generates £${monthlySupportContracts} monthly for support`);
+            //console.log(`${project} generates £${monthlySupportContracts} monthly for support`);
             simulation['Company Account']['companyAccount'] += monthlySupportContracts;
         }
     })
@@ -1497,7 +1531,7 @@ function monthlyHostingFees() {
 
         if ((project !== "Inhouse Software") && (project !== "Proposed Project")) {
             let hostingFees = simulation['Projects'][project]['monthlyHostingFees']
-            console.log(`${project} generates £${hostingFees} monthly for hosting fees`);
+            //console.log(`${project} generates £${hostingFees} monthly for hosting fees`);
             simulation['Company Account']['companyAccount'] += hostingFees;
         }
     })
@@ -1559,6 +1593,7 @@ function updateOngoingWorkHoursForSprint() {
     let inSprint = simulation['Projects']['Proposed Project']['inSprint'];
     let members = Object.keys(simulation['Projects']['Proposed Project']['team']);
     if (inSprint) {
+        //updating all work hours to only allow for 10 hours on other projects
         changeOngoingWorkHoursAvailability(10, members);
     } else {
         changeOngoingWorkHoursAvailability(30, members);
@@ -1566,32 +1601,114 @@ function updateOngoingWorkHoursForSprint() {
 }
 
 
+//change how many hours an employee can work on tickets per week
+//may need to update if employee is on leave/ill
+function changeOngoingWorkHoursAvailability(team, member, hours) {
 
-function changeOngoingWorkHoursAvailability(hours, members) {
-    let teams = Object.keys(simulation['Project Team']);
-    teams.forEach((team) => {
-        let employees = Object.keys(simulation['Project Team'][team]);
-        employees.forEach((employee) => {
-            members.forEach((member) => {
-                if (member === employee) {
-                    simulation['Project Team'][team][member]['ongoingWorkHours'] = hours;
-                }
-            })
-        });
-    })
+    //created how many hours an employee has to work
+    simulation['Project Team'][team][member]['weeklyAvailableWorkHours'] = hours;
+
+
 }
 
-function setOngoingWorkHourAvailability(hours) {
+//sets all employees work Availability per week
+function setAllOngoingWorkHourAvailability(hours) {
     let teams = Object.keys(simulation['Project Team']);
     teams.forEach((team) => {
         let employees = Object.keys(simulation['Project Team'][team]);
-        changeOngoingWorkHoursAvailability(hours, employees);
         employees.forEach((employee) => {
-            simulation['Project Team'][team][employee]['assignedWorkHours'] = 0;
-
+            changeOngoingWorkHoursAvailability(team, employee, hours);
         })
     });
 }
+
+
+// houw many hours per day an employee has per day to do work - standard is set at 7.5 to account for lunch
+function updateDailyAvailableHours(team, employee, hours) {
+    simulation['Project Team'][team][employee]['dailyHours'] = hours;
+}
+
+//updates all employees available work per day
+function setAllDailyAvailableHours(hours) {
+    //get all teams
+    let teams = Object.keys(simulation['Project Team']);
+    //loop through each team
+    teams.forEach((team) => {
+        //get all employee in that team
+        let employees = Object.keys(simulation['Project Team'][team]);
+        //loop through each employee
+        employees.forEach((employee) => {
+            //update their available work hours per day
+            updateDailyAvailableHours(team, employee, hours);
+        })
+    });
+}
+
+//can be edited for employees if they are off on leave/ill
+function updateDaysToWorkPerWeek(team, employee, days) {
+    simulation['Project Team'][team][employee]['daysPerWeek'] = days;
+}
+
+//this is usefull for bank holidays/set default amount of days
+function setAllDaysToWorkPerWeek(days) {
+    //get all teams
+    let teams = Object.keys(simulation['Project Team']);
+    //loop through each team
+    teams.forEach((team) => {
+        //get all employee in that team
+        let employees = Object.keys(simulation['Project Team'][team]);
+        //loop through each employee
+        employees.forEach((employee) => {
+            //update their available days to work
+            updateDaysToWorkPerWeek(team, employee, days);
+        })
+    });
+}
+
+function updateEmployeesHoursPerWeek() {
+    //get all teams
+    let teams = Object.keys(simulation['Project Team']);
+    //loop through each team
+    teams.forEach((team) => {
+        //get all employee in that team
+        let employees = Object.keys(simulation['Project Team'][team]);
+        //loop through each employee
+        employees.forEach((employee) => {
+            //storing days and daily work hours as variables to make it more readable
+            let days = simulation['Project Team'][team][employee]['daysPerWeek'];
+            let dailyHours = simulation['Project Team'][team][employee]['dailyHours']
+            //update their available hours per week (days * daily hours) to work
+            simulation['Project Team'][team][employee]['workingHoursPerWeek'] = days * dailyHours;
+        })
+    });
+}
+
+
+
+
+
+
+// change how many hours of actual work is assigned to a team member to be completed - assigned 5 hours to work on tickets for example
+function changeDailyActualWorkHours(team, member, hours) {
+
+    simulation['Project Team'][team][member]['dailyAssignedWork'] = hours;
+
+}
+
+//sets all employees daily work in hours
+function setAllActualWorkHours(hours) {
+    let teams = Object.keys(simulation['Project Team']);
+    teams.forEach((team) => {
+        let employees = Object.keys(simulation['Project Team'][team]);
+        employees.forEach((employee) => {
+            changeDailyActualWorkHours(team, employee, hours);
+        })
+    });
+}
+
+
+
+
 
 
 //just have it that all tickets are assigned from top to bottom, so probably should create a better way
@@ -1612,7 +1729,7 @@ function assignAllOngoingProjectTickets() {
                         teams.forEach((team) => {
                             let employees = Object.keys(simulation['Project Team'][team]);
                             employees.forEach((employee) => {
-                                if (team === 'Development Team') {
+                                if (team === 'Development') {
 
                                     let isAssigned = simulation['Projects'][project]['tickets'][ticket]['isAssigned'];
                                     let employeeWorkHours = simulation['Project Team'][team][employee]['ongoingWorkHours'];
@@ -1621,7 +1738,7 @@ function assignAllOngoingProjectTickets() {
 
                                     if (!isAssigned) {
                                         if (employee == member) {
-                                            //console.log(`Employee: ${employee} EmployeeWorkHours: ${employeeWorkHours} AssignedWorkHours: ${assignedWorkHours} Ticket: ${ticket}`)
+                                            ////console.log(`Employee: ${employee} EmployeeWorkHours: ${employeeWorkHours} AssignedWorkHours: ${assignedWorkHours} Ticket: ${ticket}`)
                                             if ((assignedWorkHours + ticketHours) < employeeWorkHours) {
                                                 assignOngoingProjectTicket(project, member, team, ticket, ticketHours);
                                             }
@@ -1721,7 +1838,7 @@ function getEmployeeDayQualityWorkRate(team, employee) {
     dayWorkRate = (dayWorkRate / 10);
     dayWorkRate += simulation['Project Team'][team][employee]['workQuality'];
     dayWorkRate = parseFloat(dayWorkRate.toFixed(2));
-    console.log(dayWorkRate);
+    //console.log(dayWorkRate);
 }
 
 let teams = Object.keys(simulation['Project Team']);
@@ -1739,6 +1856,9 @@ function getEmployeeDayEfficiencyWorkRate(team, employee) {
     dayWorkRate = (dayWorkRate / 10);
     dayWorkRate += simulation['Project Team'][team][employee]['workEffeciency'];
     dayWorkRate = parseFloat(dayWorkRate.toFixed(2));
-    console.log(dayWorkRate);
+    //console.log(dayWorkRate);
 
 }
+
+
+
