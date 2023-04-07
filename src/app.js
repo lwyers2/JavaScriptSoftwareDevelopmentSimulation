@@ -23,10 +23,10 @@ const yearInMs = dayInMs * 365;
 setAllDailyAvailableHours(7.5);
 setAllDaysToWorkPerWeek(5);
 updateEmployeesHoursPerWeek();
-setAllActualWorkHours(0);
+setAllAssignedWorkHours(0);
 
 
-
+console.log(simulation)
 createOngoingProjectTickets()
 assignAllOngoingProjectTickets();
 generateEmployeeScores();
@@ -514,14 +514,14 @@ function getAdHocCosts() {
 
 function calculateSalaries() {
     let total = 0;
-    let teams = Object.keys(simulation['Project Team']);
+    let teams = Object.keys(simulation['Employees']);
     //console.log("***********************************");
     //console.log("Salaries");
     teams.forEach((team) => {
-        let costs = Object.keys(simulation['Project Team'][team]);
+        let costs = Object.keys(simulation['Employees'][team]);
         costs.forEach((cost) => {
-            ////console.log(`${cost}: ${simulation['Project Team'][team][cost]['salary']}`)
-            total += simulation['Project Team'][team][cost]['salary'];
+            ////console.log(`${cost}: ${simulation['Employees'][team][cost]['salary']}`)
+            total += simulation['Employees'][team][cost]['salary'];
         });
 
     });
@@ -767,27 +767,27 @@ function allocateResources(junDevsCount, intDevsCount, senDevsCount, designCount
     for (let i = 0; i < junDevsCount; i++) {
 
         let teamMember = languageExperience(web, app, database, server, 'Junior Developer', excludedNames)
-        team[teamMember] = (simulation['Project Team']['Development'][teamMember])
+        team[teamMember] = (simulation['Employees']['Development'][teamMember])
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < intDevsCount; i++) {
         let teamMember = languageExperience(web, app, database, server, 'Intermediate Developer', excludedNames)
-        team[teamMember] = (simulation['Project Team']['Development'][teamMember])
+        team[teamMember] = (simulation['Employees']['Development'][teamMember])
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < senDevsCount; i++) {
         let teamMember = languageExperience(web, app, database, server, 'Senior Developer', excludedNames)
-        team[teamMember] = (simulation['Project Team']['Development'][teamMember])
+        team[teamMember] = (simulation['Employees']['Development'][teamMember])
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < testCount; i++) {
         let teamMember = addTesterOrDesigner('Testing', excludedNames)
-        team[teamMember] = (simulation['Project Team']['Testing'][teamMember])
+        team[teamMember] = (simulation['Employees']['Testing'][teamMember])
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < designCount; i++) {
         let teamMember = addTesterOrDesigner('Design', excludedNames)
-        team[teamMember] = (simulation['Project Team']['Design'][teamMember])
+        team[teamMember] = (simulation['Employees']['Design'][teamMember])
         excludedNames.push(teamMember)
     }
 
@@ -801,27 +801,27 @@ function languageExperience(web, app, database, server, role, excluded) {
 
     let mostExperienceYears = 0;
     let mostExperienced;
-    let devs = Object.keys(simulation['Project Team']['Development']);
+    let devs = Object.keys(simulation['Employees']['Development']);
     devs.forEach((dev) => {
         let isExcluded = false;
-        if (simulation['Project Team']['Development'][dev]['role'] == role) {
+        if (simulation['Employees']['Development'][dev]['role'] == role) {
             for (let i = 0; i < excluded.length; i++) {
                 if (dev == excluded[i]) {
                     isExcluded = true;
                 }
             }
             if (!isExcluded) {
-                let languages = Object.keys(simulation['Project Team']['Development'][dev]['languages'])
+                let languages = Object.keys(simulation['Employees']['Development'][dev]['languages'])
                 let yearsExperience = 0;
                 languages.forEach((language) => {
                     if (language == web) {
-                        yearsExperience += simulation['Project Team']['Development'][dev]['languages'][language];
+                        yearsExperience += simulation['Employees']['Development'][dev]['languages'][language];
                     } else if (language == app) {
-                        yearsExperience += simulation['Project Team']['Development'][dev]['languages'][language];
+                        yearsExperience += simulation['Employees']['Development'][dev]['languages'][language];
                     } else if (language == database) {
-                        yearsExperience += simulation['Project Team']['Development'][dev]['languages'][language];
+                        yearsExperience += simulation['Employees']['Development'][dev]['languages'][language];
                     } else if (language == server) {
-                        yearsExperience += simulation['Project Team']['Development'][dev]['languages'][language];
+                        yearsExperience += simulation['Employees']['Development'][dev]['languages'][language];
                     }
                 });
                 if (mostExperienceYears < yearsExperience) {
@@ -841,7 +841,7 @@ function addTesterOrDesigner(role, excluded) {
     let mostExperienceYears = 0;
     let mostExperienced;
 
-    let employees = Object.keys(simulation['Project Team'][role]);
+    let employees = Object.keys(simulation['Employees'][role]);
     employees.forEach((employee) => {
         let isExcluded = false;
         for (let i = 0; i < excluded.length; i++) {
@@ -851,7 +851,7 @@ function addTesterOrDesigner(role, excluded) {
         }
 
         if (!isExcluded) {
-            let yearsExperience = simulation['Project Team'][role][employee]['experience'];
+            let yearsExperience = simulation['Employees'][role][employee]['experience'];
             if (mostExperienceYears < yearsExperience) {
                 mostExperienced = employee;
                 mostExperienceYears = yearsExperience;
@@ -890,7 +890,7 @@ function sprint(userStory1, userStoryDescription1, userStory2, userStoryDescript
     sprintEighteen();
     sprintNineteen();
     sprintTwenty();
-    updateOngoingWorkHoursForSprint(false);
+    //updateOngoingWorkHoursForSprint(false);
 }
 
 
@@ -901,6 +901,7 @@ function sprint(userStory1, userStoryDescription1, userStory2, userStoryDescript
 function sprintOne(userStoryTitle, userStoryDescription) {
 
     simulation['Projects']['Proposed Project']['inSprint'] = true;
+    updateSprintTeamAvailableHours();
     //console.log("Project manager discuesses Sprint Planning with development and design team.");
     //console.log(`User Story: ${userStoryTitle} added to Sprint Plan`);
     //need to work out a way of how many people will be assigned to a user story
@@ -909,11 +910,12 @@ function sprintOne(userStoryTitle, userStoryDescription) {
     //console.log("Braking stories into smaller tasks");
     //designer needed true or false
     //creating random tickets and assigning team members. Assign team members needs a better algorithm for deciding who get assigned what ticket
-    breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(3, 8), generateRandomIntegerInRange(0, 1));
+    breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(6, 8));
     //console.log("******************");
     //at here we'll want to start assigning tickets
     //console.log("Design and Implementation");
     addDays(1);
+
 }
 
 
@@ -939,7 +941,7 @@ function sprintThree(userStory) {
 
 function sprintFour(userStory) {
     //console.log("Stand Up");
-    //console.log("Project Manager and Project Team Review Sprint Plan");
+    //console.log("Project Manager and Employees Review Sprint Plan");
     //console.log("Design and Implementation");
     //console.log("Expectations set");
     //console.log("Discussions with client");
@@ -1010,6 +1012,9 @@ function sprintTen(userStory) {
 }
 
 function sprintEleven(userStoryTitle, userStoryDescription) {
+    // adding this in here, but there may have to be something to see if tickets still ongoing
+    console.log("sprint eleven")
+    updateSprintTeamAvailableHours();
     //console.log("Project manager discuesses Sprint Planning with development and design team.");
     //console.log(`User Story: ${userStoryTitle} added to Sprint Plan`);
     //need to work out a way of how many people will be assigned to a user story
@@ -1018,7 +1023,7 @@ function sprintEleven(userStoryTitle, userStoryDescription) {
     //console.log("Braking stories into smaller tasks");
     //designer needed true or false
     //creating random tickets and assigning team members. Assign team members needs a better algorithm for deciding who get assigned what ticket
-    breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(3, 8), generateRandomIntegerInRange(0, 1));
+    breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(6, 8));
     //console.log("******************");
     //console.log("User Stories");
     //console.log(simulation['User Stories']);
@@ -1045,7 +1050,7 @@ function sprintThirteen(userStory) {
 
 function sprintFourteen(userStory) {
     //console.log("Stand Up");
-    //console.log("Project Team Sprint Review");
+    //console.log("Employees Sprint Review");
     //console.log("Project Manager Sprint Review");
     //console.log("Design Sprint Review");
     workOnSprintTicket(userStory);
@@ -1137,11 +1142,11 @@ function determineTeamMemberAmountForTicket(proposedWorkInHours, designerRequire
     if (designerRequired == 1) {
         needed = -1;
     }
-    if (proposedWorkInHours <= 90) {
+    if (proposedWorkInHours <= 35) {
         needed = 2
-    } else if (proposedWorkInHours <= 120) {
+    } else if (proposedWorkInHours <= 45) {
         needed = 3
-    } else if (proposedWorkInHours <= 170) {
+    } else if (proposedWorkInHours <= 60) {
         needed = 4
     }
 
@@ -1152,6 +1157,8 @@ function determineTeamMemberAmountForTicket(proposedWorkInHours, designerRequire
 
 function assignSprintTicketWorkers(userStory, ticketName) {
 
+
+    //create backlog!!!!!!!!!!
     //check to see if the ticket needs an additional designer
     let designerNeeded = simulation['User Stories'][userStory]['tickets'][ticketName]['designerRequired'];
 
@@ -1161,6 +1168,7 @@ function assignSprintTicketWorkers(userStory, ticketName) {
     let technologies = Object.keys(simulation['User Stories'][userStory]['tickets'][ticketName]['technologies']);
     //get the team members from the proposed project team
     let teamMembers = Object.keys(simulation['Projects']['Proposed Project']['team']);
+
 
     //get the proposed work in hours as a variable.
     let proposedWorkInHours = parseInt(simulation['User Stories'][userStory]['tickets'][ticketName]['proposedWorkInHours']);
@@ -1189,7 +1197,9 @@ function assignSprintTicketWorkers(userStory, ticketName) {
     let developers = getSpecificTeamMembers('Development');
     //returns all employees who are designers
     let designers = getSpecificTeamMembers('Design');
-    //console.log(simulation['Project Team']['Development'])
+    //console.log(simulation['Employees']['Development'])
+
+
 
     console.log(`ticketName: ${ticketName}`);
     //loop for the amount of teamMembersNeeded
@@ -1198,26 +1208,26 @@ function assignSprintTicketWorkers(userStory, ticketName) {
         let mostExperienceYears = 0;
         let mostExperienced;
 
+
         //loop through all of the project team
         teamMembers.forEach((member) => {
             //loop through all employees that are a developer
             developers.forEach((developer) => {
                 //if the developer is on the team, then execute the following code
                 if (member === developer) {
-
-
                     //initialise developers years exp
                     let yearsExp = 0;
                     //initialise developers total years exp will be used to see who has max years exp
-                    let totalExp = simulation['Project Team']['Development'][developer]['experience'];
+                    let totalExp = simulation['Employees']['Development'][developer]['experience'];
                     //used to add into ticket
                     let isExcluded = false;
                     //get how many hours a day the developer has available
-                    let developerTicketHours = simulation['Project Team']['Development'][developer]['dailyAssignedWork'];
+                    let developerTicketHours = simulation['Employees']['Development'][developer]['assignedWorkHours'];
                     //get how many hours per day the developer can work (could be on leave/ill/halfday)
-                    let availableHoursPerDay = simulation['Project Team']['Development'][developer]['dailyHours'];
+                    let availableHoursPerDay = simulation['Employees']['Development'][developer]['dailyHours'];
                     //check if the developer has enough free hours to work on the ticket
-                    if ((developerTicketHours + hoursPerMember) <= availableHoursPerDay) {
+                    console.log(`Developer: ${member} has ${developerTicketHours} hours used. The Ticket needs ${hoursPerMember}`);
+                    if ((developerTicketHours + hoursPerMember) < availableHoursPerDay) {
 
                         //check if the developer is already assigned the ticket
                         for (let i = 0; i < excluded.length; i++) {
@@ -1234,9 +1244,9 @@ function assignSprintTicketWorkers(userStory, ticketName) {
                                 //get the technology that is being used in the ticket
                                 let language = simulation['User Stories'][userStory]['tickets'][ticketName]['technologies'][tech];
                                 //if the developer does not have experience in that language the total won't be totaled
-                                if (typeof simulation['Project Team']['Development'][developer]['languages'][language] !== 'undefined') {
+                                if (typeof simulation['Employees']['Development'][developer]['languages'][language] !== 'undefined') {
                                     // add to years of experience
-                                    yearsExp += simulation['Project Team']['Development'][developer]['languages'][language];
+                                    yearsExp += simulation['Employees']['Development'][developer]['languages'][language];
                                 }
                             });
                             totalExp += yearsExp;
@@ -1255,9 +1265,8 @@ function assignSprintTicketWorkers(userStory, ticketName) {
             });
 
         });
-        console.log()
-        console.log(`Adding: ${mostExperienced} to ${ticketName}`)
-        simulation['Project Team']['Development'][mostExperienced]['dailyAssignedWork'] = hoursPerMember;
+        console.log(`Adding: ${mostExperienced} to ${ticketName}`);
+        simulation['Employees']['Development'][mostExperienced]['assignedWorkHours'] += hoursPerMember;
         excluded.push(mostExperienced);
     }
 
@@ -1265,33 +1274,31 @@ function assignSprintTicketWorkers(userStory, ticketName) {
     //     let mostExperienceYears = 0;
     //     let mostExperienced;
     //     designers.forEach((designer) => {
-    //         let yearsExp = simulation['Project Team']['Design'][designer]['experience'];
+    //         let yearsExp = simulation['Employees']['Design'][designer]['experience'];
     //         if (mostExperienceYears < yearsExp) {
     //             mostExperienced = designer;
     //             mostExperienceYears = yearsExp;
     //         }
     //     });
     //     //console.log("HERE")
-    //     simulation['Project Team']['Design'][mostExperienced]['assignedWorkHours'] = hoursPerMember;
+    //     simulation['Employees']['Design'][mostExperienced]['assignedWorkHours'] = hoursPerMember;
     //     excluded.push(mostExperienced);
     // }
 
 
 
 
-    // for (let i = 0; i < excluded.length; i++) {
+    for (let i = 0; i < excluded.length; i++) {
 
-    //     simulation['User Stories'][userStory]['tickets'][ticketName]['assignedTeamMembers'][excluded[i]] = simulation['Projects']['Proposed Project']['team'][excluded[i]];
+        simulation['User Stories'][userStory]['tickets'][ticketName]['assignedTeamMembers'][excluded[i]] = simulation['Projects']['Proposed Project']['team'][excluded[i]];
 
-    // }
-
-
+    }
 
 
 
-    teamMembers.forEach((member) => {
-        console.log(simulation['Project Team']['Development'][member]);
-    })
+
+
+
 }
 
 
@@ -1301,7 +1308,7 @@ function getSpecificTeamMembers(team) {
     //empty array to store developers
     let projectTeamMembers = new Array();
     //get everyone from development team
-    let specificTeam = Object.keys(simulation['Project Team'][team]);
+    let specificTeam = Object.keys(simulation['Employees'][team]);
     //get all from project Team
     let projectTeam = Object.keys(simulation['Projects']['Proposed Project']['team']);
 
@@ -1338,7 +1345,7 @@ function breakingStoriesIntoTickets(userStory, ticketsNeeded) {
         //random generate technologies to worked on
 
         //i plus 1 for readability
-        createTicket(userStory, 'Ticket ' + (i + 1), 'Description for ticket ' + (i + 1), generateRandomIntegerInRange(80, 130), generateRandomIntegerInRange(1, 5), generateRandomIntegerInRange(0, 1));
+        createTicket(userStory, 'Ticket ' + (i + 1), 'Description for ticket ' + (i + 1), generateRandomIntegerInRange(35, 70), generateRandomIntegerInRange(1, 5), generateRandomIntegerInRange(0, 1));
         generateTechnology(userStory, 'Ticket ' + (i + 1));
         //assign team members to ticket
         assignSprintTicketWorkers(userStory, 'Ticket ' + (i + 1));
@@ -1379,14 +1386,14 @@ function workOnSprintTicket(userStory) {
     let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
     tickets.forEach((ticket) => {
         if (!simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']) {
-            let teams = Object.keys(simulation['Project Team'])
+            let teams = Object.keys(simulation['Employees'])
             let ticketWorkerTeam;
             let teamMembers = Object.keys(simulation['User Stories'][userStory]['tickets'][ticket]['assignedTeamMembers']);
             //console.log(teamMembers);
             let totalHoursWorked = 0;
             teamMembers.forEach((member) => {
                 teams.forEach((team) => {
-                    let employees = Object.keys(simulation['Project Team'][team]);
+                    let employees = Object.keys(simulation['Employees'][team]);
                     employees.forEach((employee) => {
                         if (employee === member) {
                             ticketWorkerTeam = team;
@@ -1395,7 +1402,7 @@ function workOnSprintTicket(userStory) {
                 })
                 let rand = generateRandomIntegerInRange(0, 7);
                 //console.log(member)
-                rand *= simulation['Project Team'][ticketWorkerTeam][member]['workEffeciency'];
+                rand *= simulation['Employees'][ticketWorkerTeam][member]['workEffeciency'];
                 rand = parseFloat(rand.toFixed(2));
                 totalHoursWorked += rand;
                 //for now random number, but will be calculate by member
@@ -1575,13 +1582,13 @@ function generateOngoingProjectTicketsAmount(size, hours) {
         amount = 12
     }
 
-    if (hours >= 25) {
+    if (hours >= 15) {
         amount += 1
-    } else if (hours >= 35) {
+    } else if (hours >= 25) {
         amount += 2
-    } else if (hours >= 45) {
+    } else if (hours >= 35) {
         amount += 3
-    } else if (hours >= 55) {
+    } else if (hours >= 45) {
         amount += 4
     }
 
@@ -1606,16 +1613,16 @@ function updateOngoingWorkHoursForSprint() {
 function changeOngoingWorkHoursAvailability(team, member, hours) {
 
     //created how many hours an employee has to work
-    simulation['Project Team'][team][member]['weeklyAvailableWorkHours'] = hours;
+    simulation['Employees'][team][member]['weeklyAvailableWorkHours'] = hours;
 
 
 }
 
 //sets all employees work Availability per week
 function setAllOngoingWorkHourAvailability(hours) {
-    let teams = Object.keys(simulation['Project Team']);
+    let teams = Object.keys(simulation['Employees']);
     teams.forEach((team) => {
-        let employees = Object.keys(simulation['Project Team'][team]);
+        let employees = Object.keys(simulation['Employees'][team]);
         employees.forEach((employee) => {
             changeOngoingWorkHoursAvailability(team, employee, hours);
         })
@@ -1625,17 +1632,17 @@ function setAllOngoingWorkHourAvailability(hours) {
 
 // houw many hours per day an employee has per day to do work - standard is set at 7.5 to account for lunch
 function updateDailyAvailableHours(team, employee, hours) {
-    simulation['Project Team'][team][employee]['dailyHours'] = hours;
+    simulation['Employees'][team][employee]['dailyHours'] = hours;
 }
 
 //updates all employees available work per day
 function setAllDailyAvailableHours(hours) {
     //get all teams
-    let teams = Object.keys(simulation['Project Team']);
+    let teams = Object.keys(simulation['Employees']);
     //loop through each team
     teams.forEach((team) => {
         //get all employee in that team
-        let employees = Object.keys(simulation['Project Team'][team]);
+        let employees = Object.keys(simulation['Employees'][team]);
         //loop through each employee
         employees.forEach((employee) => {
             //update their available work hours per day
@@ -1646,17 +1653,17 @@ function setAllDailyAvailableHours(hours) {
 
 //can be edited for employees if they are off on leave/ill
 function updateDaysToWorkPerWeek(team, employee, days) {
-    simulation['Project Team'][team][employee]['daysPerWeek'] = days;
+    simulation['Employees'][team][employee]['daysPerWeek'] = days;
 }
 
 //this is usefull for bank holidays/set default amount of days
 function setAllDaysToWorkPerWeek(days) {
     //get all teams
-    let teams = Object.keys(simulation['Project Team']);
+    let teams = Object.keys(simulation['Employees']);
     //loop through each team
     teams.forEach((team) => {
         //get all employee in that team
-        let employees = Object.keys(simulation['Project Team'][team]);
+        let employees = Object.keys(simulation['Employees'][team]);
         //loop through each employee
         employees.forEach((employee) => {
             //update their available days to work
@@ -1667,46 +1674,21 @@ function setAllDaysToWorkPerWeek(days) {
 
 function updateEmployeesHoursPerWeek() {
     //get all teams
-    let teams = Object.keys(simulation['Project Team']);
+    let teams = Object.keys(simulation['Employees']);
     //loop through each team
     teams.forEach((team) => {
         //get all employee in that team
-        let employees = Object.keys(simulation['Project Team'][team]);
+        let employees = Object.keys(simulation['Employees'][team]);
         //loop through each employee
         employees.forEach((employee) => {
             //storing days and daily work hours as variables to make it more readable
-            let days = simulation['Project Team'][team][employee]['daysPerWeek'];
-            let dailyHours = simulation['Project Team'][team][employee]['dailyHours']
+            let days = simulation['Employees'][team][employee]['daysPerWeek'];
+            let dailyHours = simulation['Employees'][team][employee]['dailyHours']
             //update their available hours per week (days * daily hours) to work
-            simulation['Project Team'][team][employee]['workingHoursPerWeek'] = days * dailyHours;
+            simulation['Employees'][team][employee]['workingHoursPerWeek'] = days * dailyHours;
         })
     });
 }
-
-
-
-
-
-
-// change how many hours of actual work is assigned to a team member to be completed - assigned 5 hours to work on tickets for example
-function changeDailyActualWorkHours(team, member, hours) {
-
-    simulation['Project Team'][team][member]['dailyAssignedWork'] = hours;
-
-}
-
-//sets all employees daily work in hours
-function setAllActualWorkHours(hours) {
-    let teams = Object.keys(simulation['Project Team']);
-    teams.forEach((team) => {
-        let employees = Object.keys(simulation['Project Team'][team]);
-        employees.forEach((employee) => {
-            changeDailyActualWorkHours(team, employee, hours);
-        })
-    });
-}
-
-
 
 
 
@@ -1725,15 +1707,15 @@ function assignAllOngoingProjectTickets() {
                 tickets.forEach((ticket) => {
                     let members = Object.keys(simulation['Project Groups'][group]['Members'])
                     members.forEach((member) => {
-                        let teams = Object.keys(simulation['Project Team']);
+                        let teams = Object.keys(simulation['Employees']);
                         teams.forEach((team) => {
-                            let employees = Object.keys(simulation['Project Team'][team]);
+                            let employees = Object.keys(simulation['Employees'][team]);
                             employees.forEach((employee) => {
                                 if (team === 'Development') {
 
                                     let isAssigned = simulation['Projects'][project]['tickets'][ticket]['isAssigned'];
-                                    let employeeWorkHours = simulation['Project Team'][team][employee]['ongoingWorkHours'];
-                                    let assignedWorkHours = simulation['Project Team'][team][employee]['assignedWorkHours'];
+                                    let employeeWorkHours = simulation['Employees'][team][employee]['ongoingWorkHours'];
+                                    let assignedWorkHours = simulation['Employees'][team][employee]['assignedWorkHours'];
                                     let ticketHours = simulation['Projects'][project]['tickets'][ticket]['proposedWorkInHours'];
 
                                     if (!isAssigned) {
@@ -1763,16 +1745,16 @@ function assignOngoingProjectTicket(project, member, team, ticket, ticketHours) 
 
     simulation['Projects'][project]['tickets'][ticket]['assignedMember'] = member;
     simulation['Projects'][project]['tickets'][ticket]['isAssigned'] = true;
-    simulation['Project Team'][team][member]['assignedWorkHours'] += ticketHours;
+    simulation['Employees'][team][member]['assignedWorkHours'] += ticketHours;
 
 }
 
 function setAllAssignedWorkHours(hours) {
-    let teams = Object.keys(simulation['Project Team']);
+    let teams = Object.keys(simulation['Employees']);
     teams.forEach((team) => {
-        let employees = Object.keys(simulation['Project Team'][team]);
+        let employees = Object.keys(simulation['Employees'][team]);
         employees.forEach((employee) => {
-            setAssignedWorkHours(employee, team, hours)
+            setAssignedWorkHours(team, employee, hours)
 
         })
     });
@@ -1780,51 +1762,51 @@ function setAllAssignedWorkHours(hours) {
 
 
 
-function setAssignedWorkHours(employee, team, hours) {
-    simulation['Project Team'][team][employee]['assignedWorkHours'] = hours;
+function setAssignedWorkHours(team, employee, hours) {
+    simulation['Employees'][team][employee]['assignedWorkHours'] = hours;
 }
 
 function generateEmployeeScores() {
 
-    let teams = Object.keys(simulation['Project Team']);
+    let teams = Object.keys(simulation['Employees']);
     teams.forEach((team) => {
-        let employees = Object.keys(simulation['Project Team'][team]);
+        let employees = Object.keys(simulation['Employees'][team]);
         employees.forEach((employee) => {
-            simulation['Project Team'][team][employee]['satisfactionMatrix']['sickDays'] = generateRandomIntegerInRange(0, 10);
-            simulation['Project Team'][team][employee]['satisfactionMatrix']['eNPS'] = generateRandomIntegerInRange(0, 10);
-            simulation['Project Team'][team][employee]['satisfactionMatrix']['salarySatisfaction'] = generateRandomIntegerInRange(0, 10);
-            simulation['Project Team'][team][employee]['satisfactionMatrix']['employeeSatisfactionSurvey'] = generateRandomIntegerInRange(0, 10);
-            simulation['Project Team'][team][employee]['performanceReview']['effeciency'] = generateRandomIntegerInRange(0, 10);
-            simulation['Project Team'][team][employee]['performanceReview']['teamWork'] = generateRandomIntegerInRange(0, 10);
-            simulation['Project Team'][team][employee]['performanceReview']['independentWork'] = generateRandomIntegerInRange(0, 10);
-            simulation['Project Team'][team][employee]['performanceReview']['reliability'] = generateRandomIntegerInRange(0, 10);
-            simulation['Project Team'][team][employee]['performanceReview']['effectiveness'] = generateRandomIntegerInRange(0, 10);
-            simulation['Project Team'][team][employee]['performanceReview']['planning'] = generateRandomIntegerInRange(0, 10);
+            simulation['Employees'][team][employee]['satisfactionMatrix']['sickDays'] = generateRandomIntegerInRange(0, 10);
+            simulation['Employees'][team][employee]['satisfactionMatrix']['eNPS'] = generateRandomIntegerInRange(0, 10);
+            simulation['Employees'][team][employee]['satisfactionMatrix']['salarySatisfaction'] = generateRandomIntegerInRange(0, 10);
+            simulation['Employees'][team][employee]['satisfactionMatrix']['employeeSatisfactionSurvey'] = generateRandomIntegerInRange(0, 10);
+            simulation['Employees'][team][employee]['performanceReview']['effeciency'] = generateRandomIntegerInRange(0, 10);
+            simulation['Employees'][team][employee]['performanceReview']['teamWork'] = generateRandomIntegerInRange(0, 10);
+            simulation['Employees'][team][employee]['performanceReview']['independentWork'] = generateRandomIntegerInRange(0, 10);
+            simulation['Employees'][team][employee]['performanceReview']['reliability'] = generateRandomIntegerInRange(0, 10);
+            simulation['Employees'][team][employee]['performanceReview']['effectiveness'] = generateRandomIntegerInRange(0, 10);
+            simulation['Employees'][team][employee]['performanceReview']['planning'] = generateRandomIntegerInRange(0, 10);
         });
     });
 }
 
 function generateEmployeeWorkRate() {
 
-    let teams = Object.keys(simulation['Project Team']);
+    let teams = Object.keys(simulation['Employees']);
     teams.forEach((team) => {
-        let employees = Object.keys(simulation['Project Team'][team]);
+        let employees = Object.keys(simulation['Employees'][team]);
         employees.forEach((employee) => {
 
             let effTotal = EFFECIENCY_DEDUCTION;
             let quaTotal = QUALITY_DEDUCTION;
             //effeciency
-            effTotal += (simulation['Project Team'][team][employee]['performanceReview']['effeciency'] / 10);
-            effTotal += (simulation['Project Team'][team][employee]['performanceReview']['independentWork'] / 50);
-            effTotal += (simulation['Project Team'][team][employee]['performanceReview']['teamWork'] / 50);
-            effTotal += (simulation['Project Team'][team][employee]['experience'] / EXPIRENCE_MULTIPLYER);
+            effTotal += (simulation['Employees'][team][employee]['performanceReview']['effeciency'] / 10);
+            effTotal += (simulation['Employees'][team][employee]['performanceReview']['independentWork'] / 50);
+            effTotal += (simulation['Employees'][team][employee]['performanceReview']['teamWork'] / 50);
+            effTotal += (simulation['Employees'][team][employee]['experience'] / EXPIRENCE_MULTIPLYER);
             effTotal = Math.floor(effTotal * 100) / 100;
-            simulation['Project Team'][team][employee]['workEffeciency'] = effTotal;
+            simulation['Employees'][team][employee]['workEffeciency'] = effTotal;
             //quality
-            quaTotal += (simulation['Project Team'][team][employee]['performanceReview']['effectiveness'] / 10);
-            quaTotal += (simulation['Project Team'][team][employee]['performanceReview']['planning'] / 10);
+            quaTotal += (simulation['Employees'][team][employee]['performanceReview']['effectiveness'] / 10);
+            quaTotal += (simulation['Employees'][team][employee]['performanceReview']['planning'] / 10);
             quaTotal = Math.floor(quaTotal * 100) / 100;
-            simulation['Project Team'][team][employee]['workQuality'] = quaTotal;
+            simulation['Employees'][team][employee]['workQuality'] = quaTotal;
         });
     });
 
@@ -1836,14 +1818,14 @@ function getEmployeeDayQualityWorkRate(team, employee) {
 
     let dayWorkRate = generateRandomIntegerInRange(-2, 2);
     dayWorkRate = (dayWorkRate / 10);
-    dayWorkRate += simulation['Project Team'][team][employee]['workQuality'];
+    dayWorkRate += simulation['Employees'][team][employee]['workQuality'];
     dayWorkRate = parseFloat(dayWorkRate.toFixed(2));
     //console.log(dayWorkRate);
 }
 
-let teams = Object.keys(simulation['Project Team']);
+let teams = Object.keys(simulation['Employees']);
 teams.forEach((team) => {
-    let employees = Object.keys(simulation['Project Team'][team]);
+    let employees = Object.keys(simulation['Employees'][team]);
     employees.forEach((employee) => {
         getEmployeeDayEfficiencyWorkRate(team, employee);
         getEmployeeDayQualityWorkRate(team, employee);
@@ -1854,9 +1836,37 @@ function getEmployeeDayEfficiencyWorkRate(team, employee) {
 
     let dayWorkRate = generateRandomIntegerInRange(-2, 2);
     dayWorkRate = (dayWorkRate / 10);
-    dayWorkRate += simulation['Project Team'][team][employee]['workEffeciency'];
+    dayWorkRate += simulation['Employees'][team][employee]['workEffeciency'];
     dayWorkRate = parseFloat(dayWorkRate.toFixed(2));
     //console.log(dayWorkRate);
+
+}
+
+function updateSprintTeamAvailableHours() {
+    let developers = getSpecificTeamMembers('Development');
+    let designers = getSpecificTeamMembers('Design');
+
+    let projectMembers = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    console.log(projectMembers)
+    developers.forEach((developer) => {
+        projectMembers.forEach((member) => {
+            if (developer === member) {
+                console.log(`Employee: ${member} assignedWorkHours: ${simulation['Employees']['Development'][member]['assignedWorkHours']}`)
+
+                setAssignedWorkHours('Development', member, 0);
+                console.log(`Employee: ${member} assignedWorkHours: ${simulation['Employees']['Development'][member]['assignedWorkHours']}`)
+            }
+        })
+    })
+
+
+    designers.forEach((designer) => {
+        projectMembers.forEach((member) => {
+            if (designer === member) {
+                setAssignedWorkHours('Design', member, 0);
+            }
+        })
+    })
 
 }
 

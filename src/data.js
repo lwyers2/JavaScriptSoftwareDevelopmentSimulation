@@ -123,7 +123,7 @@ let simulation = ({
     "Development Work": {
         "costPerHour": 250
     },
-    "Project Team": {
+    "Employees": {
         "Development": {
             "Mimi Parker": {
                 "age": 36,
