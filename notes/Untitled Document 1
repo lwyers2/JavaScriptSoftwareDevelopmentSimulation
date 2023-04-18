@@ -1,0 +1,42 @@
+auto allocating - moving into simulation- move that into a seperate file
+at the simulation stage - various factors 
+
+theory about why events occur. 
+allocate staf to ticket is in main story aka app
+then in different file there will be a determination
+
+In the story record WHAT happens
+Simulation will be can happen
+
+same with negotiations 
+in the simulation side use random number generator. 
+
+keep them seperate. 
+in simulation put in a set of parameters put in variables that can be learned 
+
+one thing to add - 
+
+if the time pruposed was wrong then have that in the story.
+
+have a little function called time has passed
+
+everytime time passes, wante to save out a copy of your data. 
+end up with an arry of whole data structure - want to createe a webpage that will show this information. See the story the story as it progresses. Visualisation of the story. 
+
+What has happened over time. 
+
+Gives me a demo able thing - mostly going to focus on the story. 
+narrating in this formal code based way the changes that
+to test this - two projects that are real .
+do with the second one - try replicating it, by changing the order. 
+I have successfylly formalised how software business operate. 
+visual webpage where you show simply.
+Dropdown of webpage showing each sprint - show print out of each array. 
+Hopefully find that when 
+having the functions reflect what has actually happened. 
+
+Still 
+
+Then in simulation - what causes that and 
+
+Key thing is - need about three weeks to write up. 

@@ -768,26 +768,41 @@ function allocateResources(junDevsCount, intDevsCount, senDevsCount, designCount
 
         let teamMember = languageExperience(web, app, database, server, 'Junior Developer', excludedNames)
         team[teamMember] = (simulation['Employees']['Development'][teamMember])
+        simulation['Employees']['Development'][teamMember]['ongoingTickets'] = {
+            'tickets': {}
+        }
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < intDevsCount; i++) {
         let teamMember = languageExperience(web, app, database, server, 'Intermediate Developer', excludedNames)
         team[teamMember] = (simulation['Employees']['Development'][teamMember])
+        simulation['Employees']['Development'][teamMember]['ongoingTickets'] = {
+            'tickets': {}
+        }
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < senDevsCount; i++) {
         let teamMember = languageExperience(web, app, database, server, 'Senior Developer', excludedNames)
         team[teamMember] = (simulation['Employees']['Development'][teamMember])
+        simulation['Employees']['Development'][teamMember]['ongoingTickets'] = {
+            'tickets': {}
+        }
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < testCount; i++) {
         let teamMember = addTesterOrDesigner('Testing', excludedNames)
         team[teamMember] = (simulation['Employees']['Testing'][teamMember])
+        simulation['Employees']['Testing'][teamMember]['ongoingTickets'] = {
+            'tickets': {}
+        }
         excludedNames.push(teamMember)
     }
     for (let i = 0; i < designCount; i++) {
         let teamMember = addTesterOrDesigner('Design', excludedNames)
         team[teamMember] = (simulation['Employees']['Design'][teamMember])
+        simulation['Employees']['Design'][teamMember]['ongoingTickets'] = {
+            'tickets': {}
+        }
         excludedNames.push(teamMember)
     }
 
@@ -910,7 +925,7 @@ function sprintOne(userStoryTitle, userStoryDescription) {
     //console.log("Braking stories into smaller tasks");
     //designer needed true or false
     //creating random tickets and assigning team members. Assign team members needs a better algorithm for deciding who get assigned what ticket
-    breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(6, 8));
+    breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(5, 8));
     //console.log("******************");
     //at here we'll want to start assigning tickets
     //console.log("Design and Implementation");
@@ -925,7 +940,7 @@ function sprintTwo(userStory) {
     //console.log("Stand Up");
     //console.log("Project Manager Review Sprint Plan");
     //console.log("Design and Implementation");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1013,7 +1028,7 @@ function sprintTen(userStory) {
 
 function sprintEleven(userStoryTitle, userStoryDescription) {
     // adding this in here, but there may have to be something to see if tickets still ongoing
-    console.log("sprint eleven")
+
     updateSprintTeamAvailableHours();
     //console.log("Project manager discuesses Sprint Planning with development and design team.");
     //console.log(`User Story: ${userStoryTitle} added to Sprint Plan`);
@@ -1023,7 +1038,7 @@ function sprintEleven(userStoryTitle, userStoryDescription) {
     //console.log("Braking stories into smaller tasks");
     //designer needed true or false
     //creating random tickets and assigning team members. Assign team members needs a better algorithm for deciding who get assigned what ticket
-    breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(6, 8));
+    breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(5, 8));
     //console.log("******************");
     //console.log("User Stories");
     //console.log(simulation['User Stories']);
@@ -1111,26 +1126,31 @@ function sprintTwenty() {
 
 function createUserStory(title, description, developersNeeded, designersNeeded, testersNeeded) {
 
+    // adding this here as we need to create some way of adding the ongoing tickets for each user story
+    clearOngoingSprintTickets(title);
+
     simulation['User Stories'][title] = {};
+    simulation['User Stories'][title]['name'] = title;
     simulation['User Stories'][title]['description'] = description;
     simulation['User Stories'][title]['developersNeeded'] = developersNeeded;
     simulation['User Stories'][title]['designersNeeded'] = testersNeeded;
     simulation['User Stories'][title]['testersNeeded'] = designersNeeded;
     //create empty container for tickets to be added to later
     simulation['User Stories'][title]['tickets'] = {};
+    simulation['Projects']['Proposed Project']['backlog'][title] = {}
 
 }
 
 function createTicket(userStory, ticketTitle, description, proposedWorkInHours, priority, designerRequired) {
     simulation['User Stories'][userStory]['tickets'][ticketTitle] = {};
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['ticketTitle'] = ticketTitle
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['ticketDescription'] = description;
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['proposedWorkInHours'] = proposedWorkInHours;
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['actualWorkInHours'] = 0;
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['isComplete'] = false;
     //create empty container for technologies to be added seperately
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['technologies'] = {};
-    //create empty container for team members to be added seperately
-    simulation['User Stories'][userStory]['tickets'][ticketTitle]['assignedTeamMembers'] = {};
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['isAssigned'] = false;
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['priority'] = priority;
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['designerRequired'] = designerRequired;
 
@@ -1143,11 +1163,11 @@ function determineTeamMemberAmountForTicket(proposedWorkInHours, designerRequire
         needed = -1;
     }
     if (proposedWorkInHours <= 35) {
-        needed = 2
-    } else if (proposedWorkInHours <= 45) {
-        needed = 3
-    } else if (proposedWorkInHours <= 60) {
-        needed = 4
+        needed += 2
+    } else if (proposedWorkInHours >= 35) {
+        needed += 3
+    } else if (proposedWorkInHours >= 45) {
+        needed += 4
     }
 
     return needed;
@@ -1156,154 +1176,62 @@ function determineTeamMemberAmountForTicket(proposedWorkInHours, designerRequire
 
 
 function assignSprintTicketWorkers(userStory, ticketName) {
-
-
-    //create backlog!!!!!!!!!!
     //check to see if the ticket needs an additional designer
     let designerNeeded = simulation['User Stories'][userStory]['tickets'][ticketName]['designerRequired'];
-
+    let ticket = simulation['User Stories'][userStory]['tickets'][ticketName];
     //calculate the amount of workers needed for each ticket based on proposed hours of ticket
-    let teamMembersNeeded = determineTeamMemberAmountForTicket(simulation['User Stories'][userStory]['tickets'][ticketName]['proposedWorkInHours'], simulation['User Stories'][userStory]['tickets'][ticketName]['designerRequired']);
+    let developersNeeded = determineTeamMemberAmountForTicket(simulation['User Stories'][userStory]['tickets'][ticketName]['proposedWorkInHours'], simulation['User Stories'][userStory]['tickets'][ticketName]['designerRequired']);
     //get the technologies that the ticket deals with
     let technologies = Object.keys(simulation['User Stories'][userStory]['tickets'][ticketName]['technologies']);
-    //get the team members from the proposed project team
-    let teamMembers = Object.keys(simulation['Projects']['Proposed Project']['team']);
-
-
-    //get the proposed work in hours as a variable.
+    //get the proposed ticket work in hours as a variable.
     let proposedWorkInHours = parseInt(simulation['User Stories'][userStory]['tickets'][ticketName]['proposedWorkInHours']);
     // get how many hours are needed to be completed per day divide total by 9 - 9 days of sprint per user Story 
     let totalHoursPerDay = Math.ceil(proposedWorkInHours / 9);
-
     //divide the 
-    let hoursPerMember;
+    let hoursPerMember = totalHoursPerDay / developersNeeded;
     if (designerNeeded) {
         //adding one extra hour for 'review'
-        hoursPerMember = Math.ceil((totalHoursPerDay / (teamMembersNeeded + 1)) + 1);
+        hoursPerMember = Math.ceil((totalHoursPerDay / (developersNeeded + 1)));
     } else {
         //adding one extra hour for 'review'
-        hoursPerMember = Math.ceil((totalHoursPerDay / teamMembersNeeded) + 1);
+        hoursPerMember = Math.ceil((totalHoursPerDay / developersNeeded));
     }
-
-
-    //so right now I have how many team members are needed, how many hours of work should be conducted per day, and the total proposed amount of hours for ticket to be finished
-
-
-    let excluded = new Array();
-
-    let ticketTeam = new Array();
-
+    //Update ticketTime per member on the ticket itself for the amount of work each member should do.
+    simulation['User Stories'][userStory]['tickets'][ticketName]['hoursPerMember'] = hoursPerMember;
     // return all employees who are developers
-    let developers = getSpecificTeamMembers('Development');
+    let developers = getProposedTicketTeamMembers('Development');
+    //so right now I have how many team members are needed, how many hours of work should be conducted per day, and the total proposed amount of hours for ticket to be finished
+    let availableDevelopers = getAvailableEmployeesSprintTickets('Development', developers, hoursPerMember);
     //returns all employees who are designers
-    let designers = getSpecificTeamMembers('Design');
-    //console.log(simulation['Employees']['Development'])
+    let designers = getProposedTicketTeamMembers('Design');
+    let availableDesigners = getAvailableEmployeesSprintTickets('Design', designers, hoursPerMember);
+
+
+    if ((availableDevelopers.length < developersNeeded) || (availableDesigners < 1)) {
+        addTicketToBackLog(userStory, ticket, ticketName);
+    } else {
+
+
+        if (designerNeeded === 1) {
+            let mostExperiencedDes = getMostSuitableDesigner(availableDesigners);
+            assignTicketToEmployee(mostExperiencedDes, userStory, ticket, ticketName);
+            addAssignedWorkHours('Design', mostExperiencedDes, hoursPerMember);
+        }
 
 
 
-    console.log(`ticketName: ${ticketName}`);
-    //loop for the amount of teamMembersNeeded
-    for (let i = 0; i < teamMembersNeeded; i++) {
-
-        let mostExperienceYears = 0;
-        let mostExperienced;
-
-
-        //loop through all of the project team
-        teamMembers.forEach((member) => {
-            //loop through all employees that are a developer
-            developers.forEach((developer) => {
-                //if the developer is on the team, then execute the following code
-                if (member === developer) {
-                    //initialise developers years exp
-                    let yearsExp = 0;
-                    //initialise developers total years exp will be used to see who has max years exp
-                    let totalExp = simulation['Employees']['Development'][developer]['experience'];
-                    //used to add into ticket
-                    let isExcluded = false;
-                    //get how many hours a day the developer has available
-                    let developerTicketHours = simulation['Employees']['Development'][developer]['assignedWorkHours'];
-                    //get how many hours per day the developer can work (could be on leave/ill/halfday)
-                    let availableHoursPerDay = simulation['Employees']['Development'][developer]['dailyHours'];
-                    //check if the developer has enough free hours to work on the ticket
-                    console.log(`Developer: ${member} has ${developerTicketHours} hours used. The Ticket needs ${hoursPerMember}`);
-                    if ((developerTicketHours + hoursPerMember) < availableHoursPerDay) {
-
-                        //check if the developer is already assigned the ticket
-                        for (let i = 0; i < excluded.length; i++) {
-                            //check if the developer has already been added
-                            if (developer == excluded[i]) {
-                                //update excluded to true
-                                isExcluded = true;
-                            }
-                        }
-                        //check if the developer isn't excluded
-                        if (!isExcluded) {
-                            //get a total of years experience from team member for all techs in ticket
-                            technologies.forEach((tech) => {
-                                //get the technology that is being used in the ticket
-                                let language = simulation['User Stories'][userStory]['tickets'][ticketName]['technologies'][tech];
-                                //if the developer does not have experience in that language the total won't be totaled
-                                if (typeof simulation['Employees']['Development'][developer]['languages'][language] !== 'undefined') {
-                                    // add to years of experience
-                                    yearsExp += simulation['Employees']['Development'][developer]['languages'][language];
-                                }
-                            });
-                            totalExp += yearsExp;
-
-                            //check if experience of the developer against most experienced. If they are more experienced they will get added to the ticket
-                            if (mostExperienceYears < yearsExp) {
-                                mostExperienced = developer;
-                                mostExperienceYears = yearsExp;
-                            }
-                        }
-
-
-
-                    }
-                }
-            });
-
-        });
-        console.log(`Adding: ${mostExperienced} to ${ticketName}`);
-        simulation['Employees']['Development'][mostExperienced]['assignedWorkHours'] += hoursPerMember;
-        excluded.push(mostExperienced);
+        for (let i = 0; i < developersNeeded; i++) {
+            let mostExperienced = getMostSuitableDeveloper(availableDevelopers, technologies, userStory, ticketName);
+            assignTicketToEmployee(mostExperienced, userStory, ticket, ticketName);
+            addAssignedWorkHours('Development', mostExperienced, hoursPerMember);
+            availableDevelopers.pop(mostExperienced);
+        }
+        simulation['User Stories'][userStory]['tickets'][ticketName]['isAssigned'] = true;
     }
-
-    // if (designerNeeded == 1) {
-    //     let mostExperienceYears = 0;
-    //     let mostExperienced;
-    //     designers.forEach((designer) => {
-    //         let yearsExp = simulation['Employees']['Design'][designer]['experience'];
-    //         if (mostExperienceYears < yearsExp) {
-    //             mostExperienced = designer;
-    //             mostExperienceYears = yearsExp;
-    //         }
-    //     });
-    //     //console.log("HERE")
-    //     simulation['Employees']['Design'][mostExperienced]['assignedWorkHours'] = hoursPerMember;
-    //     excluded.push(mostExperienced);
-    // }
-
-
-
-
-    for (let i = 0; i < excluded.length; i++) {
-
-        simulation['User Stories'][userStory]['tickets'][ticketName]['assignedTeamMembers'][excluded[i]] = simulation['Projects']['Proposed Project']['team'][excluded[i]];
-
-    }
-
-
-
-
-
-
 }
 
-
 //get all team members from a specific team
-function getSpecificTeamMembers(team) {
+function getProposedTicketTeamMembers(team) {
 
     //empty array to store developers
     let projectTeamMembers = new Array();
@@ -1382,42 +1310,37 @@ function generateTechnology(userStory, ticketName) {
 
 //so sprint 1 creates these things - in between these 'work' needs to be commenced.  going to make it v simple then add more complexity
 
-function workOnSprintTicket(userStory) {
-    let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
-    tickets.forEach((ticket) => {
-        if (!simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']) {
-            let teams = Object.keys(simulation['Employees'])
-            let ticketWorkerTeam;
-            let teamMembers = Object.keys(simulation['User Stories'][userStory]['tickets'][ticket]['assignedTeamMembers']);
-            //console.log(teamMembers);
-            let totalHoursWorked = 0;
-            teamMembers.forEach((member) => {
-                teams.forEach((team) => {
-                    let employees = Object.keys(simulation['Employees'][team]);
-                    employees.forEach((employee) => {
-                        if (employee === member) {
-                            ticketWorkerTeam = team;
+function workOnSprintTicket() {
+
+    let team = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    team.forEach((member) => {
+        let userStories = Object.keys(simulation['Projects']['Proposed Project']['team'][member]['ongoingTickets']['tickets']);
+        userStories.forEach((userStory) => {
+            let tickets = Object.keys(simulation['Projects']['Proposed Project']['team'][member]['ongoingTickets']['tickets'][userStory])
+            tickets.forEach((ticket) => {
+                if (!isTicketComplete(member, userStory, ticket)) {
+                    let hoursPerMember = simulation['Projects']['Proposed Project']['team'][member]['ongoingTickets']['tickets'][userStory][ticket]['hoursPerMember'];
+                    for (let i = 0; i < hoursPerMember; i++) {
+                        if (!isTicketComplete(member, userStory, ticket)) {
+                            updateTicketHours(member, userStory, ticket);
+                            updateTicketCompletion(member, userStory, ticket);
+                        } else {
+                            //unassignSprintTicket(userStory, ticket);
+                            if (areBacklogTickets(userStory)) {
+                                let backlogTickets = getUnassignedBackLogTickets(userStory);
+                                for (let i = 0; i < backlogTickets.length; i++) {
+                                    assignSprintTicketWorkers(userStory, backlogTickets[i]);
+                                }
+
+                            }
                         }
-                    })
-                })
-                let rand = generateRandomIntegerInRange(0, 7);
-                //console.log(member)
-                rand *= simulation['Employees'][ticketWorkerTeam][member]['workEffeciency'];
-                rand = parseFloat(rand.toFixed(2));
-                totalHoursWorked += rand;
-                //for now random number, but will be calculate by member
-                simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours'] += rand;
-            });
-            //         //console.log(`There has been a total of ${totalHoursWorked} hours worked on ${ticket}`);
-        } else {
-            //console.log(`${ticket}: is completed`);
-        }
-        if (simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours'] >= simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']) {
-            //console.log(`${ticket} is now complete, freeing up resources....`);
-            //will actually need to code this in, but first will need to make assigning more complex
-            simulation['User Stories'][userStory]['tickets'][ticket]['isComplete'] = true;
-        }
-    })
+
+
+                    }
+                }
+            })
+        })
+    });
 }
 
 function progressReport(userStory) {
@@ -1843,18 +1766,15 @@ function getEmployeeDayEfficiencyWorkRate(team, employee) {
 }
 
 function updateSprintTeamAvailableHours() {
-    let developers = getSpecificTeamMembers('Development');
-    let designers = getSpecificTeamMembers('Design');
+    let developers = getProposedTicketTeamMembers('Development');
+    let designers = getProposedTicketTeamMembers('Design');
 
     let projectMembers = Object.keys(simulation['Projects']['Proposed Project']['team']);
-    console.log(projectMembers)
+
     developers.forEach((developer) => {
         projectMembers.forEach((member) => {
             if (developer === member) {
-                console.log(`Employee: ${member} assignedWorkHours: ${simulation['Employees']['Development'][member]['assignedWorkHours']}`)
-
                 setAssignedWorkHours('Development', member, 0);
-                console.log(`Employee: ${member} assignedWorkHours: ${simulation['Employees']['Development'][member]['assignedWorkHours']}`)
             }
         })
     })
@@ -1869,6 +1789,246 @@ function updateSprintTeamAvailableHours() {
     })
 
 }
+
+/*
+checks whether an employee has capacity do complete work on the available ticket
+*/
+function employeeAvailableToWork(workAssignedHours, workerAvailableHours, ticketHours) {
+
+    //check whether the employees already assigned hours + how many hours the ticket needs is less then all of the available hours
+    if ((workAssignedHours + ticketHours) <= workerAvailableHours) {
+        return true;
+    }
+    return false;
+}
+
+/*
+take in which department the employee is from (either designer or development), the employees in that department, and how many hours are needed to complete the ticket
+*/
+function getAvailableEmployeesSprintTickets(department, employees, ticketHours) {
+
+    //create empty array
+    let available = new Array();
+
+    //loop through all of the employees
+    for (let i = 0; i < employees.length; i++) {
+        //get the assigned work work hours
+        let workAssignedHours = simulation['Employees'][department][employees[i]]['assignedWorkHours']
+        //get how many hours per day an employee can work
+        let workerAvailableHours = simulation['Employees'][department][employees[i]]['dailyHours'];
+        //check whether the employee has the capacity
+        if (employeeAvailableToWork(workAssignedHours, workerAvailableHours, ticketHours)) {
+            //add that employee to the array
+            available.push(employees[i])
+        }
+    }
+
+    //return all employees that have capacity
+    return available;
+}
+
+/*
+get the employee, and assign that ticket to the employee
+*/
+function assignTicketToEmployee(employee, userStory, ticket, ticketName) {
+    // get the name of the user Story (I have generate ticket and user Story names generically so these need to be differentiated)
+    let userStoryName = simulation['User Stories'][userStory]['name'];
+    //add the ticket to that user's inventory of tickets
+    simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStoryName][ticketName] = ticket;
+}
+
+/**
+ * 
+ * @param {the user story of the ticket} userStory
+ * This is to clear the UserStory and ticket so that the employee can be 'assigned' tickets 
+ */
+function clearOngoingSprintTickets(userStory) {
+    //get all employees on the project
+    let employees = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    employees.forEach((employee) => {
+        //loop through all employees and create an empty slot for the user story so that each ticket won't be replaced.
+        simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory] = {};
+    });
+
+}
+
+/**
+ * 
+ * @param {array employees that are designers designers[]} 
+ * @returns the most experienced designer
+ */
+function getMostSuitableDesigner(designers) {
+    // set most experienced years to 0 as this will change
+    let mostExperienceDesYears = 0;
+    //initialise the most experienced Designer
+    let mostExperiencedDes;
+    //loop through array of designers
+    for (let i = 0; i < designers.length; i++) {
+        //initialise the years experience of the specific designer
+        let yearsExp = simulation['Employees']['Design'][designers[i]]['experience'];
+        //if the years of the designer is more than the mostExperienced Dev then update the most experienced designer years and the most experienced designer
+        if (mostExperienceDesYears < yearsExp) {
+            mostExperiencedDes = designers[i];
+            mostExperienceDesYears = yearsExp;
+        }
+    }
+    //return the most experienced designer
+    return mostExperiencedDes;
+}
+/**
+ * 
+ * @param {array of developers} developers 
+ */
+function getMostSuitableDeveloper(developers, technologies, userStory, ticketName) {
+
+
+    let mostExperienceYears = 0;
+    let mostExperienced;
+    for (let i = 0; i < developers.length; i++) {
+        let totalExp = 0;
+        let yearsExp = simulation['Employees']['Development'][developers[i]]['experience'];
+        technologies.forEach((tech) => {
+            //get the technology that is being used in the ticket
+            let language = simulation['User Stories'][userStory]['tickets'][ticketName]['technologies'][tech];
+            //if the developer does not have experience in that language the total won't be totaled
+            if (typeof simulation['Employees']['Development'][developers[i]]['languages'][language] !== 'undefined') {
+                // add to years of experience
+                yearsExp += simulation['Employees']['Development'][developers[i]]['languages'][language];
+            }
+        });
+        totalExp += yearsExp;
+        //check if experience of the developer against most experienced. If they are more experienced they will get added to the ticket
+        if (mostExperienceYears < yearsExp) {
+            mostExperienced = developers[i];
+            mostExperienceYears = yearsExp;
+        }
+
+
+
+    }
+
+
+    return mostExperienced
+}
+
+function addAssignedWorkHours(team, employee, hours) {
+    simulation['Employees'][team][employee]['assignedWorkHours'] += hours
+}
+
+function availableResources(available, membersNeeded) {
+
+    if (available < membersNeeded) {
+        return false;
+    }
+    return true;
+
+}
+
+/**
+ * 
+ * @param {The user story of the ticket} userStory 
+ * @param {the ticket to add to the backlog} ticket 
+ */
+function addTicketToBackLog(userStory, ticket, ticketName) {
+
+
+    simulation['Projects']['Proposed Project']['backlog'][userStory][ticketName] = ticket;
+
+}
+
+
+
+
+function updateTicketHours(employee, userStory, ticket) {
+    let workRate = 1;
+    workRate *= simulation['Projects']['Proposed Project']['team'][employee]['workEffeciency'];
+    workRate = parseFloat(workRate.toFixed(2));
+    simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket]['actualWorkInHours'] += workRate;
+    simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket]['actualWorkInHours'] = parseFloat(simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket]['actualWorkInHours'].toFixed(2))
+}
+
+
+
+function isTicketComplete(employee, userStory, ticket) {
+    let isComplete = simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket]['isComplete'];
+
+    return isComplete;
+
+}
+
+function updateTicketCompletion(employee, userStory, ticket) {
+    let actualHours = simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket]['actualWorkInHours'];
+    let proposedHours = simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket]['proposedWorkInHours'];
+
+    if (actualHours >= proposedHours) {
+        simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket]['isComplete'] = true;
+
+    }
+}
+
+function areBacklogTickets(userStory) {
+
+    let tickets = JSON.stringify(simulation['Projects']['Proposed Project']['backlog'][userStory]);
+    if (tickets === '{}') {
+        return false;
+    } else {
+        if (areUnassignedBacklogTicket(userStory)) {
+            return true;
+        }
+    }
+
+    return false;
+
+}
+
+function areUnassignedBacklogTicket(userStory) {
+
+    unassigned = false
+    let tickets = Object.keys(simulation['Projects']['Proposed Project']['backlog'][userStory]);
+
+    tickets.forEach((ticket) => {
+
+        if (simulation['Projects']['Proposed Project']['backlog'][userStory][ticket]['isAssigned'] == false) {
+            unassigned = true;
+        }
+    });
+    return unassigned;
+
+}
+
+function getUnassignedBackLogTickets(userStory) {
+    let unassigned = new Array();
+    let tickets = Object.keys(simulation['Projects']['Proposed Project']['backlog'][userStory]);
+    tickets.forEach((ticket) => {
+
+        if (simulation['Projects']['Proposed Project']['backlog'][userStory][ticket]['isAssigned'] == false) {
+            unassigned.push(ticket);
+        }
+    })
+    return unassigned;
+}
+
+unassignSprintTicket('User Story 1', 'Ticket 2');
+
+function unassignSprintTicket(userStory, ticket) {
+
+    let employees = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    employees.forEach((employee) => {
+        let employeeTickets = Object.keys(simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory]);
+        employeeTickets.forEach((employeeTicket) => {
+            if (ticket === employeeTicket) {
+                //continue on this
+                console.log(simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket])
+            }
+        })
+    });
+
+
+}
+
+
+
+
 
 
 

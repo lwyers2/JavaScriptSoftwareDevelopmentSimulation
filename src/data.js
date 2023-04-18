@@ -1728,7 +1728,12 @@ let simulation = ({
                 "team member": "default"
             },
             "monthlyHostingFees": 1500,
-            "inSprint": false
+            "inSprint": false,
+            "backlog": {
+                "userStory": {
+
+                }
+            }
         }
     },
     "Project Groups": {
