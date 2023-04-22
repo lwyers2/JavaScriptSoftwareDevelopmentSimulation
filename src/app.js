@@ -949,7 +949,7 @@ function sprintThree(userStory) {
     //console.log("Stand Up");
     //console.log("Project Manager Review Sprint Plan");
     //console.log("Design and Implementation");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -962,7 +962,7 @@ function sprintFour(userStory) {
     //console.log("Discussions with client");
     sprintDiscussionWithClient(userStory);
     //want to do some update could change the amount of proposed hours.
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 
@@ -973,7 +973,7 @@ function sprintFive(userStory) {
     //console.log("Project Manager prepares next sprint");
     //console.log("Design and Implementation");
     //console.log("Shaping Stories for Next Sprint");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -983,7 +983,7 @@ function sprintSix(userStory) {
     //console.log("Project Manager prepares next sprint");
     //console.log("Design and Implementation");
     //console.log("Design - Shaping Stories for Next Sprint");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -993,7 +993,7 @@ function sprintSeven(userStory) {
     //console.log("Stand Up");
     //console.log("Project Manager - What is likely to be available to demo");
     //console.log("Design - Finishing touches for current sprint");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1002,7 +1002,7 @@ function sprintEight(userStory) {
     //console.log("Standup Feature Complete");
     //console.log("Project Manager prepares Demo");
     //console.log("Design - Finishing touches for current sprint");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1012,7 +1012,7 @@ function sprintNine(userStory) {
     //console.log("Stand Up");
     //console.log("Project Manager prepares next sprint");
     //console.log("Design - Shaping Stories for Next Sprint");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1021,7 +1021,7 @@ function sprintTen(userStory) {
     //console.log("Stand Up Retro");
     //console.log("Project Manager Prepares Next Sprint");
     //console.log("Design - Shaping Stories for Next Sprint");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1050,7 +1050,7 @@ function sprintEleven(userStoryTitle, userStoryDescription) {
 function sprintTwelve(userStory) {
     //console.log("Stand Up");
     //console.log("Project Manager Sprint Planning");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1058,7 +1058,7 @@ function sprintTwelve(userStory) {
 function sprintThirteen(userStory) {
     //console.log("Stand Up");
     //console.log("Project Manager Sprint Planning");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1068,7 +1068,7 @@ function sprintFourteen(userStory) {
     //console.log("Employees Sprint Review");
     //console.log("Project Manager Sprint Review");
     //console.log("Design Sprint Review");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1077,7 +1077,7 @@ function sprintFourteen(userStory) {
 function sprintFifteen(userStory) {
     //console.log("Stand Up");
     //console.log("Project Manager - Prepare Next Sprint");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1085,7 +1085,7 @@ function sprintFifteen(userStory) {
 function sprintSixteen(userStory) {
     //console.log("Stand Up");
     //console.log("Project Manager - Prepare Next Sprint");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1093,7 +1093,7 @@ function sprintSixteen(userStory) {
 function sprintSeventeen(userStory) {
     //console.log("Stand Up");
     //console.log("Project Manager - Understand what is likely to be available to demo");
-    workOnSprintTicket(userStory);
+    workOnSprintTicket();
     progressReport(userStory);
     addDays(1);
 }
@@ -1148,11 +1148,17 @@ function createTicket(userStory, ticketTitle, description, proposedWorkInHours, 
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['proposedWorkInHours'] = proposedWorkInHours;
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['actualWorkInHours'] = 0;
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['isComplete'] = false;
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['totalQuality'] = 0;
     //create empty container for technologies to be added seperately
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['technologies'] = {};
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['isAssigned'] = false;
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['priority'] = priority;
     simulation['User Stories'][userStory]['tickets'][ticketTitle]['designerRequired'] = designerRequired;
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['proposedTestingTime'] = 0;
+    //not complete, in progress, complete
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['inTesting'] = false;
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['testingComplete'] = false;
+    simulation['User Stories'][userStory]['tickets'][ticketTitle]['actualTestingTime'] = 0;
 
 }
 
@@ -1228,6 +1234,18 @@ function assignSprintTicketWorkers(userStory, ticketName) {
         }
         simulation['User Stories'][userStory]['tickets'][ticketName]['isAssigned'] = true;
     }
+
+
+
+    let membersNeeded = developersNeeded;
+    if (designerNeeded) {
+        membersNeeded += 1;
+    }
+
+    let qualAvg = generateTicketQualityAverage(userStory, ticketName, membersNeeded)
+
+    simulation['User Stories'][userStory]['tickets'][ticketName]['avgQual'] = qualAvg;
+    generateTestingTime(userStory, ticketName);
 }
 
 //get all team members from a specific team
@@ -1313,34 +1331,56 @@ function generateTechnology(userStory, ticketName) {
 function workOnSprintTicket() {
 
     let team = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    //only do this for developers and designers
     team.forEach((member) => {
-        let userStories = Object.keys(simulation['Projects']['Proposed Project']['team'][member]['ongoingTickets']['tickets']);
-        userStories.forEach((userStory) => {
-            let tickets = Object.keys(simulation['Projects']['Proposed Project']['team'][member]['ongoingTickets']['tickets'][userStory])
-            tickets.forEach((ticket) => {
-                if (!isTicketComplete(member, userStory, ticket)) {
-                    let hoursPerMember = simulation['Projects']['Proposed Project']['team'][member]['ongoingTickets']['tickets'][userStory][ticket]['hoursPerMember'];
-                    for (let i = 0; i < hoursPerMember; i++) {
-                        if (!isTicketComplete(member, userStory, ticket)) {
-                            updateTicketHours(member, userStory, ticket);
-                            updateTicketCompletion(member, userStory, ticket);
-                        } else {
-                            //unassignSprintTicket(userStory, ticket);
-                            if (areBacklogTickets(userStory)) {
-                                let backlogTickets = getUnassignedBackLogTickets(userStory);
-                                for (let i = 0; i < backlogTickets.length; i++) {
-                                    assignSprintTicketWorkers(userStory, backlogTickets[i]);
+        if (simulation['Projects']['Proposed Project']['team']['role'] !== 'Testing') {
+            let userStories = Object.keys(simulation['Projects']['Proposed Project']['team'][member]['ongoingTickets']['tickets']);
+            userStories.forEach((userStory) => {
+                let tickets = Object.keys(simulation['Projects']['Proposed Project']['team'][member]['ongoingTickets']['tickets'][userStory])
+                tickets.forEach((ticket) => {
+                    if (!isTicketComplete(member, userStory, ticket)) {
+                        let hoursPerMember = simulation['Projects']['Proposed Project']['team'][member]['ongoingTickets']['tickets'][userStory][ticket]['hoursPerMember'];
+                        for (let i = 0; i < hoursPerMember; i++) {
+                            if (!isTicketComplete(member, userStory, ticket)) {
+                                updateTicketHours(member, userStory, ticket);
+                                updateTicketCompletion(member, userStory, ticket);
+                            } else {
+                                if (areBacklogTickets(userStory)) {
+                                    let backlogTickets = getUnassignedBackLogTickets(userStory);
+                                    for (let i = 0; i < backlogTickets.length; i++) {
+                                        assignSprintTicketWorkers(userStory, backlogTickets[i]);
+                                    }
                                 }
-
                             }
                         }
-
-
                     }
+                })
+
+                if (areCompleteTicketsAvailableForTesting(userStory)) {
+                    assignSprintTicketsForTesting(userStory);
                 }
             })
-        })
+        }
     });
+
+
+    //only do this for developers and designers
+    team.forEach((member) => {
+
+        if (simulation['Projects']['Proposed Project']['team']['role'] === 'Testing') {
+            let userStories = Object.keys(simulation['Projects']['Proposed Project']['team'][member]['ongoingTickets']['tickets']);
+            userStories.forEach((userStory) => {
+
+                if (areTestingTicketsAssinged(userStories)) {
+                    testSprintTicket(userStory)
+                }
+
+            });
+        }
+
+
+    });
+
 }
 
 function progressReport(userStory) {
@@ -1351,7 +1391,7 @@ function progressReport(userStory) {
 
         if (!simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']) {
 
-            //         //console.log(`${ticket}: Proposed Hours to completion: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']} Current hours worked: ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
+            //console.log(`${ticket}: Proposed Hours to completion: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']} Current hours worked: ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
         } else {
             //console.log(`${ticket}: took ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
         }
@@ -1833,8 +1873,12 @@ get the employee, and assign that ticket to the employee
 function assignTicketToEmployee(employee, userStory, ticket, ticketName) {
     // get the name of the user Story (I have generate ticket and user Story names generically so these need to be differentiated)
     let userStoryName = simulation['User Stories'][userStory]['name'];
+    //update tickets qualityTotal
+    let quality = simulation['Projects']['Proposed Project']['team'][employee]['workQuality']
+    simulation['User Stories'][userStoryName]['tickets'][ticketName]['totalQuality'] += quality
     //add the ticket to that user's inventory of tickets
     simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStoryName][ticketName] = ticket;
+
 }
 
 /**
@@ -1962,6 +2006,7 @@ function updateTicketCompletion(employee, userStory, ticket) {
 
     if (actualHours >= proposedHours) {
         simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket]['isComplete'] = true;
+        unassignSprintTicket(userStory, ticket);
 
     }
 }
@@ -2008,7 +2053,7 @@ function getUnassignedBackLogTickets(userStory) {
     return unassigned;
 }
 
-unassignSprintTicket('User Story 1', 'Ticket 2');
+
 
 function unassignSprintTicket(userStory, ticket) {
 
@@ -2018,7 +2063,9 @@ function unassignSprintTicket(userStory, ticket) {
         employeeTickets.forEach((employeeTicket) => {
             if (ticket === employeeTicket) {
                 //continue on this
-                console.log(simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket])
+                simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket]['isAssigned'] = false
+                let hoursPerMember = simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStory][ticket]['hoursPerMember'];
+                removeSprintTicketHoursFromEmployee(employee, hoursPerMember)
             }
         })
     });
@@ -2027,6 +2074,134 @@ function unassignSprintTicket(userStory, ticket) {
 }
 
 
+function removeSprintTicketHoursFromEmployee(employee, hours) {
+
+    simulation['Projects']['Proposed Project']['team'][employee]['assignedWorkHours'] -= hours
+
+}
+
+function generateTicketQualityAverage(userStory, ticketName, assignedAmount) {
+
+    let qualAvg = simulation['User Stories'][userStory]['tickets'][ticketName]['totalQuality'];
+
+    qualAvg /= assignedAmount;
+
+    qualAvg = parseFloat(qualAvg.toFixed(2))
+
+    return qualAvg;
+
+
+
+}
+
+function generateTestingTime(userStory, ticketName) {
+
+    //25% - 35 % as testing as conducted by developers
+    let testingTime = generateRandomIntegerInRange(25, 35);
+    testingTime /= 100;
+    let actualWorkInHours = simulation['User Stories'][userStory]['tickets'][ticketName]['proposedWorkInHours'];
+    simulation['User Stories'][userStory]['tickets'][ticketName]['proposedTestingTime'] = actualWorkInHours * testingTime;
+}
+
+function testSprintTicket(userStory, ticketName) {
+
+    let qualityThreshold = generateRandomIntegerInRange(0, 25);
+    qualityThreshold /= 10;
+    console.log(qualityThreshold);
+
+}
+
+function assignSprintTicketsForTesting(userStory) {
+
+    let team = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    let testers = new Array();
+
+    team.forEach((employee) => {
+        if (simulation['Projects']['Proposed Project']['team'][employee]['role'] === 'Testing') {
+            let testingReadyTickets = getTestingReadyTickets(userStory);
+            for (let i = 0; i < testingReadyTickets.length; i++) {
+                let hoursPerTester = simulation['User Stories'][userStory]['tickets'][testingReadyTickets[i]]['proposedTestingTime'];
+                // days per week
+                hoursPerTester /= 5;
+                //amount of tester to work on each ticket
+                hoursPerTester /= 2;
+
+                hoursPerTester = Math.ceil(hoursPerTester.toFixed(2));
+                let assignedWorkHours = simulation['Projects']['Proposed Project']['team'][employee]['assignedWorkHours']
+                let availableWorkHours = simulation['Projects']['Proposed Project']['team'][employee]['dailyHours']
+                if ((assignedWorkHours + hoursPerTester) <= availableWorkHours) {
+                    assignSprintTicketToTester(userStory, testingReadyTickets[i], employee);
+                }
+
+
+            }
+        }
+    })
+}
+
+function assignSprintTicketToTester(userStory, ticket, employee) {
+
+    let userStoryName = simulation['User Stories'][userStory]['name'];
+    //add the ticket to that user's inventory of tickets
+    simulation['Projects']['Proposed Project']['team'][employee]['ongoingTickets']['tickets'][userStoryName][ticket] = simulation['User Stories'][userStory]['tickets'][ticket];
+    simulation['User Stories'][userStoryName]['tickets'][ticket]['inTesting'] = true;
+
+
+
+
+}
+
+function areCompleteTicketsAvailableForTesting(userStory) {
+
+    let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+    let available = false;
+    tickets.forEach((ticket) => {
+        let isComplete = simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']
+        let inTesting = simulation['User Stories'][userStory]['tickets'][ticket]['inTesting'];
+        let testingComplete = simulation['User Stories'][userStory]['tickets'][ticket]['testingComplete'];
+        if ((!isComplete) && (!inTesting) && (!testingComplete)) {
+
+            available = true;
+        }
+    })
+    return available;
+}
+
+
+function getTestingReadyTickets(userStory) {
+    let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+    let available = new Array();
+    tickets.forEach((ticket) => {
+        let isComplete = simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']
+        let inTesting = simulation['User Stories'][userStory]['tickets'][ticket]['inTesting'];
+        let testingComplete = simulation['User Stories'][userStory]['tickets'][ticket]['testingComplete'];
+        if ((isComplete) && (!inTesting) && (!testingComplete)) {
+
+            available.push(ticket);
+        }
+    })
+    return available;
+
+}
+
+function areTestingTicketsAssinged(userStory) {
+    let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+    let assigned = false;
+    tickets.forEach((ticket) => {
+        let isComplete = simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']
+        let inTesting = simulation['User Stories'][userStory]['tickets'][ticket]['inTesting'];
+        let testingComplete = simulation['User Stories'][userStory]['tickets'][ticket]['testingComplete'];
+        if ((isComplete) && (inTesting) && (!testingComplete)) {
+
+            assigned = true;
+        }
+    })
+    return assigned;
+}
+
+function testSprintTicket(userStory, ticket, employee) {
+
+}
 
 
 
