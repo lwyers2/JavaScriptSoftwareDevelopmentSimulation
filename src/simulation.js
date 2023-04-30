@@ -660,6 +660,7 @@ function sprint(userStory1, userStoryDescription1, userStory2, userStoryDescript
 
 function sprintOne(userStoryTitle, userStoryDescription) {
 
+    addIncompleteTicketsToBacklog(userStoryTitle);
     simulation['Projects']['Proposed Project']['inSprint'] = true;
     updateSprintTeamAvailableHours();
     //console.log("Project manager discuesses Sprint Planning with development and design team.");
@@ -773,7 +774,6 @@ function sprintTen(userStory) {
 
 function sprintEleven(userStoryTitle, userStoryDescription) {
     // adding this in here, but there may have to be something to see if tickets still ongoing
-
     updateSprintTeamAvailableHours();
     //console.log("Project manager discuesses Sprint Planning with development and design team.");
     //console.log(`User Story: ${userStoryTitle} added to Sprint Plan`);
@@ -783,6 +783,7 @@ function sprintEleven(userStoryTitle, userStoryDescription) {
     //console.log("Braking stories into smaller tasks");
     //designer needed true or false
     //creating random tickets and assigning team members. Assign team members needs a better algorithm for deciding who get assigned what ticket
+
     breakingStoriesIntoTickets(userStoryTitle, generateRandomIntegerInRange(2, 5));
     //console.log("******************");
     //console.log("User Stories");
@@ -846,6 +847,7 @@ function sprintSeventeen(userStory) {
 function sprintEighteen() {
     //console.log("Stand Up Feature Complete");
     //console.log("Project Manager - prepare demo");
+    workOnSprintTicket()
     addDays(1);
 }
 
@@ -855,6 +857,7 @@ function sprintNineteen() {
     //console.log("Project Team Sprint Review");
     //console.log("Project Manager Sprint Review");
     //console.log("Design Sprint Review");
+    workOnSprintTicket();
     addDays(1);
 }
 
@@ -862,10 +865,39 @@ function sprintTwenty() {
     //console.log("Stand Up Retro");
     //console.log("Project Manager Prepares Next Sprint");
     addDays(1);
+    workOnSprintTicket();
     simulation['Projects']['Proposed Project']['inSprint'] = false;
+
 }
 
 
+function developPrototype() {
+    //console.log("A prototype has been developed");
+}
+
+function testPrototype() {
+    //console.log("Testing has commenced on the most recent prototype");
+}
+
+function customerApproval() {
+    //console.log("The customer has approved the last action");
+}
+
+function developFinalPrototype() {
+    //console.log("A final prototype has been developed");
+}
+
+function testFinalPrototype() {
+    //console.log("Testing of the final prototype has been created");
+}
+
+function productChanges() {
+    //console.log("Product Changes");
+}
+
+function productCreated() {
+    //console.log("Final Product Created");
+}
 
 
 
@@ -886,6 +918,27 @@ function createUserStory(title, description, developersNeeded, designersNeeded, 
     simulation['Projects']['Proposed Project']['backlog'][title] = {}
 
 }
+
+
+
+function addIncompleteTicketsToBacklog(newUserStory) {
+    let userStories = Object.keys(simulation['User Stories']);
+    userStories.forEach((userStory) => {
+        if (newUserStory !== simulation['User Stories'][userStory]['name']) {
+            let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+            tickets.forEach((ticket) => {
+                let isComplete = simulation['User Stories'][userStory]['tickets'][ticket]['isComplete'];
+                if (!isComplete) {
+                    addTicketToBackLog(userStory, ticket);
+                }
+            })
+        }
+    })
+}
+
+
+
+
 
 function createTicket(userStory, ticketTitle, description, proposedWorkInHours, priority, designerRequired) {
     simulation['User Stories'][userStory]['tickets'][ticketTitle] = {};
@@ -916,11 +969,11 @@ function determineTeamMemberAmountForTicket(proposedWorkInHours, designerRequire
     if (designerRequired == 1) {
         needed = -1;
     }
-    if (proposedWorkInHours <= 35) {
+    if (proposedWorkInHours <= 25) {
         needed += 2
-    } else if (proposedWorkInHours >= 35) {
+    } else if (proposedWorkInHours >= 25) {
         needed += 3
-    } else if (proposedWorkInHours >= 45) {
+    } else if (proposedWorkInHours >= 35) {
         needed += 4
     }
 
@@ -1039,7 +1092,7 @@ function breakingStoriesIntoTickets(userStory, ticketsNeeded) {
         //random generate technologies to worked on
 
         //i plus 1 for readability
-        createTicket(userStory, 'Ticket ' + (i + 1), 'Description for ticket ' + (i + 1), generateRandomIntegerInRange(35, 50), generateRandomIntegerInRange(1, 5), generateRandomIntegerInRange(0, 1));
+        createTicket(userStory, 'Ticket ' + (i + 1), 'Description for ticket ' + (i + 1), generateRandomIntegerInRange(25, 30), generateRandomIntegerInRange(1, 5), generateRandomIntegerInRange(0, 1));
         generateTechnology(userStory, 'Ticket ' + (i + 1));
         //assign team members to ticket
         assignSprintTicketWorkers(userStory, 'Ticket ' + (i + 1));
@@ -1154,9 +1207,9 @@ function progressReport(userStory) {
 
         if (!simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']) {
 
-            //console.log(`${ticket}: Proposed Hours to completion: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']} Current hours worked: ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
+            // console.log(`${ticket}: Proposed Hours to completion: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']} Current hours worked: ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
         } else {
-            //console.log(`${ticket}: took ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
+            // console.log(`${ticket}: took ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
         }
     });
 }
@@ -1167,14 +1220,33 @@ function sprintDiscussionWithClient(userStory) {
     tickets.forEach((ticket) => {
 
         //create a random num generate - after discussions with client they may want to change the work which will either increase or decrease amount of time
-        let rand = generateRandomIntegerInRange(-5, 15);
-        simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours'] += rand;
-        //console.log(`Updated hours for ${ticket}: ${rand}. Current Proposed work hours: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']}`);
+        let rework = generateClientDiscussionRework(userStory, ticket);
 
+        simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours'] += rework;
     });
 }
 
+function generateClientDiscussionRework(userStory, ticket) {
 
+    let rework = 2;
+    let avgQual = simulation['User Stories'][userStory]['tickets'][ticket]['avgQual'];
+    let passRate = generateRandomIntegerInRange(50, 200);
+    passRate /= 100;
+
+
+    if (avgQual < passRate) {
+
+        rework = rework + ((passRate - avgQual) * rework)
+    } else {
+
+        rework = generateRandomIntegerInRange(-10, 2);
+    }
+
+
+    rework = parseFloat(rework.toFixed(2));
+
+    return rework;
+}
 
 /*
 adds a number of days to date
@@ -1188,33 +1260,6 @@ function addDays(days) {
 
 //console.log(simulation);
 
-// function developPrototype() {
-//     //console.log("A prototype has been developed");
-// }
-
-// function testPrototype() {
-//     //console.log("Testing has commenced on the most recent prototype");
-// }
-
-// function customerApproval() {
-//     //console.log("The customer has approved the last action");
-// }
-
-// function developFinalPrototype() {
-//     //console.log("A final prototype has been developed");
-// }
-
-// function testFinalPrototype() {
-//     //console.log("Testing of the final prototype has been created");
-// }
-
-// function productChanges() {
-//     //console.log("Product Changes");
-// }
-
-// function productCreated() {
-//     //console.log("Final Product Created");
-// }
 
 function softwareSubscriptions() {
 
@@ -1989,7 +2034,7 @@ function removeTestingTicket(userStory, ticket, employee) {
 
 function generateRework(userStory, ticket) {
 
-    let rework = 5;
+    let rework = 2;
     let avgQual = simulation['User Stories'][userStory]['tickets'][ticket]['avgQual'];
     let passRate = generateRandomIntegerInRange(50, 200);
     passRate /= 100;
