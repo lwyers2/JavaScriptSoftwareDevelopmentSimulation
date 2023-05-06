@@ -8,6 +8,26 @@ function generateRandomIntegerInRange(min, max) {
 }
 
 
+
+/*
+returns percentage off
+*/
+function getPercentOfTotal(percentage, total, type) {
+
+    percentage /= 100;
+
+    total = (percentage * total);
+
+    if (type === "int") {
+        total = parseInt(total);
+    } else if (type === "float") {
+        total = parseFloat(total.toFixed(2));
+    }
+    return total;
+}
+
+
+
 const EFFECIENCY_DEDUCTION = .1;
 const EXPIRENCE_MULTIPLYER = 20;
 const QUALITY_DEDUCTION = .3;
@@ -870,33 +890,225 @@ function sprintTwenty() {
 
 }
 
+function workOnBacklog() {
 
-function developPrototype() {
-    //console.log("A prototype has been developed");
+    do {
+        workOnSprintTicket();
+    }
+
+    while (areIncompleteTickets())
 }
 
-function testPrototype() {
-    //console.log("Testing has commenced on the most recent prototype");
+function areIncompleteTickets() {
+    let areIncomplete = false;
+    let userStories = Object.keys(simulation['User Stories']);
+    userStories.forEach((userStory) => {
+        let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+        tickets.forEach((ticket) => {
+            let isComplete = simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']
+            if (!isComplete) {
+                areIncomplete = true;
+            }
+        })
+    })
+    return areIncomplete;
 }
 
-function customerApproval() {
-    //console.log("The customer has approved the last action");
+function developPrototype(prototype, isFinal) {
+    createPrototype(prototype);
+
+    if (isFinal) {
+        let userStories = Object.keys(simulation['User Stories']);
+        userStories.forEach((userStory) => {
+            assignUserStoryToProtoType(prototype, userStory);
+        });
+    } else {
+
+
+        let userStories = Object.keys(simulation['User Stories']);
+        userStories.forEach((userStory) => {
+            let assigned = simulation['User Stories'][userStory]['assignedPrototype'];
+            if (!assigned) {
+                assignUserStoryToProtoType(prototype, userStory);
+            }
+        });
+
+    }
+
+
+    generateAvgQualityOfPrototype(prototype);
+
 }
 
-function developFinalPrototype() {
-    //console.log("A final prototype has been developed");
+function createPrototype(prototype) {
+
+    simulation['Prototypes'][prototype] = {};
+    simulation['Prototypes'][prototype]['userStories'] = {};
+    simulation['Prototypes'][prototype]['proposedWorkHours'] = generateRandomIntegerInRange(40, 60);
+    simulation['Prototypes'][prototype]['actualWorkHours'] = 0;
+    simulation['Prototypes'][prototype]['isComplete'] = 0;
+    simulation['Prototypes'][prototype]['reworkHours'] = 0;
+    simulation['Prototypes'][prototype]['reworkGiven'] = false;
+    simulation['Prototypes'][prototype]['testingComplete'] = false;
+    simulation['Prototypes'][prototype]['proposedTestingHours'] = 0;
+    simulation['Prototypes'][prototype]['actualTestingHours'] = 0;
+    simulation['Prototypes'][prototype]['avgQual'] = 0;
+    assignTeamToPrototype(prototype);
+
+
 }
 
-function testFinalPrototype() {
-    //console.log("Testing of the final prototype has been created");
+function generateAvgQualityOfPrototype(prototype) {
+
+    let ticketCount = 0;
+    let qualTotal = 0;
+    let userStories = Object.keys(simulation['Prototypes'][prototype]['userStories']);
+    userStories.forEach((userStory) => {
+        let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+        tickets.forEach((ticket) => {
+            ticketCount++;
+            qualTotal += simulation['User Stories'][userStory]['tickets'][ticket]['avgQual'];
+        })
+    })
+
+
+    qualTotal /= ticketCount;
+
+    qualTotal = parseFloat(qualTotal.toFixed(2));
+
+    simulation['Prototypes'][prototype]['avgQual'] = qualTotal;
+
+
+
+
 }
 
-function productChanges() {
-    //console.log("Product Changes");
+function workOnPrototype(prototype) {
+    let count = 0;
+    do {
+        count++;
+        let employees = Object.keys(simulation['Projects']['Proposed Project']['team']);
+        employees.forEach((employee) => {
+
+            let role = simulation['Projects']['Proposed Project']['team'][employee]['role'];
+            if (role === 'Junior Developer' || role === 'Intermediate Developer' || role === 'Senior Developer') {
+                for (let i = 0; i < 5; i++) {
+                    if (simulation['Prototypes'][prototype]['actualWorkHours'] < simulation['Prototypes'][prototype]['proposedWorkHours']) {
+                        simulation['Prototypes'][prototype]['actualWorkHours'] += simulation['Projects']['Proposed Project']['team'][employee]['workEffeciency'];
+                        simulation['Prototypes'][prototype]['actualWorkHours'] = parseFloat(simulation['Prototypes'][prototype]['actualWorkHours'].toFixed(2));
+                    }
+
+
+                }
+                if (simulation['Prototypes'][prototype]['actualWorkHours'] >= simulation['Prototypes'][prototype]['proposedWorkHours']) {
+                    simulation['Prototypes'][prototype]['isComplete'] = true;
+                    sendPrototypeForTesting(prototype);
+                }
+            }
+        });
+
+        addDays(1);
+
+    }
+
+    while (simulation['Prototypes'][prototype]['isComplete'] == false);
 }
 
-function productCreated() {
-    //console.log("Final Product Created");
+
+function sendPrototypeForTesting(prototype) {
+
+    generatePrototypeTestingHours(prototype);
+
+
+    do {
+
+        let employees = Object.keys(simulation['Projects']['Proposed Project']['team']);
+        employees.forEach((employee) => {
+
+            let role = simulation['Projects']['Proposed Project']['team'][employee]['role'];
+            if (role === 'Testing') {
+                for (let i = 0; i < 5; i++) {
+                    if (simulation['Prototypes'][prototype]['actualTestingHours'] < simulation['Prototypes'][prototype]['proposedTestingHours']) {
+                        simulation['Prototypes'][prototype]['actualTestingHours'] += parseFloat(simulation['Projects']['Proposed Project']['team'][employee]['workEffeciency'].toFixed(2));
+                    }
+
+
+                }
+                if (simulation['Prototypes'][prototype]['actualTestingHours'] >= simulation['Prototypes'][prototype]['proposedTestingHours']) {
+                    simulation['Prototypes'][prototype]['testingComplete'] = true;
+
+                }
+            }
+        });
+
+        addDays(1);
+
+    }
+
+    while (simulation['Prototypes'][prototype]['testingComplete'] == false);
+
+    simulation['Prototypes'][prototype]['actualTestingHours'] = parseFloat(simulation['Prototypes'][prototype]['actualTestingHours'].toFixed(2));
+
+}
+
+
+function generatePrototypeTestingHours(prototype) {
+
+    let testingTime = generateRandomIntegerInRange(10, 15);
+    testingTime /= 100;
+    let actualWorkInHours = simulation['Prototypes'][prototype]['actualWorkHours'];
+    if (!simulation['Prototypes'][prototype]['reworkGiven']) {
+        testingTime += parseInt((actualWorkInHours * testingTime) + 10)
+    } else {
+        testingTime += parseInt((actualWorkInHours * testingTime) + 5)
+
+    }
+    simulation['Prototypes'][prototype]['proposedTestingHours'] = testingTime;
+}
+
+function assignTeamToPrototype() {
+
+    let employees = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    employees.forEach((employee) => {
+
+        let role = simulation['Projects']['Proposed Project']['team'][employee]['role'];
+        if (role === 'Junior Developer' || role === 'Intermediate Developer' || role === 'Senior Developer') {
+            setAssignedWorkHours('Development', employee, 5);
+        }
+
+    });
+
+}
+
+
+
+
+function assignUserStoryToProtoType(prototype, userStory) {
+
+    simulation['Prototypes'][prototype]['userStories'][userStory] = simulation['User Stories'][userStory];
+    simulation['User Stories'][userStory]['assignedPrototype'] = true;
+
+
+}
+
+function presentPrototypeToCustomer(prototype) {
+
+    let avgQual = simulation['Prototypes'][prototype]['avgQual'];
+
+
+    let reworkAmount = (2 - avgQual) * (generateRandomIntegerInRange(1, 20) / 10);
+    reworkAmount *= 20;
+    reworkAmount = parseInt(reworkAmount);
+    simulation['Prototypes'][prototype]['reworkHours'] = reworkAmount;
+    simulation['Prototypes'][prototype]['reworkGiven'] = true;
+    simulation['Prototypes'][prototype]['proposedWorkHours'] += reworkAmount;
+    simulation['Prototypes'][prototype]['isComplete'] = false;
+    simulation['Prototypes'][prototype]['testingComplete'] = false;
+    workOnPrototype(prototype);
+}
+
+function launchProduct() {
+    console.log("Final Product Created");
 }
 
 
@@ -916,6 +1128,7 @@ function createUserStory(title, description, developersNeeded, designersNeeded, 
     //create empty container for tickets to be added to later
     simulation['User Stories'][title]['tickets'] = {};
     simulation['Projects']['Proposed Project']['backlog'][title] = {}
+    simulation['User Stories'][title]['assignedPrototype'] = false;
 
 }
 
@@ -1180,6 +1393,7 @@ function workOnSprintTicket() {
 
                         for (let i = 0; i < hoursPerMember; i++) {
                             if (testingSprintTicketComplete(userStory, ticket)) {
+                                simulation['User Stories'][userStory]['tickets'][ticket]['testingComplete'] = true;
                                 removeTestingTicket(userStory, ticket, employee);
                                 generateRework(userStory, ticket);
                             } else {
@@ -1254,7 +1468,7 @@ adds a number of days to date
 
 function addDays(days) {
 
-    simulation.date.setDate(simulation.date.getDate() + days);
+    simulation.Date.setDate(simulation.Date.getDate() + days);
 
 }
 
@@ -1270,6 +1484,44 @@ function softwareSubscriptions() {
         simulation['Company Account']['companyAccount'] += subscriberIncome;
     });
 }
+
+/*
+software will have people uploaded content onto a site that is priced
+*/
+function monthlyWebsiteInvoices() {
+
+    let webSiteUploads = simulation['Projects']['Inhouse Software']['software 1']['websiteUploadCosts'];
+    let customers = simulation['Projects']['Inhouse Software']['software 1']['customers'];
+
+    let uploads = generateRandomIntegerInRange(30, 85);
+    let boost1 = generateRandomIntegerInRange(1, 5);
+    let boost2 = generateRandomIntegerInRange(1, 5);
+    let boost3 = generateRandomIntegerInRange(1, 3);
+    let boost4 = generateRandomIntegerInRange(1, 3);
+
+    //15 percent of customers won't always upload
+    let customerUploads = getPercentOfTotal(85, customers, "int");
+    customerUploads *= uploads;
+    //35 percent of customers will get a boost1
+    boost1 *= getPercentOfTotal(35, customers, "int");
+    //10 percent of customers will get a boost 2
+    boost2 *= getPercentOfTotal(10, customers, "int");
+    //5 percent of customers will get a boost 3 
+    boost3 *= getPercentOfTotal(5, customers, "int");
+
+    let totalIncome = 0;
+
+    totalIncome += simulation['Projects']['Inhouse Software']['software 1']['websiteUploadCosts']['upload'] * customerUploads;
+    totalIncome += simulation['Projects']['Inhouse Software']['software 1']['websiteUploadCosts']['boost1'] * boost1;
+    totalIncome += simulation['Projects']['Inhouse Software']['software 1']['websiteUploadCosts']['boost2'] * boost2;
+    totalIncome += simulation['Projects']['Inhouse Software']['software 1']['websiteUploadCosts']['boost3'] * boost3;
+    totalIncome += simulation['Projects']['Inhouse Software']['software 1']['websiteUploadCosts']['boost4'] * boost4;
+
+    simulation['Company Account']['companyAccount'] += totalIncome;
+
+
+}
+
 
 function yearlyDevelopmentIncome() {
 
@@ -1592,16 +1844,17 @@ function getEmployeeDayQualityWorkRate(team, employee) {
     dayWorkRate += simulation['Employees'][team][employee]['workQuality'];
     dayWorkRate = parseFloat(dayWorkRate.toFixed(2));
     //console.log(dayWorkRate);
-}
 
-let teams = Object.keys(simulation['Employees']);
-teams.forEach((team) => {
-    let employees = Object.keys(simulation['Employees'][team]);
-    employees.forEach((employee) => {
-        getEmployeeDayEfficiencyWorkRate(team, employee);
-        getEmployeeDayQualityWorkRate(team, employee);
+
+    let teams = Object.keys(simulation['Employees']);
+    teams.forEach((team) => {
+        let employees = Object.keys(simulation['Employees'][team]);
+        employees.forEach((employee) => {
+            getEmployeeDayEfficiencyWorkRate(team, employee);
+            getEmployeeDayQualityWorkRate(team, employee);
+        })
     })
-})
+}
 
 function getEmployeeDayEfficiencyWorkRate(team, employee) {
 
@@ -2051,7 +2304,6 @@ function generateRework(userStory, ticket) {
 
     simulation['User Stories'][userStory]['tickets'][ticket]['reworkHours'] = rework;
     simulation['User Stories'][userStory]['tickets'][ticket]['isAssigned'] = false;
-    simulation['User Stories'][userStory]['tickets'][ticket]['testingComplete'] = false;
     simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours'] += rework;
     simulation['User Stories'][userStory]['tickets'][ticket]['isComplete'] = false;
     simulation['User Stories'][userStory]['tickets'][ticket]['reworkGiven'] = true;

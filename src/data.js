@@ -1,6 +1,6 @@
 
 let simulation = ({
-    "date": new Date(),
+    "Date": new Date(),
     "Company Account": {
         "companyAccount": 9000000,
     },
@@ -121,7 +121,7 @@ let simulation = ({
         }
     },
     "Development Work": {
-        "costPerHour": 250
+        "costPerHour": 450
     },
     "Employees": {
         "Development": {
@@ -1450,23 +1450,30 @@ let simulation = ({
     "Projects": {
         "Inhouse Software": {
             "software 1": {
-                "pricePerCustomer": 900,
-                "installationCharge": 120,
-                "monthlySubscription": 60,
-                "customers": 150,
-                "subscribers": 132,
+                "pricePerCustomer": 1000,
+                "installationCharge": 350,
+                "monthlySubscription": 90,
+                "customers": 195,
+                "subscribers": 154,
                 "developmentContract": {
                     "hoursPerYear": 0,
                     "contractRenewal": 0,
                     "contractStartDate": new Date()
                 },
+                "websiteUploadCosts": {
+                    "upload": 20,
+                    "boost1": 30,
+                    "boost2": 45,
+                    "boost3": 185,
+                    "boost4": 200
+                },
             },
             "software 2": {
-                "pricePerCustomer": 750,
-                "installationCharge": 100,
-                "monthlySubscription": 65,
-                "customers": 90,
-                "subscribers": 72
+                "pricePerCustomer": 900,
+                "installationCharge": 350,
+                "monthlySubscription": 75,
+                "customers": 120,
+                "subscribers": 82
             }
         },
         "Ongoing Project 1": {
@@ -1890,5 +1897,8 @@ let simulation = ({
         "microsoft": 5
     },
     "User Stories": {
+    },
+    "Prototypes": {
+
     }
 });

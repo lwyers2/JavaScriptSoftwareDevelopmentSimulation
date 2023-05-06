@@ -71,6 +71,7 @@ function monthOne() {
     yearlyDevelopmentIncome();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 }
@@ -95,6 +96,7 @@ function monthTwo() {
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 }
@@ -108,6 +110,7 @@ function monthThree() {
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -121,6 +124,7 @@ function monthFour() {
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -135,6 +139,7 @@ function monthFive() {
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -149,6 +154,7 @@ function monthSix() {
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -157,12 +163,16 @@ function monthSix() {
 function monthSeven() {
     //console.log("Month 7");
     //console.log("******************");
-    sprint('User Story 11', 'User Story Description 11', 'User Story 12', 'User Story Description 12');
+    workOnBacklog();
+    developPrototype("PrototypeHalf", false);
+    workOnPrototype("PrototypeHalf");
+    presentPrototypeToCustomer("PrototypeHalf");
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -171,12 +181,13 @@ function monthSeven() {
 function monthEight() {
     //console.log("Month 8");
     //console.log("******************");
-    sprint('User Story 13', 'User Story Description 13', 'User Story 14', 'User Story Description 14');
+    sprint('User Story 11', 'User Story Description 11', 'User Story 12', 'User Story Description 12');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -185,12 +196,13 @@ function monthEight() {
 function monthNine() {
     //console.log("Month 9");
     //console.log("******************");
-    sprint('User Story 15', 'User Story Description 15', 'User Story 16', 'User Story Description 16');
+    sprint('User Story 13', 'User Story Description 13', 'User Story 14', 'User Story Description 14');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -199,12 +211,13 @@ function monthNine() {
 function monthTen() {
     //console.log("Month 10");
     //console.log("******************");
-    sprint('User Story 17', 'User Story Description 17', 'User Story 18', 'User Story Description 18');
+    sprint('User Story 15', 'User Story Description 15', 'User Story 16', 'User Story Description 16');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -214,12 +227,13 @@ function monthEleven() {
 
     //console.log("Month 11");
     //console.log("******************");
-    sprint('User Story 19', 'User Story Description 19', 'User Story 20', 'User Story Description 20');
+    sprint('User Story 17', 'User Story Description 17', 'User Story 18', 'User Story Description 18');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -228,12 +242,13 @@ function monthEleven() {
 function monthTwelve() {
     //console.log("Month 12");
     //console.log("******************");
-    sprint('User Story 21', 'User Story Description 21', 'User Story 22', 'User Story Description 22');
+    sprint('User Story 19', 'User Story Description 19', 'User Story 20', 'User Story Description 20');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -242,12 +257,13 @@ function monthTwelve() {
 function monthThirteen() {
     //console.log("Month 13");
     //console.log("******************");
-    sprint('User Story 23', 'User Story Description 23', 'User Story 24', 'User Story Description 24');
+    sprint('User Story 21', 'User Story Description 21', 'User Story 22', 'User Story Description 22');
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 
@@ -257,15 +273,22 @@ function monthThirteen() {
 function monthFourteen() {
     //console.log("Month 14");
     //console.log("******************");
-    sprint('User Story 25', 'User Story Description 26', 'User Story 27', 'User Story Description 27');
+    workOnBacklog();
+    developPrototype("PrototypeSecondHalf", false);
+    workOnPrototype("PrototypeSecondHalf");
+    presentPrototypeToCustomer("PrototypeSecondHalf");
+    developPrototype("FinalPrototype", true);
+    workOnPrototype("FinalPrototype");
+    presentPrototypeToCustomer("FinalPrototype");
+    launchProduct();
     deductCosts(calculateMonthlyCosts());
     monthlyInstallmentPay();
     softwareSubscriptions();
     monthlySupportContracts();
     monthlyHostingFees();
+    monthlyWebsiteInvoices();
     //console.log("Time Period Ended");
     //console.log("******************");
 }
-
 
 
