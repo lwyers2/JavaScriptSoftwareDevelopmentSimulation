@@ -1,6 +1,7 @@
 
 let simulation = ({
-    "Date": new Date(),
+    //start at the start of the financial year 1st April(starting at 3rd due to weekend)
+    "Date": new Date("04-03-2023"),
     "Company Account": {
         "companyAccount": 9000000,
     },
@@ -1900,5 +1901,10 @@ let simulation = ({
     },
     "Prototypes": {
 
-    }
+    },
+    "bankHolidays": {
+
+
+    },
+    "Project Status": 'Day 1'
 });

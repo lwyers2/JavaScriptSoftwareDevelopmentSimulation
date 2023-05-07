@@ -126,151 +126,37 @@
         </div>
     </div>
 
-    <div class="conatainer is-fullhd">
-        <div class="notification is-light">
-            <div class="columns">
-                <div class="column">
-                    <h2>Running Simulation....</h2>
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-header">
-                                <p class="card-header-title">
-                                    Project Name
-                                </p>
-                            </div>
-                            <div class="media">
-                            </div>
-                            <div class="content">
-                                <ul>
-                                    <li>Team Name: </li>
-                                    <li>Resorces: </li>
-                                    <li>Budget: </li>
-                                    <li>Profit: </li>
-                                    <li>Is Legacy: </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-header">
-                                <p class="card-header-title">
-                                    Project Name
-                                </p>
-                            </div>
-                            <div class="media">
-                            </div>
-                            <div class="content">
-                                <ul>
-                                    <li>Team Name: </li>
-                                    <li>Resorces: </li>
-                                    <li>Budget: </li>
-                                    <li>Profit: </li>
-                                    <li>Is Legacy: </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-header">
-                                <p class="card-header-title">
-                                    Project Name
-                                </p>
-                            </div>
-                            <div class="media">
-                            </div>
-                            <div class="content">
-                                <ul>
-                                    <li>Team Name: </li>
-                                    <li>Resorces: </li>
-                                    <li>Budget: </li>
-                                    <li>Profit: </li>
-                                    <li>Is Legacy: </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-header">
-                                <p class="card-header-title">
-                                    Project Name
-                                </p>
-                            </div>
-                            <div class="media">
-                            </div>
-                            <div class="content">
-                                <ul>
-                                    <li>Team Name: </li>
-                                    <li>Resorces: </li>
-                                    <li>Budget: </li>
-                                    <li>Profit: </li>
-                                    <li>Is Legacy: </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-header">
-                                <p class="card-header-title">
-                                    Project Name
-                                </p>
-                            </div>
-                            <div class="media">
-                            </div>
-                            <div class="content">
-                                <ul>
-                                    <li>Team Name: </li>
-                                    <li>Resorces: </li>
-                                    <li>Budget: </li>
-                                    <li>Profit: </li>
-                                    <li>Is Legacy: </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-header">
-                                <p class="card-header-title">
-                                    Project Name
-                                </p>
-                            </div>
-                            <div class="media">
-                            </div>
-                            <div class="content">
-                                <ul>
-                                    <li>Team Name: </li>
-                                    <li>Resorces: </li>
-                                    <li>Budget: </li>
-                                    <li>Profit: </li>
-                                    <li>Is Legacy: </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script src="data.js"></script>
-        <script src="simulation.js"></script>
-        <script src="app.js"></script>
+
+
+
+    <script>
+        // to ensure that script loads fully first
+        function loadScript(url, callback) {
+            var script = document.createElement('script');
+            script.src = url;
+
+            // Execute the callback after the script is loaded
+            script.onload = callback;
+
+            document.head.appendChild(script);
+        }
+
+        loadScript('data.js', function () {
+            // The script.js file has been fully loaded
+            loadScript('script.js', function () {
+                //
+                loadScript('calculations.js', function () {
+                    // The second.js file has been fully loaded
+                    loadScript('simulation.js', function () {
+                        // The third.js file has been fully loaded
+                        loadScript('app.js', function () {
+                            // All scripts have been loaded and executed
+                        });
+                    });
+                });
+            });
+        });
+    </script>
 
 </body>
 

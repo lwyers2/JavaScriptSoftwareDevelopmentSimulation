@@ -1,33 +1,3 @@
-// Generate a number between 0 and 10, including 10
-function generateRandomInteger(max) {
-    return Math.floor(Math.random() * max) + 1;
-}
-
-function generateRandomIntegerInRange(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
-
-/*
-returns percentage off
-*/
-function getPercentOfTotal(percentage, total, type) {
-
-    percentage /= 100;
-
-    total = (percentage * total);
-
-    if (type === "int") {
-        total = parseInt(total);
-    } else if (type === "float") {
-        total = parseFloat(total.toFixed(2));
-    }
-    return total;
-}
-
-
-
 const EFFECIENCY_DEDUCTION = .1;
 const EXPIRENCE_MULTIPLYER = 20;
 const QUALITY_DEDUCTION = .3;
@@ -41,6 +11,21 @@ const hourInMs = minInMs * 60;
 const dayInMs = hourInMs * 24;
 const weekInMs = dayInMs * 7;
 const yearInMs = dayInMs * 365;
+
+// fresh run off the simulation, we want to set all employee's hours to 7.5
+setAllDailyAvailableHours(7.5);
+// we also want to set all the days that a customer to work to 5 
+setAllDaysToWorkPerWeek(5);
+//Will calculate the whours a week based on the values we set above
+updateEmployeesHoursPerWeek();
+//set all employees assigned work hours to 0 for the simulation
+setAllAssignedWorkHours(0);
+
+console.log(simulation)
+createOngoingProjectTickets()
+assignAllOngoingProjectTickets();
+generateEmployeeScores();
+generateEmployeeWorkRate();
 
 
 
@@ -1467,8 +1452,30 @@ adds a number of days to date
 */
 
 function addDays(days) {
+    //if its a friday set it the date forward two days for the weekend. 
+    if (simulation["Date"].getDay() === 5) {
+        simulation["Date"].setDate(simulation["Date"].getDate() + 2)
+    }
+    simulation["Date"].setDate(simulation["Date"].getDate() + days);
 
-    simulation.Date.setDate(simulation.Date.getDate() + days);
+    let isWeekend = isWeekendDay(simulation["Date"]);
+    let isHoliday = isNationalHoliday(simulation["Date"]);
+
+    do {
+
+        simulation["Date"].setDate(simulation["Date"].getDate() + 1);
+        isWeekend = isWeekendDay(simulation["Date"]);
+        isHoliday = isNationalHoliday(simulation["Date"]);
+    }
+
+    while ((isWeekend) && (isHoliday))
+}
+
+function isWeekendDay(date) {
+
+    if ((date.getDay() == 6) || date.getDay() == 7) {
+        return true;
+    }
 
 }
 
@@ -2310,4 +2317,43 @@ function generateRework(userStory, ticket) {
 
 }
 
+function isNationalHoliday(date) {
 
+    let isHoliday = false;
+
+    let years = Object.keys(simulation['bankHolidays']);
+
+    years.forEach((year) => {
+
+        let yearNumber = parseInt(year)
+        let dateYear = date.getFullYear()
+
+        if (yearNumber === dateYear) {
+
+            let holidays = Object.keys(simulation['bankHolidays'][year]);
+
+            holidays.forEach((holiday) => {
+
+                let holidayDate = new Date(simulation['bankHolidays'][year][holiday]['date'])
+
+                if (date.getTime() == holidayDate.getTime()) {
+                    isHoliday = true;
+                }
+            });
+        }
+    });
+
+    return isHoliday;
+
+}
+
+
+function setAdditionalCost(costName, cost) {
+
+    simulation['Additional Costs']['Costs'][costName] = cost;
+
+}
+
+function updateProjectStatus(status) {
+    simulation['Project Status'] = status;
+}
