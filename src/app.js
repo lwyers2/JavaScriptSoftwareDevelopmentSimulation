@@ -1,38 +1,46 @@
-runSimulation(1);
+runSimulation(600);
+
+
 
 function runSimulation(days) {
 
 
+    let projectStatus = simulation['Project Status']['title'];
+
+    if (projectStatus == 'simulationComplete') {
+        days = 0;
+
+    }
 
     for (let i = 0; i < days; i++) {
 
 
-        let projectStatus = simulation['Project Status'];
+        projectStatus = simulation['Project Status']['title'];
 
-        customerContactsCompany()
-        architectureDetermination()
-        feasibilityStudy();
-        createDraftContact();
-        negotiations();
-        projectBusinessApproval();
-        projectPlan();
-        sprint('User Story 1', 'User Story Description 1', 'User Story 2', 'User Story Description 2');
 
+        if (simulation['Project Status']['complete'] == true) {
+            progressStatusTimeLine(projectStatus);
+            projectStatus = simulation['Project Status']['title'];
+        }
+
+        runEvent(projectStatus);
+        updateProjectStatusDay();
+        completeProjectStatus();
+        console.log(projectStatus);
         addDays(1);
 
+        if (projectStatus == 'simulationComplete') {
+            days = 0;
+
+        }
+
+
+
+
+
+
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

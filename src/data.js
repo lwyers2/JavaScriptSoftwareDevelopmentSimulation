@@ -1906,5 +1906,11 @@ let simulation = ({
 
 
     },
-    "Project Status": 'Day 1'
+    "Project Status": {
+        "title": "day 1",
+        "daysToComplete": 0,
+        "daysCompleted": 0,
+        "complete": true
+    },
+
 });

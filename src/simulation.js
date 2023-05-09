@@ -21,7 +21,7 @@ updateEmployeesHoursPerWeek();
 //set all employees assigned work hours to 0 for the simulation
 setAllAssignedWorkHours(0);
 
-console.log(simulation)
+
 createOngoingProjectTickets()
 assignAllOngoingProjectTickets();
 generateEmployeeScores();
@@ -48,7 +48,10 @@ May add existingArchitecture
 function customerContactsCompany() {
 
     //console.log("A new company has proposed a new project");
-    addDays(1);
+
+
+    updateProjectStatus("customerContactsCompany", 1, 0);
+
 
 }
 
@@ -72,7 +75,7 @@ function architectureDetermination() {
     stack.forEach((component) => {
         //console.log(`${component}: ${simulation['Projects']['Proposed Project']['techstack'][component]}`);
     });
-    addDays(3);
+
 }
 
 /*
@@ -84,7 +87,7 @@ Can also decide whether a project is viable depenednent on internal resources an
 */
 function feasibilityStudy() {
     calculateInitialCost();
-    addDays(4);
+
 }
 
 
@@ -178,7 +181,7 @@ function calculateInitialCost() {
 
 
 
-function createDraftContact() {
+function createDraftContract() {
 
 
     /*
@@ -199,7 +202,7 @@ function createDraftContact() {
         //console.log(component + ": " + simulation['Contract'][component])
 
     });
-    addDays(2);
+
 
 
 }
@@ -269,7 +272,7 @@ function calculateSalaries() {
     teams.forEach((team) => {
         let costs = Object.keys(simulation['Employees'][team]);
         costs.forEach((cost) => {
-            ////console.log(`${cost}: ${simulation['Employees'][team][cost]['salary']}`)
+            //console.log(`${cost}: ${simulation['Employees'][team][cost]['salary']}`)
             total += simulation['Employees'][team][cost]['salary'];
         });
 
@@ -328,7 +331,7 @@ function projectBusinessApproval() {
     //console.log(`Company Account balance before deposit: £${simulation['Company Account']['companyAccount']}`)
     simulation['Company Account']['companyAccount'] += getDepositAmount();
     //console.log(`Company Account balance after deposit: £${simulation['Company Account']['companyAccount']}`)
-    addDays(2);
+
 }
 
 function monthlyInstallmentPay() {
@@ -373,7 +376,7 @@ function projectPlan() {
     simulation['Projects']['Proposed Project']['team'] = team;
     simulation['Project Plan']['timeline'] = simulation['Projects']['Proposed Project']['proposedTimeline'];
     //console.log(simulation['Project Plan']);
-    addDays(2);
+
 
 }
 
@@ -680,7 +683,7 @@ function sprintOne(userStoryTitle, userStoryDescription) {
     //console.log("******************");
     //at here we'll want to start assigning tickets
     //console.log("Design and Implementation");
-    addDays(1);
+
 
 }
 
@@ -693,7 +696,7 @@ function sprintTwo(userStory) {
     //console.log("Design and Implementation");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintThree(userStory) {
@@ -702,7 +705,7 @@ function sprintThree(userStory) {
     //console.log("Design and Implementation");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintFour(userStory) {
@@ -715,7 +718,7 @@ function sprintFour(userStory) {
     //want to do some update could change the amount of proposed hours.
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 
 }
 
@@ -726,7 +729,7 @@ function sprintFive(userStory) {
     //console.log("Shaping Stories for Next Sprint");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintSix(userStory) {
@@ -736,7 +739,7 @@ function sprintSix(userStory) {
     //console.log("Design - Shaping Stories for Next Sprint");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 
@@ -746,7 +749,7 @@ function sprintSeven(userStory) {
     //console.log("Design - Finishing touches for current sprint");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintEight(userStory) {
@@ -755,7 +758,7 @@ function sprintEight(userStory) {
     //console.log("Design - Finishing touches for current sprint");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintNine(userStory) {
@@ -765,7 +768,7 @@ function sprintNine(userStory) {
     //console.log("Design - Shaping Stories for Next Sprint");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintTen(userStory) {
@@ -774,7 +777,7 @@ function sprintTen(userStory) {
     //console.log("Design - Shaping Stories for Next Sprint");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintEleven(userStoryTitle, userStoryDescription) {
@@ -795,7 +798,7 @@ function sprintEleven(userStoryTitle, userStoryDescription) {
     //console.log(simulation['User Stories']);
     //at here we'll want to start assigning tickets
     //console.log("Design and Implementation");
-    addDays(1);
+
 }
 
 function sprintTwelve(userStory) {
@@ -803,7 +806,7 @@ function sprintTwelve(userStory) {
     //console.log("Project Manager Sprint Planning");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintThirteen(userStory) {
@@ -811,7 +814,7 @@ function sprintThirteen(userStory) {
     //console.log("Project Manager Sprint Planning");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintFourteen(userStory) {
@@ -821,7 +824,7 @@ function sprintFourteen(userStory) {
     //console.log("Design Sprint Review");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 
@@ -830,7 +833,7 @@ function sprintFifteen(userStory) {
     //console.log("Project Manager - Prepare Next Sprint");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintSixteen(userStory) {
@@ -838,7 +841,7 @@ function sprintSixteen(userStory) {
     //console.log("Project Manager - Prepare Next Sprint");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintSeventeen(userStory) {
@@ -846,14 +849,14 @@ function sprintSeventeen(userStory) {
     //console.log("Project Manager - Understand what is likely to be available to demo");
     workOnSprintTicket();
     progressReport(userStory);
-    addDays(1);
+
 }
 
 function sprintEighteen() {
     //console.log("Stand Up Feature Complete");
     //console.log("Project Manager - prepare demo");
     workOnSprintTicket()
-    addDays(1);
+
 }
 
 
@@ -863,13 +866,13 @@ function sprintNineteen() {
     //console.log("Project Manager Sprint Review");
     //console.log("Design Sprint Review");
     workOnSprintTicket();
-    addDays(1);
+
 }
 
 function sprintTwenty() {
     //console.log("Stand Up Retro");
     //console.log("Project Manager Prepares Next Sprint");
-    addDays(1);
+
     workOnSprintTicket();
     simulation['Projects']['Proposed Project']['inSprint'] = false;
 
@@ -929,7 +932,7 @@ function createPrototype(prototype) {
 
     simulation['Prototypes'][prototype] = {};
     simulation['Prototypes'][prototype]['userStories'] = {};
-    simulation['Prototypes'][prototype]['proposedWorkHours'] = generateRandomIntegerInRange(40, 60);
+    simulation['Prototypes'][prototype]['proposedWorkHours'] = generateRandomIntegerInRange(450, 500);
     simulation['Prototypes'][prototype]['actualWorkHours'] = 0;
     simulation['Prototypes'][prototype]['isComplete'] = 0;
     simulation['Prototypes'][prototype]['reworkHours'] = 0;
@@ -969,68 +972,54 @@ function generateAvgQualityOfPrototype(prototype) {
 }
 
 function workOnPrototype(prototype) {
-    let count = 0;
-    do {
-        count++;
-        let employees = Object.keys(simulation['Projects']['Proposed Project']['team']);
-        employees.forEach((employee) => {
 
-            let role = simulation['Projects']['Proposed Project']['team'][employee]['role'];
-            if (role === 'Junior Developer' || role === 'Intermediate Developer' || role === 'Senior Developer') {
-                for (let i = 0; i < 5; i++) {
-                    if (simulation['Prototypes'][prototype]['actualWorkHours'] < simulation['Prototypes'][prototype]['proposedWorkHours']) {
-                        simulation['Prototypes'][prototype]['actualWorkHours'] += simulation['Projects']['Proposed Project']['team'][employee]['workEffeciency'];
-                        simulation['Prototypes'][prototype]['actualWorkHours'] = parseFloat(simulation['Prototypes'][prototype]['actualWorkHours'].toFixed(2));
-                    }
+    simulation['Project Status']['daysToComplete'] += 1
+    let employees = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    employees.forEach((employee) => {
 
-
+        let role = simulation['Projects']['Proposed Project']['team'][employee]['role'];
+        if (role === 'Junior Developer' || role === 'Intermediate Developer' || role === 'Senior Developer') {
+            for (let i = 0; i < 5; i++) {
+                if (simulation['Prototypes'][prototype]['actualWorkHours'] < simulation['Prototypes'][prototype]['proposedWorkHours']) {
+                    simulation['Prototypes'][prototype]['actualWorkHours'] += simulation['Projects']['Proposed Project']['team'][employee]['workEffeciency'];
+                    simulation['Prototypes'][prototype]['actualWorkHours'] = parseFloat(simulation['Prototypes'][prototype]['actualWorkHours'].toFixed(2));
                 }
-                if (simulation['Prototypes'][prototype]['actualWorkHours'] >= simulation['Prototypes'][prototype]['proposedWorkHours']) {
-                    simulation['Prototypes'][prototype]['isComplete'] = true;
-                    sendPrototypeForTesting(prototype);
-                }
+
+
             }
-        });
+            if (simulation['Prototypes'][prototype]['actualWorkHours'] >= simulation['Prototypes'][prototype]['proposedWorkHours']) {
+                simulation['Prototypes'][prototype]['isComplete'] = true;
+                sendPrototypeForTesting(prototype);
+            }
+        }
+    });
 
-        addDays(1);
-
-    }
-
-    while (simulation['Prototypes'][prototype]['isComplete'] == false);
 }
 
 
 function sendPrototypeForTesting(prototype) {
 
-    generatePrototypeTestingHours(prototype);
+    let employees = Object.keys(simulation['Projects']['Proposed Project']['team']);
+    employees.forEach((employee) => {
 
-
-    do {
-
-        let employees = Object.keys(simulation['Projects']['Proposed Project']['team']);
-        employees.forEach((employee) => {
-
-            let role = simulation['Projects']['Proposed Project']['team'][employee]['role'];
-            if (role === 'Testing') {
-                for (let i = 0; i < 5; i++) {
-                    if (simulation['Prototypes'][prototype]['actualTestingHours'] < simulation['Prototypes'][prototype]['proposedTestingHours']) {
-                        simulation['Prototypes'][prototype]['actualTestingHours'] += parseFloat(simulation['Projects']['Proposed Project']['team'][employee]['workEffeciency'].toFixed(2));
-                    }
-
-
+        let role = simulation['Projects']['Proposed Project']['team'][employee]['role'];
+        if (role === 'Testing') {
+            for (let i = 0; i < 5; i++) {
+                if (simulation['Prototypes'][prototype]['actualTestingHours'] < simulation['Prototypes'][prototype]['proposedTestingHours']) {
+                    simulation['Prototypes'][prototype]['actualTestingHours'] += parseFloat(simulation['Projects']['Proposed Project']['team'][employee]['workEffeciency'].toFixed(2));
                 }
-                if (simulation['Prototypes'][prototype]['actualTestingHours'] >= simulation['Prototypes'][prototype]['proposedTestingHours']) {
-                    simulation['Prototypes'][prototype]['testingComplete'] = true;
 
-                }
+
             }
-        });
+            if (simulation['Prototypes'][prototype]['actualTestingHours'] >= simulation['Prototypes'][prototype]['proposedTestingHours']) {
+                simulation['Prototypes'][prototype]['testingComplete'] = true;
 
-        addDays(1);
+            }
+        }
+    });
 
-    }
 
-    while (simulation['Prototypes'][prototype]['testingComplete'] == false);
+
 
     simulation['Prototypes'][prototype]['actualTestingHours'] = parseFloat(simulation['Prototypes'][prototype]['actualTestingHours'].toFixed(2));
 
@@ -1089,11 +1078,11 @@ function presentPrototypeToCustomer(prototype) {
     simulation['Prototypes'][prototype]['proposedWorkHours'] += reworkAmount;
     simulation['Prototypes'][prototype]['isComplete'] = false;
     simulation['Prototypes'][prototype]['testingComplete'] = false;
-    workOnPrototype(prototype);
+
 }
 
 function launchProduct() {
-    console.log("Final Product Created");
+    //console.log("Final Product Created");
 }
 
 
@@ -1406,9 +1395,9 @@ function progressReport(userStory) {
 
         if (!simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']) {
 
-            // console.log(`${ticket}: Proposed Hours to completion: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']} Current hours worked: ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
+            // //console.log(`${ticket}: Proposed Hours to completion: ${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']} Current hours worked: ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
         } else {
-            // console.log(`${ticket}: took ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
+            // //console.log(`${ticket}: took ${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']}`);
         }
     });
 }
@@ -1452,30 +1441,49 @@ adds a number of days to date
 */
 
 function addDays(days) {
+
     //if its a friday set it the date forward two days for the weekend. 
     if (simulation["Date"].getDay() === 5) {
         simulation["Date"].setDate(simulation["Date"].getDate() + 2)
     }
+
     simulation["Date"].setDate(simulation["Date"].getDate() + days);
 
+
+
+
     let isWeekend = isWeekendDay(simulation["Date"]);
+
     let isHoliday = isNationalHoliday(simulation["Date"]);
 
-    do {
 
-        simulation["Date"].setDate(simulation["Date"].getDate() + 1);
-        isWeekend = isWeekendDay(simulation["Date"]);
-        isHoliday = isNationalHoliday(simulation["Date"]);
+
+
+
+    if ((isWeekend) || (isHoliday)) {
+
+
+
+        do {
+
+            simulation["Date"].setDate(simulation["Date"].getDate() + 1);
+            isWeekend = isWeekendDay(simulation["Date"]);
+            isHoliday = isNationalHoliday(simulation["Date"]);
+
+        }
+
+        while ((isWeekend) || (isHoliday))
+
     }
-
-    while ((isWeekend) && (isHoliday))
 }
 
 function isWeekendDay(date) {
 
-    if ((date.getDay() == 6) || date.getDay() == 7) {
+
+    if ((date.getDay() == 6) || date.getDay() == 0) {
         return true;
     }
+    return false;
 
 }
 
@@ -2354,6 +2362,312 @@ function setAdditionalCost(costName, cost) {
 
 }
 
-function updateProjectStatus(status) {
-    simulation['Project Status'] = status;
+function updateProjectStatus(status, daysToComplete) {
+    simulation['Project Status']['title'] = status;
+    simulation['Project Status']['daysToComplete'] = daysToComplete;
+    simulation['Project Status']['daysCompleted'] = 0;
+    simulation['Project Status']['complete'] = false;
 }
+
+function updateProjectStatusDay() {
+    simulation['Project Status']['daysCompleted'] += 1;
+}
+
+function completeProjectStatus() {
+    let daysCompleted = simulation['Project Status']['daysCompleted'];
+    let daysToComplete = simulation['Project Status']['daysToComplete'];
+    if (daysCompleted >= daysToComplete) {
+        simulation['Project Status']['complete'] = true;
+    }
+}
+
+function sprintFirstHalf() {
+
+    //needs someway to get progress of days and compare
+    let daysCompleted = simulation['Project Status']['daysCompleted'];
+    let sprint = daysCompleted / 20;
+
+    let sprintDay = daysCompleted % 20
+
+    sprintDay += 1;
+
+    sprint += 1;
+
+    sprint = parseInt(sprint);
+
+    progressSprint(sprint, sprintDay);
+
+}
+
+function sprintSecondHalf() {
+    //needs someway to get progress of days and compare
+    let daysCompleted = simulation['Project Status']['daysCompleted'];
+    let sprint = daysCompleted / 20;
+
+    let sprintDay = daysCompleted % 20
+
+    sprintDay += 1;
+
+
+    sprint += 7;
+
+    sprint = parseInt(sprint);
+
+    progressSprint(sprint, sprintDay);
+}
+
+
+
+function progressStatusTimeLine(status) {
+
+    switch (status) {
+        case "day 1":
+            updateProjectStatus("customerContactsCompany", 2);
+            break;
+        case "customerContactsCompany":
+            updateProjectStatus("architectureDetermination", 3);
+            break;
+        case "architectureDetermination":
+            updateProjectStatus("feasabilityStudy", 3);
+            break;
+        case "feasabilityStudy":
+            updateProjectStatus("createDraftContract", 2);
+            break;
+        case "createDraftContract":
+            updateProjectStatus("negotiations", 5);
+            break;
+        case "negotiations":
+            updateProjectStatus("projectBusinessApproval", 2);
+            break;
+        case "projectBusinessApproval":
+            updateProjectStatus("projectPlan", 2);
+            break;
+        case "projectPlan":
+            updateProjectStatus("sprintFirstHalf", 120);
+            break;
+        case "sprintFirstHalf":
+            updateProjectStatus("prototypeFirstHalf", 1);
+            break;
+        case "prototypeFirstHalf":
+            updateProjectStatus("sprintSecondHalf", 100);
+            break;
+        case "sprintSecondHalf":
+            updateProjectStatus("prototypeSecondHalf", 1);
+            break;
+        case "prototypeSecondHalf":
+            updateProjectStatus("prototypeFull", 1);
+            break;
+        case "prototypeFull":
+            updateProjectStatus("simulationComplete", 0);
+    }
+}
+
+
+function runEvent(status) {
+
+    switch (status) {
+
+        case "customerContactsCompany":
+            customerContactsCompany();
+            break;
+        case "architectureDetermination":
+            architectureDetermination();
+            break;
+        case "feasabilityStudy":
+            feasibilityStudy();
+            break;
+        case ("createDraftContract"):
+            createDraftContract();
+            break;
+        case ("negotiations"):
+            negotiations();
+            break;
+        case "projectBusinessApproval":
+            projectBusinessApproval();
+            break;
+        case "projectPlan":
+            projectPlan();
+            break;
+        case "sprintFirstHalf":
+            sprintFirstHalf();
+            break;
+        case "prototypeFirstHalf":
+            buildPrototype("prototypeFirstHalf", false);
+            break;
+        case "sprintSecondHalf":
+            sprintSecondHalf();
+            break;
+        case "prototypeSecondHalf":
+            buildPrototype("prototypeSecondHalf", false);
+            break;
+        case "prototypeFull":
+            buildPrototype("prototypeFull", true);
+            break;
+
+    }
+
+
+}
+
+
+function progressSprint(sprint, sprintDay) {
+
+    let userStory = getUserStory(sprint, sprintDay);
+    let userStoryDescription = getUserStoryDescription(sprint, sprintDay);
+
+
+
+
+    switch (sprintDay) {
+        case 1:
+            sprintOne(userStory, userStoryDescription);
+            break;
+        case 2:
+            sprintTwo(userStory);
+            break;
+        case 3:
+            sprintThree(userStory);
+            break;
+        case 4:
+            sprintFour(userStory);
+            break;
+        case 5:
+            sprintFive(userStory);
+            break;
+        case 6:
+            sprintSix(userStory);
+            break;
+        case 7:
+            sprintSeven(userStory);
+            break;
+        case 8:
+            sprintEight(userStory);
+            break;
+        case 9:
+            sprintNine(userStory);
+            break;
+        case 10:
+            sprintTen(userStory);
+            break;
+        case 11:
+            sprintEleven(userStory, userStoryDescription);
+            break;
+        case 12:
+            sprintTwelve(userStory);
+            break;
+        case 13:
+            sprintThirteen(userStory);
+            break;
+        case 14:
+            sprintFourteen(userStory);
+            break;
+        case 15:
+            sprintFifteen(userStory);
+            break;
+        case 16:
+            sprintSixteen(userStory);
+            break;
+        case 17:
+            sprintSeventeen(userStory);
+            break;
+        case 18:
+            sprintEighteen(userStory);
+            break;
+        case 19:
+            sprintNineteen(userStory);
+            break;
+        case 20:
+            sprintTwenty(userStory);
+            break;
+    }
+
+}
+
+function getUserStory(sprint, sprintDay) {
+
+
+    let userStory;
+
+    if (sprintDay <= 10) {
+        if (sprint == 1) {
+            userStory = 'User Story ' + (sprint);
+        } else {
+            userStory = 'User Story ' + (sprint + (sprint - 1));
+        }
+    } else {
+        if (sprint == 1) {
+            userStory = 'User Story ' + (sprint + 1);
+        } else {
+            userStory = 'User Story ' + (sprint + sprint);
+        }
+    }
+
+    return userStory;
+
+
+
+}
+
+function getUserStoryDescription(sprint, sprintDay) {
+
+    let userStoryDescription;
+
+    if (sprintDay <= 10) {
+        if (sprint == 1) {
+            userStoryDescription = 'Description for User Story ' + (sprint);
+        } else {
+            userStoryDescription = 'Description for User Story ' + (sprint + (sprint - 1));
+        }
+    } else {
+        if (sprint == 1) {
+            userStoryDescription = 'Description for User Story ' + (sprint + 1);
+        } else {
+            userStoryDescription = 'Description for User Story ' + (sprint + sprint);
+        }
+    }
+
+    return userStoryDescription;
+
+}
+
+
+
+
+function buildPrototype(type, full) {
+    if (simulation['Project Status']['daysCompleted'] === 0) {
+        developPrototype(type, full)
+        simulation['Project Status']['daysToComplete'] += 1
+    } else {
+        let reworkGiven = simulation['Prototypes'][type]['reworkGiven']
+
+        if (!isPrototypeComplete(type)) {
+            workOnPrototype(type);
+        } else {
+            if (!reworkGiven) {
+                presentPrototypeToCustomer(type);
+            }
+        }
+
+        if (!isPrototypeComplete(type)) {
+            workOnPrototype(type);
+        }
+
+        if (isPrototypeComplete(type) && (reworkGiven)) {
+            //            console.log("Finalizing prototype")
+        }
+
+    }
+
+
+}
+
+function isPrototypeComplete(prototype) {
+
+    let isComplete = false;
+
+    if ((simulation['Prototypes'][prototype]['isComplete']) && (simulation['Prototypes'][prototype]['testingComplete'])) {
+        isComplete = true;
+    }
+    return isComplete;
+}
+
