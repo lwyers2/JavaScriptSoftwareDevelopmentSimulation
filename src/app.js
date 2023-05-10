@@ -1,8 +1,10 @@
-runSimulation(600);
+let state = new Array();
 
 
 
-function runSimulation(days) {
+function run(days) {
+
+
 
 
     let projectStatus = simulation['Project Status']['title'];
@@ -13,6 +15,7 @@ function runSimulation(days) {
     }
 
     for (let i = 0; i < days; i++) {
+
 
 
         projectStatus = simulation['Project Status']['title'];
@@ -26,7 +29,6 @@ function runSimulation(days) {
         runEvent(projectStatus);
         updateProjectStatusDay();
         completeProjectStatus();
-        console.log(projectStatus);
         addDays(1);
 
         if (projectStatus == 'simulationComplete') {
@@ -38,9 +40,14 @@ function runSimulation(days) {
 
 
 
-
+        state.push(JSON.stringify(simulation));
+        let printSimulation = document.getElementById('simulation');
+        printSimulation.innerHTML = JSON.stringify(simulation)
 
     }
+
+
+
 
 
 
@@ -58,6 +65,7 @@ function monthlyFunctions() {
     monthlyWebsiteInvoices();
     deductCosts(calculateMonthlyCosts());
 }
+
 
 
 // console.log(simulation)

@@ -2,7 +2,7 @@ const EFFECIENCY_DEDUCTION = .1;
 const EXPIRENCE_MULTIPLYER = 20;
 const QUALITY_DEDUCTION = .3;
 
-let state = new Array();
+
 
 
 const secInMs = 1000;
@@ -232,7 +232,7 @@ function negotiations() {
 
     setAdditionalCost('legal Costs', simulation['Contract']['legalCosts']);
     setAdditionalCost('CheckTestCost', 45);
-    addDays(2);
+
 }
 
 
@@ -1442,21 +1442,21 @@ adds a number of days to date
 
 function addDays(days) {
 
+
     //if its a friday set it the date forward two days for the weekend. 
     if (simulation["Date"].getDay() === 5) {
-        simulation["Date"].setDate(simulation["Date"].getDate() + 2)
+        addDay();
+
     }
-
-    simulation["Date"].setDate(simulation["Date"].getDate() + days);
-
-
-
 
     let isWeekend = isWeekendDay(simulation["Date"]);
 
     let isHoliday = isNationalHoliday(simulation["Date"]);
 
 
+    for (let i = 0; i < days; i++) {
+        addDay();
+    }
 
 
 
@@ -1466,7 +1466,8 @@ function addDays(days) {
 
         do {
 
-            simulation["Date"].setDate(simulation["Date"].getDate() + 1);
+            addDay();
+
             isWeekend = isWeekendDay(simulation["Date"]);
             isHoliday = isNationalHoliday(simulation["Date"]);
 
@@ -1477,10 +1478,21 @@ function addDays(days) {
     }
 }
 
+
+function addDay() {
+
+    simulation["Date"].setDate(simulation["Date"].getDate() + 1);
+
+    if (islastDayOfMonth(simulation["Date"])) {
+        monthlyFunctions();
+    }
+}
+
 function isWeekendDay(date) {
 
 
     if ((date.getDay() == 6) || date.getDay() == 0) {
+
         return true;
     }
     return false;
@@ -2331,6 +2343,8 @@ function isNationalHoliday(date) {
 
     let years = Object.keys(simulation['bankHolidays']);
 
+
+
     years.forEach((year) => {
 
         let yearNumber = parseInt(year)
@@ -2343,8 +2357,8 @@ function isNationalHoliday(date) {
             holidays.forEach((holiday) => {
 
                 let holidayDate = new Date(simulation['bankHolidays'][year][holiday]['date'])
-
                 if (date.getTime() == holidayDate.getTime()) {
+                    console.log(true);
                     isHoliday = true;
                 }
             });

@@ -7,6 +7,20 @@ function generateRandomIntegerInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function islastDayOfMonth(date) {
+
+    let isLast = false;
+
+    let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+    if (date.getTime() == lastDay.getTime()) {
+        isLast = true;
+    }
+
+    return isLast;
+
+}
+
 
 
 

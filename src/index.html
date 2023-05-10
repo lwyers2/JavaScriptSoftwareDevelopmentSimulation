@@ -119,13 +119,35 @@
     <div class="container is-fullhd">
         <div class="notification is-light">
             <div class="columns">
-                <div class="column is-offset-5">
-                    <button class="button is-large" id="run-simulation">Run Simulation</button>
+                <div class="column is-offset-4">
+                    <div class="field is-grouped">
+                        <input id="number" type="number" value="1" min="1" max="365" />
+                        <button class="button is-medium" id="run-simulation" onClick=runSimulation()>Run
+                            Simulation</button>
+                    </div>
+                    <div class="column">
+                        <p>Enter amount of days to run</p>
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </div>
+    <div class="container is-fullhd">
+        <div class="notification is-light">
+            <div class="columns">
+                <div class="column">
+                    <h1 class="title">Simulation:</h1>
+                </div>
 
+            </div>
+        </div>
+
+    </div>
+    <div class="container is-fullhd">
+        <p id="simulation"></p>
+    </div>
 
 
 
@@ -156,6 +178,15 @@
                 });
             });
         });
+    </script>
+    <script>
+
+
+        function runSimulation() {
+            let days = document.getElementById('number').value
+            run(days);
+
+        }
     </script>
 
 </body>
