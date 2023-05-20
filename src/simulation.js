@@ -47,6 +47,9 @@ May add existingArchitecture
 
 function customerContactsCompany() {
 
+    let simulationEvent = document.getElementById("simulation-events");
+    simulationEvent.innerHTML += `<p>${simulation['Date']}: A new Company has proposed a new project</p><br>`
+
     //console.log("A new company has proposed a new project");
 
 
@@ -71,9 +74,27 @@ function architectureDetermination() {
     //Putting in hosting too. This will be used for pricing
     //console.log("Determining most suitable tech stack .... ");
     //console.log("As the company needs a  " + simulation['Projects']['Proposed Project'].size + " sized project and it is a " + simulation['Projects']['Proposed Project']['type'] + " project, the most suitable stack is as follows: ");
+
+
+    let simulationEvent = document.getElementById("simulation-events");
+    if (simulation['Project Status']['daysCompleted'] === 0) {
+        simulationEvent.innerHTML += `<p>${simulation['Date']}: Determining most suitable tech stach...</p></br>`
+
+    } else if (simulation['Project Status']['daysCompleted'] + 1 === simulation['Project Status']['daysToComplete']) {
+        simulationEvent.innerHTML += `<p>${simulation['Date']}: As the company needs a  ${simulation['Projects']['Proposed Project'].size} sized project and it is a ${simulation['Projects']['Proposed Project']['type']} project, the most suitable stack is as follows: </p></br>`
+    }
+
+
     let stack = Object.keys(simulation['Projects']['Proposed Project'].techstack);
     stack.forEach((component) => {
+        //console.log("Determining most suitable tech stack .... ");
+        //console.log("As the company needs a  " + simulation['Projects']['Proposed Project'].size + " sized project and it is a " + simulation['Projects']['Proposed Project']['type'] + " project, the most suitable stack is as follows: ");
+
         //console.log(`${component}: ${simulation['Projects']['Proposed Project']['techstack'][component]}`);
+        if (simulation['Project Status']['daysCompleted'] + 1 === simulation['Project Status']['daysToComplete']) {
+
+            simulationEvent.innerHTML += `<p>${component}: ${simulation['Projects']['Proposed Project']['techstack'][component]}</p></br>`
+        }
     });
 
 }
@@ -192,15 +213,33 @@ function createDraftContract() {
     https://impressit.io/blog/software-development-contract
     Liabilities, IntellectualRightsAndLicensing, ScopeOfTheProject, SoftwareAndIntegration, Non-DisclosureClause, TimelinesBudgetAndProcesses, AcceptanceTestingAndDelivery, ContractVariationAndChanges, SupportServices, ForceMajeur
  */
+
+    console.log("Creating Draft Contract");
+
+    let simulationEvent = document.getElementById("simulation-events");
+    if (simulation['Project Status']['daysCompleted'] === 0) {
+        simulationEvent.innerHTML += `<p>${simulation['Date']}: Creating Draft Contract...</p></br>`
+
+    }
+
+
     simulation['Contract']['rawComponentCosts'] = getProjectCostRaw();
     simulation['Contract']['developmentCost'] = generateRandomIntegerInRange(450000, 650000);
+
+    if (simulation['Project Status']['daysCompleted'] + 1 === simulation['Project Status']['daysToComplete']) {
+        simulationEvent.innerHTML += `<p>${simulation['Date']}: The proposed contract is as follows: </p></br>`
+
+    }
 
     //console.log("The proposed contract is as follows: ")
 
     let contract = Object.keys(simulation['Contract']);
     contract.forEach((component) => {
         //console.log(component + ": " + simulation['Contract'][component])
+        if (simulation['Project Status']['daysCompleted'] + 1 === simulation['Project Status']['daysToComplete']) {
+            simulationEvent.innerHTML += `<p>${component}: ${simulation['Contract'][component]}</p></br>`
 
+        }
     });
 
 
@@ -222,13 +261,29 @@ function negotiations() {
     simulation['Contract']['timeline'] += generateRandomIntegerInRange(-3, +3);
     simulation['Contract']['developmentCost'] += parseInt(((generateRandomIntegerInRange(-10, 10) / 100) * simulation['Contract']['developmentCost']));
     // simulation['Contract']['continuedSupport'] += generateRandomIntegerInRange(-3, +3);
+
     //console.log("After the negotiations the contract is as follows: ")
+    let simulationEvent = document.getElementById("simulation-events");
 
-    let contract = Object.keys(simulation['Contract']);
-    contract.forEach((component) => {
-        //console.log(component + ": " + simulation['Contract'][component])
+    if (simulation['Project Status']['daysCompleted'] === 0) {
+        simulationEvent.innerHTML += `<p>${simulation['Date']}: Finalising Draft Contract After Negotiations...</p></br>`
 
-    });
+    } else if (simulation['Project Status']['daysCompleted'] + 1 === simulation['Project Status']['daysToComplete']) {
+        simulationEvent.innerHTML += `<p>${simulation['Date']}: After the negotiations the contract is as follows: </p></br>`
+
+    }
+
+
+    if (simulation['Project Status']['daysCompleted'] + 1 === simulation['Project Status']['daysToComplete']) {
+        let contract = Object.keys(simulation['Contract']);
+        contract.forEach((component) => {
+
+            simulationEvent.innerHTML += `<p>${component}: ${simulation['Contract'][component]}</p></br>`
+
+
+
+        });
+    }
 
     setAdditionalCost('legal Costs', simulation['Contract']['legalCosts']);
     setAdditionalCost('CheckTestCost', 45);
@@ -254,10 +309,9 @@ function getAdHocCosts() {
     //console.log("***********************************");
     //console.log("AD HOC COSTS");
     costs.forEach((cost) => {
-        //console.log(`${cost}: ${simulation['Ad Hoc Costs'][cost]}`)
         total += simulation['Ad Hoc Costs'][cost];
     });
-    //console.log(`Total: £${total}`);
+
     //console.log("***********************************");
 
     return total;
@@ -272,13 +326,13 @@ function calculateSalaries() {
     teams.forEach((team) => {
         let costs = Object.keys(simulation['Employees'][team]);
         costs.forEach((cost) => {
-            //console.log(`${cost}: ${simulation['Employees'][team][cost]['salary']}`)
             total += simulation['Employees'][team][cost]['salary'];
         });
 
     });
     //console.log(`Total: £${total}`);
     //console.log("***********************************");
+
     return total;
 }
 
@@ -288,14 +342,9 @@ function calculateMonthlyCosts() {
     let adCosts = 0;
 
     let costs = Object.keys(simulation['Additional Costs']['Costs']);
-    //console.log("***********************************");
-    //console.log("Additional Costs");
     costs.forEach((cost) => {
-        //console.log(`${cost}: ${simulation['Additional Costs']['Costs'][cost]}`)
         adCosts += simulation['Additional Costs']['Costs'][cost];
     });
-    //console.log(`Total: £${adCosts}`);
-    //console.log("***********************************");
 
     let adhoc = getAdHocCosts();
     let sal = calculateSalaries();
@@ -307,7 +356,6 @@ function calculateMonthlyCosts() {
         'na': 0
     }
 
-    //console.log(`Total Monthly Costs: £${totalCosts}`)
     return totalCosts;
 
 
@@ -315,9 +363,7 @@ function calculateMonthlyCosts() {
 
 function deductCosts(cost) {
 
-    //console.log(`Deducting £${cost} from Account Balance £${simulation['Company Account']['companyAccount']}`);
     simulation['Company Account']['companyAccount'] -= cost;
-    //console.log(`Updated Account: £${simulation['Company Account']['companyAccount']}`)
 
 }
 /* 
@@ -1486,6 +1532,10 @@ function addDay() {
     if (islastDayOfMonth(simulation["Date"])) {
         monthlyFunctions();
     }
+    if (isFirstDayOfFinancialYear(simulation['Date'])) {
+        console.log("FinancialNew Year");
+        yearlyDevelopmentIncome();
+    }
 }
 
 function isWeekendDay(date) {
@@ -1497,6 +1547,16 @@ function isWeekendDay(date) {
     }
     return false;
 
+}
+
+function isFirstDayOfFinancialYear() {
+    let day = simulation['Date'].getDay();
+    let month = simulation['Date'].getMonth();
+
+    if (day === 0 && month === 3) {
+        return true;
+    }
+    return false;
 }
 
 //console.log(simulation);

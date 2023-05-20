@@ -1,4 +1,5 @@
 let state = new Array();
+let monthlyState = new Array();
 
 
 
@@ -39,10 +40,13 @@ function run(days) {
 
 
 
+        printTickets();
+        printUserStories();
+        printEmployees();
 
         state.push(JSON.stringify(simulation));
-        let printSimulation = document.getElementById('simulation');
-        printSimulation.innerHTML = JSON.stringify(simulation)
+        // let printSimulation = document.getElementById('simulation');
+        // printSimulation.innerHTML = JSON.stringify(simulation)
 
     }
 
@@ -52,293 +56,277 @@ function run(days) {
 
 
 }
-
 console.log(simulation);
 
 
 function monthlyFunctions() {
+
+
     monthlyInstallmentPay();
     softwareSubscriptions();
-    yearlyDevelopmentIncome();
+
     monthlySupportContracts();
     monthlyHostingFees();
     monthlyWebsiteInvoices();
     deductCosts(calculateMonthlyCosts());
+    let date = new Date(simulation['Date']);
+    monthlyState.push(JSON.stringify(simulation));
+    renderGraph(monthlyState);
+}
+
+
+function printEmployees() {
+    let employeeDiv = document.getElementById('employees');
+    let table = "";
+
+    table += `<table class="table">
+    <caption style="font-weight: bold">
+        Employees
+    </caption>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Salary</th>
+            <th>Experience</th>
+            <th>Tenure</th>
+            <th><abbr title="Satisfaction Matrix"></abbr>Qual</th>
+            <th><abbr title="Performance Review"></abbr>Eff</th>
+        </tr>
+    </thead>`;
+
+
+
+
+
+    let teams = Object.keys(simulation['Employees']);
+
+    teams.forEach((team) => {
+
+        let employees = Object.keys(simulation['Employees'][team]);
+        employees.forEach((employee) => {
+
+            table += `<tbody>`;
+            table += `<tr>`
+            table += ` <td>${employee}</td>`
+            table += `<td>${simulation['Employees'][team][employee]['role']}</td>`;
+            table += `<td>£${simulation['Employees'][team][employee]['salary'] * 12} p/m</td>`;
+            table += `<td>${simulation['Employees'][team][employee]['experience']}</td>`;
+            table += `<td>${simulation['Employees'][team][employee]['tenure']}</td>`;
+            table += `<td>${simulation['Employees'][team][employee]['workQuality']}</td>`;
+            table += `<td>${simulation['Employees'][team][employee]['workEffeciency']}</td>`
+            table += `</tr></tbody>`
+
+        })
+    })
+    table += '</tbody></table>';
+
+    employeeDiv.innerHTML = table;
+}
+
+function printUserStories() {
+
+    let userStoriesDiv = document.getElementById('user-stories');
+
+    table = `  </br>
+    <table class="table">
+    <caption style="font-weight: bold">
+        User Stories
+    </caption>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th><abbr title="Ticket Amount"></abbr>Tcks</th>
+            <th><abbr title="Proposed Work Hours">PWH</abbr></th>
+            <th><abbr title="Actual Work Hours">AWH</abbr></th>
+            <th><abbr title="Proposed Testing Time">PTT</abbr></th>
+            <th><abbr title="Actual Testing Time">ATT</abbr></th>
+            <th><abbr title="Average Quality">Qua</abbr></th>
+        </tr>
+    </thead>`;
+
+    let userStories = Object.keys(simulation['User Stories']);
+
+    userStories.forEach((userStory) => {
+        let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+        let count = 0;
+        let actualWH = 0;
+        let proposedWH = 0;
+        let actualTT = 0;
+        let proposedTT = 0;
+        let totalQual = 0;
+        tickets.forEach((ticket) => {
+            count++;
+            proposedWH += simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours']
+            actualWH += simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours']
+            actualTT += simulation['User Stories'][userStory]['tickets'][ticket]['actualTestingTime']
+            totalQual += simulation['User Stories'][userStory]['tickets'][ticket]['avgQual']
+            proposedTT += simulation['User Stories'][userStory]['tickets'][ticket]['proposedTestingTime']
+        })
+        totalQual /= count;
+        actualWH = actualWH.toFixed(2);
+        proposedWH = proposedWH.toFixed(2);
+        actualTT = actualTT.toFixed(2);
+        proposedTT = proposedTT.toFixed(2);
+        totalQual = totalQual.toFixed(2);
+
+
+        table += `<tbody>`;
+        table += `<tr>`
+        table += ` <td>${userStory}</td>`
+        table += `<td>${count}</td>`;
+        table += `<td>${proposedWH}</td>`;
+        table += `<td>${actualWH}</td>`;
+        table += `<td>${actualTT}</td>`;
+        table += `<td>${proposedTT}</td>`;
+        table += `<td>${totalQual}</td>`;
+        table += `</tr></tbody>`
+    })
+
+    table += '</tbody></table>';
+
+    userStoriesDiv.innerHTML = table;
+
+
+
 }
 
 
 
-// console.log(simulation)
-// createOngoingProjectTickets()
-// assignAllOngoingProjectTickets();
-// generateEmployeeScores();
-// generateEmployeeWorkRate();
+function printTickets() {
+    let ticketsDiv = document.getElementById('tickets');
+    let table = "";
+
+    table = `  </br>
+    <table class="table">
+    <caption style="font-weight: bold">
+        Tickets
+    </caption>
+    <thead>
+        <tr><th><abbr title="User Story"></abbr>UsrStr</th>
+            <th>Title</th>
+            <th><abbr title="Proposed Work Hours">PWH</abbr></th>
+            <th><abbr title="Actual Work Hours">AWH</abbr></th>
+            <th><abbr title="Proposed Testing Time">PTT</abbr></th>
+            <th><abbr title="Actual Testing Time">ATT</abbr></th>
+            <th><abbr title="Average Quality">Qua</abbr></th>
+            <th><abbr title="Rework Given">RG</abbr></th>
+            <th><abbr title="Is Complete">CMPL</abbr></th>
 
 
-// //before
-// state.push(JSON.stringify(simulation));
-// // Yearly run 
-// monthOne();
-// state.push(JSON.stringify(simulation));
-// monthTwo();
-// state.push(JSON.stringify(simulation));
-// monthThree();
-// state.push(JSON.stringify(simulation));
-// monthFour();
-// state.push(JSON.stringify(simulation));
-// monthFive();
-// state.push(JSON.stringify(simulation));
-// monthSix();
-// state.push(JSON.stringify(simulation));
-// monthSeven();
-// state.push(JSON.stringify(simulation));
-// monthEight();
-// state.push(JSON.stringify(simulation));
-// monthNine();
-// state.push(JSON.stringify(simulation));
-// monthTen();
-// state.push(JSON.stringify(simulation));
-// monthEleven();
-// state.push(JSON.stringify(simulation));
-// monthTwelve();
-// state.push(JSON.stringify(simulation));
-// monthThirteen();
-// state.push(JSON.stringify(simulation));
-// monthFourteen();
-// state.push(JSON.stringify(simulation));
+        </tr>
+    </thead>`;
 
 
+    let userStories = Object.keys(simulation['User Stories']);
+
+    userStories.forEach((userStory) => {
+        let tickets = Object.keys(simulation['User Stories'][userStory]['tickets']);
+        tickets.forEach((ticket) => {
+
+            table += `<tbody>`;
+            table += `<tr>`
+            table += ` <td>${userStory}</td>`
+            table += ` <td>${ticket}</td>`
+            table += `<td>${simulation['User Stories'][userStory]['tickets'][ticket]['proposedWorkInHours'].toFixed(2)}</td>`;
+            table += `<td>${simulation['User Stories'][userStory]['tickets'][ticket]['actualWorkInHours'].toFixed(2)}</td>`;
+            table += `<td>${simulation['User Stories'][userStory]['tickets'][ticket]['proposedTestingTime'].toFixed(2)}</td>`;
+            table += `<td>${simulation['User Stories'][userStory]['tickets'][ticket]['actualTestingTime'].toFixed(2)}</td>`;
+            table += `<td>${simulation['User Stories'][userStory]['tickets'][ticket]['avgQual'].toFixed(2)}</td>`;
+            table += `<td>${simulation['User Stories'][userStory]['tickets'][ticket]['reworkGiven']}</td>`;
+            table += `<td>${simulation['User Stories'][userStory]['tickets'][ticket]['isComplete']}</td>`;
+            table += `</tr></tbody>`
+
+        })
 
 
-// // // monthly functions
+    });
 
-// function monthOne() {
-//     customerContactsCompany();
-//     architectureDetermination();
-//     feasibilityStudy();
-//     createDraftContact();
-//     negotiations();
-//     deductCosts(calculateMonthlyCosts());
-//     projectBusinessApproval();
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     yearlyDevelopmentIncome();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-// }
+    table += '</tbody></table>';
+
+    ticketsDiv.innerHTML = table;
+
+}
+
+function renderGraph(state) {
 
 
 
+    var chart = new CanvasJS.Chart("chartContainer", {
+        title: {
+            text: "Revenue"
+        },
+        data: [
+            {
+                type: "line",
+                dataPoints: [
+
+                ]
+            },
+            {
+                type: "line",
+                dataPoints: [
+
+
+                ]
+            },
+            {
+                type: "line",
+                dataPoints: [
+
+
+                ]
+            }
+        ]
+    });
+
+
+    for (let i = 0; i < state.length; i++) {
+
+        let data = JSON.parse(state[i]);
+        let date = new Date(data["Date"]);
+        let year = date.getFullYear();
+        let month = date.getMonth();
+        month += 1
+        year -= 2023;
+        month -= 3;
+        year *= 12
+        month += year;
+
+        chart.options.data[0].dataPoints.push({ x: month, y: data['Company Account']['companyAccount'] });
+
+    }
+    chart.render();
+
+}
+
+
+// function printMonthlyRevenue() {
+
+
+//     let monthlyRevenue = document.getElementById("monthly-revenue");
+//     monthlyRevenue.
+//     monthlyRevenue.innerHTML += `<p>${simulation['Date']}</p></br>`
+//     monthlyRevenue.innerHTML += `<p>************************************</p></br>`
+//     monthlyRevenue.innerHTML += `<p>Monthly Income and Expenditure</p></br>`
+//     monthlyRevenue.innerHTML += `<p>************************************</p></br>`
+//     monthlyRevenue.innerHTML += `<p><u>EXPENDITURE:</u></p></br>`
+//     let salaryTotal = calculateSalaries();
+//     monthlyRevenue.innerHTML += `<p><u>SALARIES</u></p></br>`
+//     monthlyRevenue.innerHTML += `<p>Salaries: £${salaryTotal}</p></br>`
+//     monthlyRevenue.innerHTML += `<p><u>AD HOC COSTS</u></p></br>`
+//     printMonthlyCosts();
 
 
 
-
-// function monthTwo() {
-//     //console.log("Month 2");
-//     //console.log("******************");
-//     projectPlan();
-//     sprint('User Story 1', 'User Story Description 1', 'User Story 2', 'User Story Description 2');
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-// }
-
-// function monthThree() {
-//     //console.log("Month 3");
-//     //console.log("******************");
-//     sprint('User Story 3', 'User Story Description 3', 'User Story 4', 'User Story Description 4');
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-
-// }
-
-// function monthFour() {
-//     //console.log("Month 4");
-//     //console.log("******************");
-//     sprint('User Story 5', 'User Story Description 5', 'User Story 6', 'User Story Description 6');
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-
-// }
-
-// function monthFive() {
-//     //console.log("Month 5");
-//     //console.log("******************");
-//     sprint('User Story 7', 'User Story Description 7', 'User Story 8', 'User Story Description 8');
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-
-// }
-
-// function monthSix() {
-//     //console.log("Month 6");
-//     //console.log("******************");
-//     sprint('User Story 9', 'User Story Description 9', 'User Story 10', 'User Story Description 10');
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
 
 // }
 
-// function monthSeven() {
-//     //console.log("Month 7");
-//     //console.log("******************");
-//     workOnBacklog();
-//     developPrototype("PrototypeHalf", false);
-//     workOnPrototype("PrototypeHalf");
-//     presentPrototypeToCustomer("PrototypeHalf");
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-
+// function printMonthlyCosts() {
+//     let monthlyRevenue = document.getElementById("monthly-revenue");
+//     let costs = Object.keys(simulation['Ad Hoc Costs']);
+//     costs.forEach((cost) => {
+//         monthlyRevenue.innerHTML += `<p>${cost}: ${simulation['Ad Hoc Costs'][cost]}</p></br>`;
+//     });
 // }
-
-// function monthEight() {
-//     //console.log("Month 8");
-//     //console.log("******************");
-//     sprint('User Story 11', 'User Story Description 11', 'User Story 12', 'User Story Description 12');
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-
-// }
-
-// function monthNine() {
-//     //console.log("Month 9");
-//     //console.log("******************");
-//     sprint('User Story 13', 'User Story Description 13', 'User Story 14', 'User Story Description 14');
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-
-// }
-
-// function monthTen() {
-//     //console.log("Month 10");
-//     //console.log("******************");
-//     sprint('User Story 15', 'User Story Description 15', 'User Story 16', 'User Story Description 16');
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-
-// }
-
-// function monthEleven() {
-
-//     //console.log("Month 11");
-//     //console.log("******************");
-//     sprint('User Story 17', 'User Story Description 17', 'User Story 18', 'User Story Description 18');
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-
-// }
-
-// function monthTwelve() {
-//     //console.log("Month 12");
-//     //console.log("******************");
-//     sprint('User Story 19', 'User Story Description 19', 'User Story 20', 'User Story Description 20');
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-
-// }
-
-// function monthThirteen() {
-//     //console.log("Month 13");
-//     //console.log("******************");
-//     sprint('User Story 21', 'User Story Description 21', 'User Story 22', 'User Story Description 22');
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-
-// }
-
-
-// function monthFourteen() {
-//     //console.log("Month 14");
-//     //console.log("******************");
-//     workOnBacklog();
-//     developPrototype("PrototypeSecondHalf", false);
-//     workOnPrototype("PrototypeSecondHalf");
-//     presentPrototypeToCustomer("PrototypeSecondHalf");
-//     developPrototype("FinalPrototype", true);
-//     workOnPrototype("FinalPrototype");
-//     presentPrototypeToCustomer("FinalPrototype");
-//     launchProduct();
-//     deductCosts(calculateMonthlyCosts());
-//     monthlyInstallmentPay();
-//     softwareSubscriptions();
-//     monthlySupportContracts();
-//     monthlyHostingFees();
-//     monthlyWebsiteInvoices();
-//     //console.log("Time Period Ended");
-//     //console.log("******************");
-// }
-
 

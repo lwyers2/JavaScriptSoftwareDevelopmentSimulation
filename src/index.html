@@ -8,6 +8,9 @@
     <title>Simulation Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <script src="https://kit.fontawesome.com/39590b0325.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -32,59 +35,11 @@
                 <a class="navbar-item" href="index.html">
                     Home
                 </a>
-
-                <a class="navbar-item" href="simulation.html">
-                    Simulation
-                </a>
-
-                <a class="navbar-item" href="value.html">
-                    Value Managment
-                </a>
-
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        Reports
-                    </a>
-
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item" href="reports.html">
-                            Finance
-                        </a>
-                        <a class="navbar-item" href="reports.html">
-                            Progression
-                        </a>
-                        <a class="navbar-item" href="reports.html">
-                            Retention Rate
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item" href="reports.html">
-                            Previous Reports
-                        </a>
-                    </div>
-                </div>
-                <a class="navbar-item" href="about.html">
-                    About
-                </a>
-            </div>
-
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-primary">
-                            <strong>Sign up</strong>
-                        </a>
-                        <a class="button is-light">
-                            Log in
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </nav>
 
     <div class="container is-fullhd is-primary">
         <div class="notification is-primary">
-            <h1 class="title">Employee Simulation</h1>
+            <h1 class="title">Software Development Project Simulation</h1>
             <h2>A light-weight webpage that creates a simulation of a recent graduate's journey within a Software
                 Devlopment House. Showing likely hood of employee retention, employee productivity, learning path and
                 employee performance using advanced algorithms. Simulations are run on a daily basis to draw conclusions
@@ -99,96 +54,156 @@
         <div class="notification is-light">
             <div class="columns" id="links">
                 <div class="column">
-                    <div class="column"><a href="simulations.html"><img src="img/simu.jpg" alt=""></a></div>
-                    <h2>Simulations</h2>
-                    <div class="column">
-                        <p>Create a simulation of daily business to predict progress of graduate employees in your
-                            department</p>
+                    <div class="column is-offset-5">
+                        <div class="field is-grouped">
+                            <input id="number" type="number" value="1" min="1" max="365" />
+                            <button class="button is-medium" id="run-simulation" onClick=runSimulation()>Run
+                                Simulation</button>
+                        </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="column"><a href="reports.html"><img src="img/graph.jpg" alt=""></a></div>
-                    <h2>Reports</h2>
                     <div class="column">
-                        <p>View and download reports from simulations ran.</p>
+                        <div class="column">
+                            <p>Enter amount of days to run</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container is-fullhd">
-        <div class="notification is-light">
-            <div class="columns">
-                <div class="column is-offset-4">
-                    <div class="field is-grouped">
-                        <input id="number" type="number" value="1" min="1" max="365" />
-                        <button class="button is-medium" id="run-simulation" onClick=runSimulation()>Run
-                            Simulation</button>
-                    </div>
-                    <div class="column">
-                        <p>Enter amount of days to run</p>
+
+            <div class="container is-fullhd">
+                <div class="notification is-light">
+                    <div class="columns">
+                        <div class="column">
+                            <h1 class="title"><u>Simulation</u></h1>
+                        </div>
                     </div>
                 </div>
 
+            </div>
+            <div class="container is-fullhd">
+                <div class="notification is-light">
+                    <div class="columns">
+                        <div class="column">
+                            <button class="button is-medium" onclick="showHide('simulation-events')">Simulation
+                                Events</button>
+
+                            <div id="simulation-events" style="display:none">
+                                </br>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <button class="button is-medium" onclick="showHide('employees')">Employees</button>
+
+                            <div id="employees" style="display:none">
+                                </br>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container is-fullhd">
+                <div class="notification is-light">
+                    <div class="columns">
+                        <div class="column">
+                            <button class="button is-medium" onclick="showHide('user-stories')">User
+                                Stories</button>
+
+                            <div id="user-stories" style="display:none">
+
+                            </div>
+                        </div>
+                        <div class="column">
+                            <button class="button is-medium" onclick="showHide('tickets')">Tickets</button>
+
+                            <div id="tickets" style="display:none">
+                                </br>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-        </div>
-    </div>
-    <div class="container is-fullhd">
-        <div class="notification is-light">
-            <div class="columns">
-                <div class="column">
-                    <h1 class="title">Simulation:</h1>
+            <div class="container is-fullhd">
+                <div class="notification is-light">
+                    <div class="columns">
+                        <div class="column">
+                            <button class="button is-medium" onclick="showHide('revenue')">Revenue</button>
+
+                            <div id="revenue" style="display:none">
+                                <br>
+                                <div id="chartContainer" style="width:100%; height:280px"></div>
+                                <button id="addDataPoint">Add Data Point</button>
+                                <button id="updateDataPoint">Update Data Point</button>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </div>
 
-    </div>
-    <div class="container is-fullhd">
-        <p id="simulation"></p>
-    </div>
 
 
+        <script>
+            // to ensure that script loads fully first
+            function loadScript(url, callback) {
+                var script = document.createElement('script');
+                script.src = url;
 
-    <script>
-        // to ensure that script loads fully first
-        function loadScript(url, callback) {
-            var script = document.createElement('script');
-            script.src = url;
+                // Execute the callback after the script is loaded
+                script.onload = callback;
 
-            // Execute the callback after the script is loaded
-            script.onload = callback;
+                document.head.appendChild(script);
+            }
 
-            document.head.appendChild(script);
-        }
-
-        loadScript('data.js', function () {
-            // The script.js file has been fully loaded
-            loadScript('script.js', function () {
-                //
-                loadScript('calculations.js', function () {
-                    // The second.js file has been fully loaded
-                    loadScript('simulation.js', function () {
-                        // The third.js file has been fully loaded
-                        loadScript('app.js', function () {
-                            // All scripts have been loaded and executed
+            loadScript('data.js', function () {
+                // The script.js file has been fully loaded
+                loadScript('script.js', function () {
+                    //
+                    loadScript('calculations.js', function () {
+                        // The second.js file has been fully loaded
+                        loadScript('simulation.js', function () {
+                            // The third.js file has been fully loaded
+                            loadScript('app.js', function () {
+                                // All scripts have been loaded and executed
+                            });
                         });
                     });
                 });
             });
-        });
-    </script>
-    <script>
+        </script>
+        <script>
 
 
-        function runSimulation() {
-            let days = document.getElementById('number').value
-            run(days);
+            function runSimulation() {
+                let days = document.getElementById('number').value
+                run(days);
 
-        }
-    </script>
+            }
 
+            function showHide(id) {
+                var x = document.getElementById(id);
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+
+
+
+
+        </script>
+        <script type="text/javascript">
+            //canvas.js
+
+
+        </script>
 </body>
 
 </html>
